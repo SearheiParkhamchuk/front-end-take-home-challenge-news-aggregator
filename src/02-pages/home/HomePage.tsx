@@ -1,7 +1,7 @@
-import { type HomePageProps } from './types'
+import Articles from '@/03-widgets/articles/ui/Articles'
 
-function HomePage({ ...rest }: HomePageProps) {
-  return <div {...rest}>Home</div>
+function HomePage() {
+  return <Articles />
 }
 
 export default HomePage

@@ -1,3 +1,4 @@
+'use client'
 import Typography from '@mui/material/Typography'
 
 import { styled } from '@/06-shared/lib/theme/styled'
