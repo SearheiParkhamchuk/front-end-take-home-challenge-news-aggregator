@@ -9,6 +9,8 @@ const globalCss = (theme: Theme) => {
   return css`
     body {
       margin: 0;
+      min-height: 100vh;
+      height: 100vh;
     }
 
     ul, ol {
