@@ -7,12 +7,12 @@ import { withProviders } from '@/test/HOC/withProviders'
 import { composeHOCs } from '@/test/utils/composeHOCs'
 import { renderComponent } from '@/test/utils/renderComponent'
 
-import HomePage from '../HomePage'
+import ArticlesGrid from '../ArticlesGrid'
 
-describe('HomePage component', () => {
+describe('ArticlesGrid component', () => {
   afterEach(cleanup)
 
-  const Component = composeHOCs(withProviders)(HomePage)
+  const Component = composeHOCs(withProviders)(ArticlesGrid)
   const render = renderComponent(Component)
 
   it('renders correctly', () => {

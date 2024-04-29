@@ -21,6 +21,7 @@ const globalCss = (theme: Theme) => {
     img {
       max-width: 100%;
       display: block;
+      object-fit: cover;
     }
 
     body {
