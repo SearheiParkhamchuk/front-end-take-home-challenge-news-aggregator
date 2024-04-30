@@ -1,37 +1,34 @@
+'use server'
 import Article from '@/05-entities/articles/ui/Article'
 import ArticlesGrid from '@/05-entities/articles/ui/ArticlesGrid'
 
 import { type ArticlesProps } from './types'
+import { NewsApiArticleStrategy } from '../../api/strategies/NewsApiArticle.strategy'
+import { TheGuardianStrategy } from '../../api/strategies/TheGuardian.strategy'
 
-const alt = 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam, laborum!'
-const src = `
-  https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?
-  q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
-`
+const newsApi = new NewsApiArticleStrategy()
+const theGuardian = new TheGuardianStrategy()
 
-const publishedAt = new Date()
-const title = 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam, laborum!'
-const description = `Lorem ipsum dolor sit amet consectetur adipisicing elit.
-Tenetur, assumenda sapiente beatae eum deleniti magnam excepturi pariatur consectetur aliquam facilis?`
+const strategies = [newsApi, theGuardian]
 
-function Articles({ ...rest }: ArticlesProps) {
+async function Articles({ ...rest }: ArticlesProps) {
+  const [newsApiResponse, theGuardianResponse] = await Promise.all(strategies.map(async s => await s.fetch()))
+
+  const news = [...newsApiResponse.data?.articles ?? [], ...theGuardianResponse.data?.articles ?? []]
+
   return (
     <ArticlesGrid {...rest}>
-      <Article alt={alt} description={description} publishedAt={publishedAt} src={src} title={title} />
-      <Article alt={alt} description={description} publishedAt={publishedAt} src={src} title={title} />
-      <Article alt={alt} description={description} publishedAt={publishedAt} src={src} title={title} />
-      <Article alt={alt} description={description} publishedAt={publishedAt} src={src} title={title} />
-      <Article alt={alt} description={description} publishedAt={publishedAt} src={src} title={title} />
-      <Article alt={alt} description={description} publishedAt={publishedAt} src={src} title={title} />
-      <Article alt={alt} description={description} publishedAt={publishedAt} src={src} title={title} />
-      <Article alt={alt} description={description} publishedAt={publishedAt} src={src} title={title} />
-      <Article alt={alt} description={description} publishedAt={publishedAt} src={src} title={title} />
-      <Article alt={alt} description={description} publishedAt={publishedAt} src={src} title={title} />
-      <Article alt={alt} description={description} publishedAt={publishedAt} src={src} title={title} />
-      <Article alt={alt} description={description} publishedAt={publishedAt} src={src} title={title} />
-      <Article alt={alt} description={description} publishedAt={publishedAt} src={src} title={title} />
-      <Article alt={alt} description={description} publishedAt={publishedAt} src={src} title={title} />
-      <Article alt={alt} description={description} publishedAt={publishedAt} src={src} title={title} />
+      {news.map((article) => (
+        <Article
+          alt={article.title}
+          description={article.description}
+          key={article.title}
+          publishedAt={article.publishedAt}
+          source={article.source}
+          src={article.thumbnail}
+          title={article.title}
+        />
+      ))}
     </ArticlesGrid>
   )
 }
