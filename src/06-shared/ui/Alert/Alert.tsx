@@ -1,3 +1,4 @@
+'use client'
 import { Collapse } from '@mui/material'
 import MuiAlert from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
