@@ -9,7 +9,7 @@ export type ArticleResponse = {
 }
 
 export type FetchOptions = {
-  page?: number
+  page?: string
   pageSize?: number
   query?: string
 }
