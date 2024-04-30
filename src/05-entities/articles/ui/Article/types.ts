@@ -2,6 +2,7 @@ export type ArticleProps = {
   alt: string
   description: string
   publishedAt: Date
-  src: string
+  source: { name: string, src: string }
+  src: string | null
   title: string
 }

@@ -1,13 +1,15 @@
-export type ImageProps = {
-  alt: string
+type ConditionalImageProps =
+| {
   height: number
-  src: string
   width: number
   external?: false
 } | {
-  alt: string
   external: true
-  src: string
   height?: number
   width?: number
 }
+
+export type ImageProps = {
+  alt: string
+  src: string | null
+} & ConditionalImageProps

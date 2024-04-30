@@ -1,7 +1,7 @@
 import { LogoText } from './styles'
 
 function Logo({ ...rest }: {}) {
-  return <LogoText {...rest}>NEWS</LogoText>
+  return <LogoText {...rest}>Good News Everyone!</LogoText>
 }
 
 export default Logo

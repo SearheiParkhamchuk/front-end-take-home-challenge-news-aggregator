@@ -4,5 +4,5 @@ export type TypographyColor = 'primary' | 'secondary' | 'error' | 'success' | 'w
 
 export type TypographyProps = Pick<
 MuiTypographyProps,
-'children' | 'variant' | 'noWrap' | 'gutterBottom' | 'align' | 'className'
+'children' | 'variant' | 'noWrap' | 'gutterBottom' | 'align' | 'className' | 'dangerouslySetInnerHTML'
 > & { color?: TypographyColor }
