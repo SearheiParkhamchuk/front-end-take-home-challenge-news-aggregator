@@ -1,6 +1,7 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
 
+import withPlaiceholder from '@plaiceholder/next'
 const _filename = fileURLToPath(import.meta.url)
 const _dirname = path.dirname(_filename)
 
@@ -8,7 +9,16 @@ const _dirname = path.dirname(_filename)
 const nextConfig = {
   sassOptions: {
     includePaths: [path.join(_dirname, 'styles')]
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*',
+        port: ''
+      }
+    ]
   }
 }
 
-export default nextConfig
+export default withPlaiceholder(nextConfig)

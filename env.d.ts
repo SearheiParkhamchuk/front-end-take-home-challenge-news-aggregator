@@ -1,5 +1,6 @@
 declare namespace NodeJS {
   interface ProcessEnv {
-    TEST: string
+    API_KEY_NEWS_API: string
+    API_KEY_THE_GUARDIAN: string
   }
 }
