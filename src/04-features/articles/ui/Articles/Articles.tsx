@@ -5,7 +5,7 @@ import { type ArticlesProps } from './types'
 
 function Articles({ articles }: ArticlesProps) {
   return (
-    <ArticlesGrid >
+    <ArticlesGrid>
       {articles.map((article) => (
         <Article
           alt={article.title}
