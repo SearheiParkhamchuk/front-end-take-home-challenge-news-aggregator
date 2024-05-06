@@ -1,34 +1,24 @@
 'use server'
-
 import Articles from '@/04-features/articles/ui/Articles'
-import { NewsApiArticleStrategy } from '@/05-entities/articles/api/strategies/NewsApiArticle.strategy'
-import { TheGuardianStrategy } from '@/05-entities/articles/api/strategies/TheGuardian.strategy'
-import { type Article } from '@/05-entities/articles/api/types/Article'
 import Alert from '@/06-shared/ui/Alert'
 
-const newsApi = new NewsApiArticleStrategy()
-const theGuardian = new TheGuardianStrategy()
+import Stack from '@/06-shared/ui/Stack'
 
-const strategies = [newsApi, theGuardian]
+import { fetchArticles } from '../../api/fetch-articles'
+import { mergeArticles } from '../../lib/merge-articles'
+import { mergeArticlesErrors } from '../../lib/merge-articles-errors'
 
 async function ArticlesServer({ page, query }: { page?: string, query?: string }) {
-  const articleResponses = await Promise.all(
-    strategies.map(async s => await s.fetch({ page, query }))
-  )
+  const response = await fetchArticles({ page, query })
 
-  const articles = articleResponses.reduce<Article[]>((acc, response) => {
-    const articles = response.data?.articles
-    return articles ? [...acc, ...articles] : acc
-  }, [])
-    .sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime())
-
-  const errors = articleResponses.reduce<Error[]>((acc, response) => response.error ? [...acc, response.error] : acc, [])
+  const articles = mergeArticles(response)
+  const errors = mergeArticlesErrors(response)
 
   return (
-    <>
-      {!!errors.length && errors.map((e, index) => <Alert key={index} severity='error'>{e.message}</Alert>)}
+    <Stack>
+      {!!errors.length && errors.map((e, index) => <Alert closable key={index} variant='error'>{e.message}</Alert>)}
       <Articles articles={articles} />
-    </>
+    </Stack>
   )
 }
 

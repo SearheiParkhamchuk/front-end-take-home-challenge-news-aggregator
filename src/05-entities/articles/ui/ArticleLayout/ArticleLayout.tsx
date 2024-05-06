@@ -1,22 +1,21 @@
-import { Divider } from '@mui/material'
-
+import Divider from '@/06-shared/ui/Divider'
 import Stack from '@/06-shared/ui/Stack'
 
-import { ArticleImageContainer, Container } from './styles'
+import styles from './styles.module.scss'
 import { type ArticleLayoutProps } from './types'
 
 function ArticleLayout({ Image, Content, Footer }: ArticleLayoutProps) {
   return (
-    <Container>
-      <ArticleImageContainer>
+    <div className={styles.container}>
+      <div className={styles['image-container']}>
         {Image}
-      </ArticleImageContainer>
-      <Stack spacing={0.5}>
+      </div>
+      <Stack gap='xs'>
         {Content}
-        <Divider sx={{ opacity: '0.6' }} variant='middle' />
+        <Divider color='primary' />
         {Footer}
       </Stack>
-    </Container>
+    </div>
   )
 }
 

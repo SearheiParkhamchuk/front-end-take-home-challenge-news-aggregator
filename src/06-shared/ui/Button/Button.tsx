@@ -1,4 +1,4 @@
-import { CircularProgress, Button as MuiButton } from '@mui/material'
+import { Button as MButton } from '@mantine/core'
 
 import { type ButtonProps } from './types'
 
@@ -6,45 +6,40 @@ function Button({
   'aria-label': ariaLabel,
   children,
   className,
-  color,
   disabled,
-  endIcon,
   fullWidth,
   id,
   loading,
   onClick,
   role,
-  size,
-  startIcon,
+  rightSection,
+  leftSection,
   tabIndex,
   type,
-  variant,
-  classes,
+  size,
   ...props
 }: ButtonProps
 ) {
   return (
-    <MuiButton
+    <MButton
       {...props}
+      autoContrast
       aria-disabled={disabled || loading}
       aria-label={ariaLabel}
-      classes={classes}
       className={className}
-      color={color}
       disabled={disabled || loading}
-      endIcon={endIcon}
       fullWidth={fullWidth}
       id={id}
+      leftSection={leftSection}
+      rightSection={rightSection}
       role={role}
       size={size}
-      startIcon={loading ? <CircularProgress color='inherit' size={16} /> : startIcon}
       tabIndex={tabIndex}
       type={type}
-      variant={variant}
       onClick={onClick}
     >
       {children}
-    </MuiButton>
+    </MButton>
   )
 }
 

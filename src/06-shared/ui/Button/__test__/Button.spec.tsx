@@ -22,12 +22,12 @@ describe('Button component', () => {
 
   describe('renders icons correctly', () => {
     it('renders start icon correctly', () => {
-      const { component } = render({ startIcon: <>S</> })
+      const { component } = render({ leftSection: <>S</> })
       expect(within(component).getByText('S')).toBeInTheDocument()
     })
 
     it('renders end icon correctly', () => {
-      const { component } = render({ endIcon: <>E</> })
+      const { component } = render({ rightSection: <>E</> })
       expect(within(component).getByText('E')).toBeInTheDocument()
     })
   })
@@ -40,14 +40,6 @@ describe('Button component', () => {
     const handleClick = jest.fn()
     render({ onClick: handleClick }).component.click()
     expect(handleClick).toHaveBeenCalledTimes(1)
-  })
-
-  it('renders button with different variants', () => {
-    const text1 = render({ variant: 'contained' }, 'button-contained')
-    expect(text1.component).toBeInTheDocument()
-
-    const text2 = render({ variant: 'outlined' }, 'button-outlined')
-    expect(text2.component).toBeInTheDocument()
   })
 
   it('renders disabled button', () => {

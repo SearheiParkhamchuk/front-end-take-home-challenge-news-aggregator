@@ -1,3 +1,3 @@
-import { type SkeletonProps as MuiSkeletonProps } from '@mui/material'
+import { type SkeletonProps as MSkeletonProps } from '@mantine/core'
 
-export type SkeletonProps = Pick<MuiSkeletonProps, 'children' | 'width' | 'height' | 'variant'>
+export type SkeletonProps = Pick<MSkeletonProps, 'children' | 'width' | 'height' | 'circle'>

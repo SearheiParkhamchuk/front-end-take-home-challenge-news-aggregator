@@ -1,35 +1,37 @@
 'use client'
-import { Collapse } from '@mui/material'
-import MuiAlert from '@mui/material/Alert'
-import AlertTitle from '@mui/material/AlertTitle'
+import { Alert as MAlert, Transition } from '@mantine/core'
 
 import { useToggle } from '@/06-shared/lib/utils/hooks/useToggle'
 
+import { ALERT_VARIANTS } from './data'
 import { type AlertProps } from './types'
 
 function Alert({
   children,
-  severity,
   title,
-  color,
   closable,
+  variant,
   ...rest
 }: AlertProps) {
   const [open, { off }] = useToggle(true)
 
   return (
-    <Collapse in={open}>
-      <MuiAlert
-        color={color}
-        severity={severity}
-        variant='outlined'
-        onClose={closable ? off : undefined}
-        {...rest}
-      >
-        {title && <AlertTitle>{title}</AlertTitle>}
-        {children}
-      </ MuiAlert>
-    </Collapse>
+    <Transition mounted={open} transition='pop'>
+      {(styles) => (
+        <MAlert
+          {...rest}
+          autoContrast
+          color={ALERT_VARIANTS[variant].color}
+          icon={ALERT_VARIANTS[variant].icon}
+          style={styles}
+          title={title}
+          withCloseButton={closable}
+          onClose={off}
+        >
+          {children}
+        </ MAlert>
+      )}
+    </Transition>
   )
 }
 

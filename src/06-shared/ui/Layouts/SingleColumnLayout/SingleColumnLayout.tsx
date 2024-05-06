@@ -1,14 +1,19 @@
-'use client'
-import { Container, Footer, Header, Main, Section } from './styles'
+import styles from './styles.module.scss'
 import { type SingleColumnLayoutProps } from './types'
 
 function SingleColumnLayout({ header, body, footer, ...rest }: SingleColumnLayoutProps) {
   return (
-    <Container {...rest}>
-      <Header><Section>{header}</Section></Header>
-      <Main><Section>{body}</Section></Main>
-      <Footer><Section>{footer}</Section></Footer>
-    </Container>
+    <div className={styles.container} {...rest}>
+      <header className={styles.header}>
+        <section className={styles.section}>{header}</section>
+      </header>
+      <main className={styles.main}>
+        <section className={styles.section}>{body}</section>
+      </main>
+      <footer className={styles.footer}>
+        <section className={styles.section}>{footer}</section>
+      </footer>
+    </div>
   )
 }
 

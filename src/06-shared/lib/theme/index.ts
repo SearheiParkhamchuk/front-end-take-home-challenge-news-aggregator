@@ -1,57 +1,57 @@
-import { createTheme } from '@mui/material'
+import { type CSSVariablesResolver, colorsTuple, createTheme, virtualColor } from '@mantine/core'
 
 import { font } from './font'
 
-export const theme = createTheme({
-  typography: {
-    button: {
-      textTransform: 'none'
+export const cssVariablesResolver: CSSVariablesResolver = (theme) => {
+  return {
+    variables: {
+      '--app-spacing-sm': theme.spacing.sm,
+      '--app-spacing-md': theme.spacing.md,
+      '--app-spacing-xs': theme.spacing.xs,
+      '--app-breakpoint-lg': theme.breakpoints.lg,
+      '--app-color-primary': theme.colors.primary[0],
+      '--app-color-text-secondary': theme.colors['text-secondary'][0],
+      '--app-color-bg-secondary': theme.colors['bg-secondary'][0]
     },
-    fontFamily: font.style.fontFamily
-  },
-  transitions: {
-    duration: {
-      shortest: 150,
-      shorter: 200,
-      short: 250,
-      // most basic recommended timing
-      standard: 300,
-      // this is to be used in complex animations
-      complex: 375,
-      // recommended when something is entering screen
-      enteringScreen: 225,
-      // recommended when something is leaving screen
-      leavingScreen: 195
+    dark: {
+      '--mantine-color-body': theme.colors['dark-jungle-green'][0],
+      '--mantine-color-text': theme.colors['white-smoke'][0]
     },
-    easing: {
-      // This is the most common easing curve.
-      easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
-      // Objects enter the screen at full velocity from off-screen and
-      // slowly decelerate to a resting point.
-      easeOut: 'cubic-bezier(0.0, 0, 0.2, 1)',
-      // Objects leave the screen at full velocity. They do not decelerate when off-screen.
-      easeIn: 'cubic-bezier(0.4, 0, 1, 1)',
-      // The sharp curve is used by objects that may return to the screen at any time.
-      sharp: 'cubic-bezier(0.4, 0, 0.6, 1)'
-    }
-  },
-  breakpoints: {
-    unit: 'rem',
-    values: {
-      xs: 30,
-      sm: 48,
-      md: 64,
-      lg: 80,
-      xl: 96
-    }
-  },
-  spacing: (factor: number) => `${factor}rem`
-}, {
-  typography: {
-    breakpoints: {
-      values: {
-        xxs: 0
-      }
+    light: {
+      '--mantine-color-body': theme.colors['white-smoke'][0],
+      '--mantine-color-text': theme.colors['dark-jungle-green'][0]
     }
   }
+}
+
+export const theme = createTheme({
+  fontFamily: font.style.fontFamily,
+  colors: {
+    'dark-jungle-green': colorsTuple('#17252A'),
+    'mineral-green': colorsTuple('#425e5e'),
+    'primary': colorsTuple('#3AAFA9'),
+    'white-smoke': colorsTuple('#f5f5f5'),
+    'iceberg': colorsTuple('#DEF2F1'),
+    'text-primary': virtualColor({
+      name: 'text-primary',
+      dark: 'white-smoke',
+      light: 'dark-jungle-green'
+    }),
+    'text-secondary': virtualColor({
+      name: 'text-secondary',
+      dark: 'iceberg',
+      light: 'mineral-green'
+    }),
+    'bg-primary': virtualColor({
+      name: 'bg-primary',
+      dark: 'dark-jungle-green',
+      light: 'white-smoke'
+    }),
+    'bg-secondary': virtualColor({
+      name: 'background',
+      dark: 'mineral-green',
+      light: 'iceberg'
+    })
+  },
+  primaryColor: 'primary'
 })

@@ -1,43 +1,35 @@
-'use client'
-import { Search } from '@mui/icons-material'
-import { InputAdornment } from '@mui/material'
-import TextField from '@mui/material/TextField'
+import { TextInput } from '@mantine/core'
 
+import { IconSearch } from '@tabler/icons-react'
 import { type ForwardedRef, forwardRef } from 'react'
 
 import { type InputTextProps } from './types'
 
 function InputSearch({
   disabled,
-  focused,
   id,
-  label,
   name,
   onChange,
   onBlur,
   onFocus,
-  placeholder,
+  placeholder = 'Search',
   value,
   ...rest
 }: InputTextProps, ref: ForwardedRef<HTMLInputElement>) {
   return (
-    <TextField
+    <TextInput
       {...rest}
-      fullWidth
       autoComplete='on'
       disabled={disabled}
-      focused={focused}
       id={id}
-      InputProps={{
-        endAdornment: <InputAdornment position='end'><Search /></InputAdornment>
-      }}
-      inputRef={ref}
-      label={label}
+      label={null}
       name={name}
       placeholder={placeholder}
-      size='small'
+      ref={ref}
+      rightSection={<IconSearch />}
       type='search'
       value={value}
+      variant='filled'
       onBlur={onBlur}
       onChange={onChange}
       onFocus={onFocus}

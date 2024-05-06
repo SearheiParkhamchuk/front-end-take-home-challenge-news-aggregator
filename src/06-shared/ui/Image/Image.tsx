@@ -1,18 +1,16 @@
-import ImageNotSupported from '@mui/icons-material/ImageNotSupported'
+import { IconPhotoOff } from '@tabler/icons-react'
 import NextImage from 'next/image'
 import { getPlaiceholder } from 'plaiceholder'
 
-import Icon from '@/06-shared/ui/Icon'
-
-import { NoImagePlug } from './styles'
+import styles from './styles.module.scss'
 import { type ImageProps } from './types'
 
 async function Image({ src, alt, width, height, external, ...rest }: ImageProps) {
   if (!src) {
     return (
-      <NoImagePlug {...rest}>
-        <Icon Component={ImageNotSupported} size='inherit' />
-      </NoImagePlug>
+      <div className={styles['no-image-plug']} {...rest}>
+        <IconPhotoOff style={{ width: '4rem', height: '4rem' }} />
+      </div>
     )
   }
 

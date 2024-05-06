@@ -1,21 +1,18 @@
-'use client'
 import { Suspense } from 'react'
 
 import AppSearch from '@/05-entities/app/ui/AppSearch'
 import Logo from '@/05-entities/app/ui/Logo'
 
-import { AppSearchContainer, HeaderInner } from './styles'
+import styles from './styles.module.scss'
 
 function PageHeader({ ...rest }: {}) {
   return (
-    <HeaderInner {...rest}>
+    <div {...rest} className={styles.inner}>
       <Logo />
       <Suspense>
-        <AppSearchContainer>
-          <AppSearch />
-        </AppSearchContainer>
+        <div className={styles['search-container']}><AppSearch /></div>
       </Suspense>
-    </HeaderInner>
+    </div>
   )
 }
 

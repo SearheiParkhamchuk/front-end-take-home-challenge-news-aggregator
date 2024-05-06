@@ -1,11 +1,22 @@
 'use client'
-import { ThemeProvider as MuiThemeProvider } from '@mui/material'
+import { ColorSchemeScript, MantineProvider } from '@mantine/core'
 import { type PropsWithChildren } from 'react'
 
-import { theme } from '@/06-shared/lib/theme'
+import { cssVariablesResolver, theme } from '@/06-shared/lib/theme'
 
 function ThemeProvider({ children }: PropsWithChildren<{}>) {
-  return <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
+  return (
+    <>
+      <ColorSchemeScript defaultColorScheme="dark" />
+      <MantineProvider
+        cssVariablesResolver={cssVariablesResolver}
+        defaultColorScheme='dark'
+        theme={theme}
+      >
+        {children}
+      </MantineProvider>
+    </>
+  )
 }
 
 export default ThemeProvider
