@@ -10,7 +10,7 @@ function ArticleLayout({ Image, Content, Footer }: ArticleLayoutProps) {
       <div className={styles['image-container']}>
         {Image}
       </div>
-      <Stack gap='xs'>
+      <Stack className={styles.content} gap='xs'>
         {Content}
         <Divider color='primary' />
         {Footer}
