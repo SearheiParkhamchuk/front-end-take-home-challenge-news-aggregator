@@ -9,7 +9,8 @@
     "lint": "next lint",
     "ts": "tsc -p ./tsconfig.json --noEmit",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "pre-commit": "npm run lint && npm run ts && npm run build"
   },
   "dependencies": {
     "@mantine/carousel": "^7.9.0",
@@ -25,6 +26,7 @@
     "@plaiceholder/next": "^3.0.0",
     "@tabler/icons-react": "^3.3.0",
     "@tanstack/react-query": "^5.32.0",
+    "axios": "^1.6.8",
     "dayjs": "^1.11.11",
     "embla-carousel-react": "^8.0.2",
     "framer-motion": "^11.1.7",

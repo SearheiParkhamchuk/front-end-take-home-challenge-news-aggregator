@@ -1,12 +1,23 @@
-import { NewsApiArticleStrategy } from '@/05-entities/articles/api/strategies/NewsApiArticle.strategy'
-import { TheGuardianStrategy } from '@/05-entities/articles/api/strategies/TheGuardian.strategy'
+'use server'
 
-const newsApi = new NewsApiArticleStrategy()
-const theGuardian = new TheGuardianStrategy()
-const strategies = [newsApi, theGuardian]
+import { newsApiArticlesQueryCache } from '@/05-entities/articles/api/news-api/get-many/query-cache.server'
 
-export async function fetchArticles({ page, query }: { page?: string, query?: string }) {
-  return await Promise.all(
-    strategies.map(async s => await s.fetch({ page, query, pageSize: 6 }))
-  )
+import { theGuardianArticlesQueryCache } from '@/05-entities/articles/api/the-guardian/get-many/query-cache.server'
+import { getCacheInstance } from '@/06-shared/lib/third-party/cache/get-cache-instance'
+
+import { mergeArticles } from '../lib/merge-articles'
+import { mergeArticlesErrors } from '../lib/merge-articles-errors'
+
+export async function fetchArticles(params: { page?: string, pageSize?: number, query?: string }) {
+  const cache = getCacheInstance()
+
+  const response = await Promise.all([
+    newsApiArticlesQueryCache(cache, params),
+    theGuardianArticlesQueryCache(cache, params)
+  ])
+
+  const articles = mergeArticles(response)
+  const errors = mergeArticlesErrors(response)
+
+  return { articles, errors }
 }
