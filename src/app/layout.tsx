@@ -1,4 +1,3 @@
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 import { type ReactNode } from 'react'
 
 import CacheProvider from '@/01-app/cache/lib/providers/QueryClientProvider'
@@ -17,16 +16,14 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <CacheProvider>
-          <AppRouterCacheProvider>
-            <ThemeProvider>
-              <SingleColumnLayout
-                body={children}
-                footer={<PageFooter />}
-                header={<PageHeader />}
-              />
-              <GlobalStyles />
-            </ThemeProvider>
-          </AppRouterCacheProvider>
+          <ThemeProvider>
+            <SingleColumnLayout
+              body={children}
+              footer={<PageFooter />}
+              header={<PageHeader />}
+            />
+            <GlobalStyles />
+          </ThemeProvider>
         </CacheProvider>
       </body>
     </html>

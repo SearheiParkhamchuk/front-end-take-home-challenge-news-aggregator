@@ -1,5 +1,5 @@
-import { type StackProps as MuiStackProps } from '@mui/material'
+import { type StackProps as MantineStackProps } from '@mantine/core'
 
 export type StackProps = Pick<
-MuiStackProps, 'children' | 'className' | 'spacing' | 'direction' | 'alignItems' | 'justifyContent'
-> & { divider?: boolean }
+MantineStackProps, 'children' | 'className' | 'gap' | 'align' | 'justify'
+>

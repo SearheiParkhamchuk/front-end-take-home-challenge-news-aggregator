@@ -20,10 +20,9 @@ function AppSearch() {
 
   useEffect(() => {
     router.push({ params: { [SEARCH_PARAMS_KEYS.QUERY]: defferedQuery } }, { preserveSearchParams: true })
-    router.refresh()
   }, [defferedQuery, router])
 
-  return <InputSearch label='Search' value={query} onChange={handleChange} />
+  return <InputSearch value={query} onChange={handleChange} />
 }
 
 export default AppSearch

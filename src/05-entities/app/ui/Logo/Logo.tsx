@@ -1,7 +1,9 @@
-import { LogoText } from './styles'
+import { Text } from '@mantine/core'
+
+import styles from './styles.module.scss'
 
 function Logo({ ...rest }: {}) {
-  return <LogoText {...rest}>Good News Everyone!</LogoText>
+  return <Text {...rest} className={styles.logo}>Good News Everyone!</Text>
 }
 
 export default Logo

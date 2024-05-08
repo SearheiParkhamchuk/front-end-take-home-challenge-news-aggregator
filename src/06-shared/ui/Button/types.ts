@@ -1,20 +1,16 @@
-import { type ButtonProps as MuiButtonProps } from '@mui/material'
+import { type ButtonProps as MButtonProps } from '@mantine/core'
+import { type ButtonHTMLAttributes, type HTMLAttributes } from 'react'
 
 export type ButtonProps = Pick<
-MuiButtonProps,
-| 'aria-label'
+MButtonProps,
 | 'children'
 | 'className'
-| 'color'
-| 'endIcon'
-| 'onClick'
-| 'role'
-| 'size'
-| 'startIcon'
-| 'tabIndex'
-| 'variant'
+| 'rightSection'
+| 'leftSection'
 | 'disabled'
-| 'id'
-| 'type'
 | 'fullWidth'
-> & { classes?: { startIcon?: string }, loading?: boolean }
+| 'loading'
+| 'size'
+>
+& Pick<HTMLAttributes<HTMLButtonElement>, 'aria-label' | 'onClick' | 'role' | 'tabIndex' | 'id'>
+& Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'type'>

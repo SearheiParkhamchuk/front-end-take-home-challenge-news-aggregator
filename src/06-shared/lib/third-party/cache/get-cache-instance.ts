@@ -1,8 +1,7 @@
-import { type QueryClient } from '@tanstack/react-query'
-
+import { type CacheClient } from './@types'
 import { makeCacheInstance } from './make-cache-instance'
 
-let browserQueryClient: QueryClient | undefined
+let browserQueryClient: CacheClient | undefined
 
 export function getCacheInstance() {
   if (typeof window === 'undefined') {

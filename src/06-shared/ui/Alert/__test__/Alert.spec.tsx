@@ -16,11 +16,11 @@ describe('Alert component', () => {
   const render = renderComponent(Component)
 
   it('renders correctly', () => {
-    expect(render({}).component).toBeInTheDocument()
+    expect(render({ variant: 'error' }).component).toBeInTheDocument()
   })
 
   it('renders `title` correctly', () => {
-    const { component } = render({ title: <h6>Title</h6> })
+    const { component } = render({ title: <h6>Title</h6>, variant: 'error' })
     expect(component).toHaveTextContent('Title')
   })
 })

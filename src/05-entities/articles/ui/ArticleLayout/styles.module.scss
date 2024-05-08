@@ -1,0 +1,15 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 1rem;
+  border: 1px solid var(--app-color-primary);
+  padding: clamp(0.5rem, 1vw, 1.5rem);
+  border-radius: 0.5rem;
+}
+
+.image-container {
+  position: relative;
+  height: clamp(200px, 10vw, 300px);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}

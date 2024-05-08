@@ -1,13 +1,12 @@
-'use client'
 import Logo from '@/05-entities/app/ui/Logo'
 
-import { FooterInner } from './styles'
+import styles from './styles.module.scss'
 
 function PageHeader({ ...rest }: {}) {
   return (
-    <FooterInner {...rest}>
+    <footer className={styles.footer} {...rest}>
       <Logo />
-    </FooterInner>
+    </footer>
   )
 }
 

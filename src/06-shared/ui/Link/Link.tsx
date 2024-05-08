@@ -1,6 +1,7 @@
+import NextLink from 'next/link'
 import { type ForwardedRef, forwardRef } from 'react'
 
-import { StyledLink } from './styles'
+import styles from './styles.module.scss'
 import { type LinkProps } from './types'
 
 function Link({
@@ -16,9 +17,9 @@ function Link({
   ...rest
 }: LinkProps, ref: ForwardedRef<HTMLAnchorElement>) {
   return (
-    <StyledLink
+    <NextLink
       {...rest}
-      className={className}
+      className={`${className} ${styles.link}`}
       href={href}
       prefetch={prefetch}
       ref={ref}
@@ -29,7 +30,7 @@ function Link({
       onClick={onClick}
     >
       {children}
-    </StyledLink>
+    </NextLink>
   )
 }
 

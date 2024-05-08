@@ -1,3 +1,5 @@
+import { type ApiResponse } from '@/05-entities/app/lib/types/ApiResponse'
+
 export type Article = {
   description: string
   publishedAt: Date
@@ -5,3 +7,7 @@ export type Article = {
   thumbnail: string | null
   title: string
 }
+
+export type ArticleResponseQueryMany = ApiResponse<{
+  data: Article[]
+}>

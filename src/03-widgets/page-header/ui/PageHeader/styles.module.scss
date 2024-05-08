@@ -1,0 +1,10 @@
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-container {
+  max-width: 300px;
+  flex-grow: 1;
+}

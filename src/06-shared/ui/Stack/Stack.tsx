@@ -1,26 +1,18 @@
-import { Divider } from '@mui/material'
-import MuiStack from '@mui/material/Stack'
+import { Stack as MantineStack } from '@mantine/core'
 
 import { type StackProps } from './types'
 
-function Stack({ children, spacing = 1, divider, className, direction = 'column', alignItems, justifyContent, ...rest }: StackProps) {
+function Stack({ children, gap = 'sm', className, align, justify, ...rest }: StackProps) {
   return (
-    <MuiStack
+    <MantineStack
       {...rest}
-      alignItems={alignItems}
+      align={align}
       className={className}
-      direction={direction}
-      divider={
-        divider && <Divider
-          flexItem
-          orientation={direction === 'column' || direction === 'column-reverse' ? 'horizontal' : 'vertical'}
-        />
-      }
-      justifyContent={justifyContent}
-      spacing={spacing}
+      gap={gap}
+      justify={justify}
     >
       {children}
-    </MuiStack>
+    </MantineStack>
   )
 }
 

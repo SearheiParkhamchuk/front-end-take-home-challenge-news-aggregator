@@ -1,16 +1,12 @@
-import { type InputBaseProps } from '@mui/material/InputBase'
-import { type TextFieldProps } from '@mui/material/TextField'
+import { type TextInputProps } from '@mantine/core'
 
 export type InputTextProps = Pick<
-TextFieldProps,
+TextInputProps,
 | 'disabled'
-| 'focused'
 | 'id'
-| 'label'
 | 'name'
 | 'onChange'
 | 'onFocus'
 | 'onBlur'
 | 'placeholder'
-| 'autoComplete'
-> & { value: string } & Pick<InputBaseProps, 'startAdornment' | 'endAdornment'>
+> & { value: string }
