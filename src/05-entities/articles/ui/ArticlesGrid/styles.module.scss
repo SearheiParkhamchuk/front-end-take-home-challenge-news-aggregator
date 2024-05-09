@@ -1,5 +1,13 @@
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-  grid-gap: var(--app-spacing-md);
+.container {
+  &-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--app-spacing-md);
+  }
+
+  &-grid {
+    display: grid;
+    grid-gap: var(--app-spacing-md);
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  }
 }
