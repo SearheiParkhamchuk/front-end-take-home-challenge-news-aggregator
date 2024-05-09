@@ -1,8 +1,10 @@
-import styles from './styles.module.scss'
+import { GRID_VIEW } from '@/06-shared/ui/GridViewButton/model'
+
+import { classnamesView } from './classnames'
 import { type ArticlesGridProps } from './types'
 
-function ArticlesGrid({ children, ...rest }: ArticlesGridProps) {
-  return <div className={styles.grid} {...rest}>{children}</div>
+function ArticlesGrid({ children, view = GRID_VIEW.GRID, ...rest }: ArticlesGridProps) {
+  return <div {...rest} className={classnamesView[view].grid}>{children}</div>
 }
 
 export default ArticlesGrid

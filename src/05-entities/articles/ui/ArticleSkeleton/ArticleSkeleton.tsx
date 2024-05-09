@@ -1,8 +1,9 @@
 import Skeleton from '@/06-shared/ui/Skeleton'
 
 import ArticleLayout from '../ArticleLayout'
+import { type ARTICLE_ORIENTATION } from '../ArticleLayout/types'
 
-function ArticleSkeleton() {
+function ArticleSkeleton({ orientation }: { orientation?: ARTICLE_ORIENTATION }) {
   return (
     <ArticleLayout
       Content={
@@ -12,8 +13,6 @@ function ArticleSkeleton() {
           <Skeleton height={5} width='70%' />
           <Skeleton height={5} width='90%' />
           <Skeleton height={5} width='70%' />
-          <Skeleton height={5} width='90%' />
-          <Skeleton height={5} width='50%' />
         </>
       }
       Footer={
@@ -22,7 +21,8 @@ function ArticleSkeleton() {
           <Skeleton width='25%' />
         </>
       }
-      Image={<Skeleton height={350} />}
+      Image={<Skeleton height={250} />}
+      orientation={orientation}
     />
   )
 }

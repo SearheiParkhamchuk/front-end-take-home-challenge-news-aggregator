@@ -1,11 +1,13 @@
 import { Suspense } from 'react'
 
 import ArticlesServer from '@/03-widgets/articles/ui/ArticlesServer'
+import ArticlesTopPanel from '@/03-widgets/articles/ui/ArticlesTopPanel'
 import ArticlesSkeleton from '@/04-features/articles/ui/ArticlesSkeleton'
 
+import { type PageProps } from './types'
 import PageLayout from '../PageLayout'
 
-function HomePage({ page, query }: { page: string | undefined, query: string | undefined }) {
+function HomePage({ page, query }: PageProps) {
   return (
     <PageLayout
       Content={
@@ -13,7 +15,7 @@ function HomePage({ page, query }: { page: string | undefined, query: string | u
           <ArticlesServer page={page} query={query} />
         </Suspense>
       }
-      TopPanel={<></>}
+      TopPanel={<ArticlesTopPanel />}
     />
   )
 }

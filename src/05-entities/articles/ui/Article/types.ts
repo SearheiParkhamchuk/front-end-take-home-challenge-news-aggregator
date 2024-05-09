@@ -1,3 +1,5 @@
+import { type ARTICLE_ORIENTATION } from '../ArticleLayout/types'
+
 export type ArticleProps = {
   alt: string
   description: string
@@ -5,4 +7,5 @@ export type ArticleProps = {
   source: { name: string, src: string }
   src: string | null
   title: string
+  orientation?: ARTICLE_ORIENTATION
 }
