@@ -9,8 +9,13 @@ export const cssVariablesResolver: CSSVariablesResolver = (theme) => {
       '--app-spacing-md': theme.spacing.md,
       '--app-spacing-xs': theme.spacing.xs,
       '--app-breakpoint-lg': theme.breakpoints.lg,
+      '--app-breakpoint-md': theme.breakpoints.md,
+      '--app-breakpoint-sm': theme.breakpoints.sm,
+      '--app-breakpoint-xs': theme.breakpoints.xs,
       '--app-color-primary': theme.colors.primary[0],
+      '--app-color-text-primary': theme.colors['text-primary'][0],
       '--app-color-text-secondary': theme.colors['text-secondary'][0],
+      '--app-color-bg-primary': theme.colors['bg-primary'][0],
       '--app-color-bg-secondary': theme.colors['bg-secondary'][0]
     },
     dark: {

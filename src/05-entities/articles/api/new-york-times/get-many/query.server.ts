@@ -21,13 +21,16 @@ function paramsAdapter(options: QueryParams): URL {
 
 function responseAdapter(data: QuerySuccess): { data: Article[] } {
   return {
-    data: data.response.docs.map(article => ({
-      description: article.lead_paragraph,
-      publishedAt: new Date(article.pub_date),
-      source: { name: article.source, src: article.web_url },
-      thumbnail: new URL(article.multimedia[0].url, 'https://www.nytimes.com').toString(),
-      title: article.abstract
-    }))
+    data: data.response.docs.map(article => {
+      const imagePath = article.multimedia[0]?.url
+      return {
+        description: article.lead_paragraph,
+        publishedAt: new Date(article.pub_date),
+        source: { name: article.source, src: article.web_url },
+        thumbnail: imagePath ? new URL(imagePath, 'https://www.nytimes.com').toString() : null,
+        title: article.abstract
+      }
+    })
   }
 }
 
