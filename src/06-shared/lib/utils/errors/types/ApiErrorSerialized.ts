@@ -1,6 +1,6 @@
 import { type ApiErrorCodes } from '../enums/ApiErrorCodes'
 
-export type ApiErrorObject<D> = {
+export type ApiErrorSerialized<D> = {
   code: ApiErrorCodes
   message: string
   statusCode: number

@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 
-import AppSearch from '@/05-entities/app/ui/AppSearch'
 import Logo from '@/05-entities/app/ui/Logo'
+import ArticlesSearch from '@/05-entities/articles/ui/ArticlesSearch'
 
 import styles from './styles.module.scss'
 
@@ -10,7 +10,7 @@ function PageHeader({ ...rest }: {}) {
     <div {...rest} className={styles.inner}>
       <Logo />
       <Suspense>
-        <div className={styles['search-container']}><AppSearch /></div>
+        <div className={styles['search-container']}><ArticlesSearch /></div>
       </Suspense>
     </div>
   )

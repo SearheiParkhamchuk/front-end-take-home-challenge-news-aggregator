@@ -1,5 +1,4 @@
 'use server'
-
 import { NYTArticlesQueryCache } from '@/05-entities/articles/api/new-york-times/get-many/query-cache.server'
 import { newsApiArticlesQueryCache } from '@/05-entities/articles/api/news-api/get-many/query-cache.server'
 import { theGuardianArticlesQueryCache } from '@/05-entities/articles/api/the-guardian/get-many/query-cache.server'
@@ -20,5 +19,5 @@ export async function fetchArticles(params: { page?: string, pageSize?: number, 
   const articles = mergeArticles(response)
   const errors = mergeArticlesErrors(response)
 
-  return { articles, errors }
+  return { articles, errors, cache }
 }
