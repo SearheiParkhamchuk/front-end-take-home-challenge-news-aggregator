@@ -5,11 +5,13 @@ import { type ArticleResponseQueryMany } from '../../types/Article'
 
 export const queryKey = (options: QueryParams) => ['articles', options, 'the_guardian']
 
-export function queryOptionsGetter(fetcher: (params: QueryParams, options: { signal?: AbortSignal }) => Promise<ArticleResponseQueryMany>) {
+export function queryOptionsGetter(
+  fetcher: (params: QueryParams, options?: { signal?: AbortSignal }) => Promise<ArticleResponseQueryMany>
+) {
   return function(params: QueryParams): FetchQueryOptions<ArticleResponseQueryMany> {
     return {
       queryKey: queryKey(params),
-      queryFn: async ({ signal }) => await fetcher(params, { signal })
+      queryFn: async () => await fetcher(params)
     }
   }
 }

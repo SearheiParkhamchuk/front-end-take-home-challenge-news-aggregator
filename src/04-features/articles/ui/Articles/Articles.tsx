@@ -1,15 +1,19 @@
 'use client'
+import { useFetchArticles } from '@/04-features/articles/api/fetch-articles.client'
 import { useArticlesView } from '@/05-entities/articles/lib/useArticlesView'
 import Article from '@/05-entities/articles/ui/Article'
 import { ARTICLE_ORIENTATION } from '@/05-entities/articles/ui/ArticleLayout/types'
 import ArticlesGrid from '@/05-entities/articles/ui/ArticlesGrid'
 
+import { useSearchParams } from '@/06-shared/lib/third-party/router/useSearchParams'
 import { GRID_VIEW } from '@/06-shared/ui/GridViewButton/model'
 
-import { type ArticlesProps } from './types'
+import { getArticlesQueryParams } from '../../lib/get-articles-query-params'
 
-function Articles({ articles }: ArticlesProps) {
+function Articles() {
   const [view] = useArticlesView()
+  const [searchParams] = useSearchParams()
+  const { articles } = useFetchArticles(getArticlesQueryParams(searchParams))
 
   return (
     <ArticlesGrid view={view}>

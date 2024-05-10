@@ -1,10 +1,12 @@
 'use server'
-
-import { FetcherError } from '@/06-shared/lib/third-party/fetcher/@types'
-
 import { getFetcherInstance } from '@/06-shared/lib/third-party/fetcher/get-fetcher-instance'
 
-import { type QueryError, type QueryParams, type QuerySuccess } from './@types'
+import { withError } from '@/06-shared/lib/utils/errors/decorators/with-error'
+
+import { UnhandledErrorHandler } from '@/06-shared/lib/utils/errors/handlers/UnhandledErrorHandler'
+
+import { type QueryParams, type QuerySuccess } from './@types'
+import { NewYorkTimesErrorHandler } from './error-handler'
 import { type Article, type ArticleResponseQueryMany } from '../../types/Article'
 
 function paramsAdapter(options: QueryParams): URL {
@@ -34,26 +36,15 @@ function responseAdapter(data: QuerySuccess): { data: Article[] } {
   }
 }
 
-export async function NYTArticlesServerQuery(
-  params: QueryParams,
-  options?: { signal?: AbortSignal }
-): Promise<ArticleResponseQueryMany> {
+export async function serverQuery(params: QueryParams): Promise<ArticleResponseQueryMany> {
   const fetcher = getFetcherInstance()
 
-  try {
-    const response = await fetcher.request<QuerySuccess>({
-      method: 'GET',
-      url: paramsAdapter(params).toString(),
-      signal: options?.signal
-    })
+  const response = await fetcher.request<QuerySuccess>({
+    method: 'GET',
+    url: paramsAdapter(params).toString()
+  })
 
-    const data = responseAdapter(response.data)
-    return { error: null, data }
-  } catch (e: unknown) {
-    if (e instanceof FetcherError) {
-      const error: FetcherError<QueryError> = e
-      return { error: new Error(error.response?.data.message), data: null }
-    }
-    return { error: new Error('Unexpected error'), data: null }
-  }
+  return { error: null, data: responseAdapter(response.data) }
 }
+
+export const NYTArticlesServerQuery = withError(serverQuery, new NewYorkTimesErrorHandler(new UnhandledErrorHandler(null)))

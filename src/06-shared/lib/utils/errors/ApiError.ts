@@ -1,6 +1,6 @@
 import { BaseError } from './BaseError'
 import { type ApiErrorCodes } from './enums/ApiErrorCodes'
-import { type ApiErrorObject } from './types/ApiErrorObject'
+import { type ApiErrorSerialized } from './types/ApiErrorSerialized'
 
 export class ApiError<D = any> extends BaseError {
   public readonly code: ApiErrorCodes
@@ -8,7 +8,7 @@ export class ApiError<D = any> extends BaseError {
   public readonly statusCode: number
   public readonly details?: D
 
-  constructor({ message, details, code, statusCode }: ApiErrorObject<D>) {
+  constructor({ message, details, code, statusCode }: ApiErrorSerialized<D>) {
     super({ message })
     this.code = code
     this.message = message
@@ -16,7 +16,7 @@ export class ApiError<D = any> extends BaseError {
     this.details = details
   }
 
-  serialize(): ApiErrorObject<D> {
+  serialize(): ApiErrorSerialized<D> {
     return {
       code: this.code,
       message: this.message,

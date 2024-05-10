@@ -1,5 +1,8 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
+  globals: {
+    'NodeJS': true
+  },
   parserOptions: {
     project: './tsconfig.json'
   },
@@ -22,6 +25,8 @@ module.exports = {
     'plugin:import/recommended'
   ],
   rules: {
+    '@typescript-eslint/await-thenable': 'off',
+    '@typescript-eslint/return-await': 'off',
     '@typescript-eslint/prefer-nullish-coalescing': 'off',
     '@typescript-eslint/prefer-reduce-type-parameter': 'off',
     '@typescript-eslint/prefer-ts-expect-error': 'off',
