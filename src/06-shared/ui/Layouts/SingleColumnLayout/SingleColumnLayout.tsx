@@ -5,13 +5,13 @@ function SingleColumnLayout({ header, body, footer, ...rest }: SingleColumnLayou
   return (
     <div className={styles.container} {...rest}>
       <header className={styles.header}>
-        <section className={styles.section}>{header}</section>
+        <div className={styles.section}>{header}</div>
       </header>
       <main className={styles.main}>
-        <section className={styles.section}>{body}</section>
+        <div className={styles.section}>{body}</div>
       </main>
       <footer className={styles.footer}>
-        <section className={styles.section}>{footer}</section>
+        <div className={styles.section}>{footer}</div>
       </footer>
     </div>
   )

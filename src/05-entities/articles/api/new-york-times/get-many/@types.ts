@@ -1,3 +1,5 @@
+import { type SEARCH_PARAMS_KEYS } from '@/05-entities/app/lib/enums/search-params-keys'
+
 type Multimedia = {
   credit: string
   crop_name: string
@@ -54,11 +56,16 @@ export type QuerySuccess = {
 }
 
 export type QueryError = {
-  message: string
+  fault: {
+    detail: {
+      errorcode: string
+    }
+    faultstring: string
+  }
 }
 
 export type QueryParams = {
-  page?: string
+  [SEARCH_PARAMS_KEYS.A_PAGE]?: string
   pageSize?: number
-  query?: string
+  [SEARCH_PARAMS_KEYS.A_QUERY]?: string
 }

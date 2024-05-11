@@ -6,8 +6,8 @@ import { queryOptionsGetter } from './query-cache-options-getter'
 import { theGuardianArticlesServerQuery } from './query.server'
 import { type ArticleResponseQueryMany } from '../../types/Article'
 
-const queryOptions = queryOptionsGetter(theGuardianArticlesServerQuery)
+export const queryOptionsTheGuardian = queryOptionsGetter(theGuardianArticlesServerQuery)
 
 export function useTheGuardianArticlesQuery(params: QueryParams) {
-  return useQuery<ArticleResponseQueryMany>(queryOptions(params))
+  return useQuery<ArticleResponseQueryMany>(queryOptionsTheGuardian(params))
 }

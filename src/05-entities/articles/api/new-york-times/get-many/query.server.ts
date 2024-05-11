@@ -1,4 +1,5 @@
 'use server'
+import { SEARCH_PARAMS_KEYS } from '@/05-entities/app/lib/enums/search-params-keys'
 import { getFetcherInstance } from '@/06-shared/lib/third-party/fetcher/get-fetcher-instance'
 
 import { withError } from '@/06-shared/lib/utils/errors/decorators/with-error'
@@ -11,9 +12,11 @@ import { type Article, type ArticleResponseQueryMany } from '../../types/Article
 
 function paramsAdapter(options: QueryParams): URL {
   const url = new URL('https://api.nytimes.com/svc/search/v2/articlesearch.json')
+  const query = options[SEARCH_PARAMS_KEYS.A_QUERY]
+  const page = options[SEARCH_PARAMS_KEYS.A_PAGE]
 
-  if (options.query) url.searchParams.set('q', options.query)
-  if (options.page) url.searchParams.set('page', options.page.toString())
+  if (query) url.searchParams.set('q', query)
+  if (page) url.searchParams.set('page', page.toString())
 
   url.searchParams.set('fl', 'lead_paragraph,pub_date,source,web_url,multimedia,abstract')
   url.searchParams.set('api-key', process.env.API_KEY_NEW_YORK_TIMES_ARTICLES)
