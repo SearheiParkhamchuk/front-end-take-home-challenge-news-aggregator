@@ -7,12 +7,12 @@ import ArticlesSkeleton from '@/04-features/articles/ui/ArticlesSkeleton'
 import { type PageProps } from './types'
 import PageLayout from '../PageLayout'
 
-function HomePage({ page, query }: PageProps) {
+function HomePage({ searchParams }: PageProps) {
   return (
     <PageLayout
       Content={
         <Suspense fallback={<ArticlesSkeleton />}>
-          <ArticlesServer page={page} query={query} />
+          <ArticlesServer searchParams={searchParams} />
         </Suspense>
       }
       TopPanel={<ArticlesTopPanel />}

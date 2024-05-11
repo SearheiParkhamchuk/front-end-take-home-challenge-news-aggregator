@@ -1,4 +1,5 @@
+import { type PolymorphicSearcParams } from '@/06-shared/lib/types/PolymorphicSearcParams'
+
 export type PageProps = {
-  page: string | undefined
-  query: string | undefined
+  searchParams: PolymorphicSearcParams
 }

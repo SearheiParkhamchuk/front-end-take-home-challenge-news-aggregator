@@ -8,8 +8,8 @@ import Alert from '@/06-shared/ui/Alert'
 
 import { type ArticlesServerProps } from './types'
 
-async function ArticlesServer({ page, query }: ArticlesServerProps) {
-  const { errors, cache } = await fetchArticles(getArticlesQueryParams({ page, query }))
+async function ArticlesServer({ searchParams }: ArticlesServerProps) {
+  const { errors, cache } = await fetchArticles(getArticlesQueryParams(searchParams))
 
   return (
     <HydrationBoundary state={dehydrate(cache)}>

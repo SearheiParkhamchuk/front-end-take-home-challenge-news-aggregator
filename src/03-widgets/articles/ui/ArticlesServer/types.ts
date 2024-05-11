@@ -1,4 +1,5 @@
+import { type PolymorphicSearcParams } from '@/06-shared/lib/types/PolymorphicSearcParams'
+
 export type ArticlesServerProps = {
-  page?: string
-  query?: string
+  searchParams: PolymorphicSearcParams
 }

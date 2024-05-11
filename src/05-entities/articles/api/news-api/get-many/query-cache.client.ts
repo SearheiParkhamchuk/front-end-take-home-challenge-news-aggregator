@@ -6,8 +6,8 @@ import { queryOptionsGetter } from './query-cache-options-getter'
 import { newsApiArticlesServerQuery } from './query.server'
 import { type ArticleResponseQueryMany } from '../../types/Article'
 
-const queryOptions = queryOptionsGetter(newsApiArticlesServerQuery)
+export const queryOptionsNewApi = queryOptionsGetter(newsApiArticlesServerQuery)
 
 export function useNewsApiArticlesQuery(params: QueryParams) {
-  return useQuery<ArticleResponseQueryMany>(queryOptions(params))
+  return useQuery<ArticleResponseQueryMany>(queryOptionsNewApi(params))
 }

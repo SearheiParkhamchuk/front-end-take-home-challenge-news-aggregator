@@ -7,15 +7,15 @@ import { type QueryError } from './@types'
 
 export class NewYorkTimesErrorHandler extends BaseErrorHandler<ApiError<{}>> {
   canHandle(e: unknown): boolean {
-    return e instanceof FetcherError && e.response?.data.message
+    return e instanceof FetcherError && e.response?.data.fault
   }
 
-  specificHandler(e: FetcherError<QueryError>): ApiError<QueryError> {
+  specificHandler(e: FetcherError<QueryError>): ApiError<QueryError['fault']['detail']> {
     return new ApiError({
       statusCode: e.response?.status ?? e.status ?? 400,
       code: ApiErrorCodes.BAD_REQUEST,
-      message: e.response?.data.message ?? e.message,
-      details: e.response?.data
+      message: e.response?.data.fault.faultstring ?? e.response?.statusText ?? e.message,
+      details: e.response?.data.fault.detail
     })
   }
 }

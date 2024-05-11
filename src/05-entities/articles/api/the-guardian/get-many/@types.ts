@@ -1,3 +1,4 @@
+import { type SEARCH_PARAMS_KEYS } from '@/05-entities/app/lib/enums/search-params-keys'
 import { type ISOString } from '@/06-shared/lib/types/ISOString'
 
 export type QuerySuccess = {
@@ -38,7 +39,7 @@ export type QueryError = {
 }
 
 export type QueryParams = {
-  page?: string
+  [SEARCH_PARAMS_KEYS.A_PAGE]?: string
   pageSize?: number
-  query?: string
+  [SEARCH_PARAMS_KEYS.A_QUERY]?: string
 }

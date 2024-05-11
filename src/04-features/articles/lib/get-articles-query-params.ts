@@ -4,8 +4,12 @@ import { pickFirstSearchParameter } from '@/06-shared/lib/third-party/router/pic
 import { type PolymorphicSearcParams } from '@/06-shared/lib/types/PolymorphicSearcParams'
 
 export function getArticlesQueryParams(searchParams: PolymorphicSearcParams): ArticlesQueryParams {
-  const page = pickFirstSearchParameter(searchParams, SEARCH_PARAMS_KEYS.PAGE)
-  const query = pickFirstSearchParameter(searchParams, SEARCH_PARAMS_KEYS.ARTICLES_QUERY)
+  const pageParameter = pickFirstSearchParameter(searchParams, SEARCH_PARAMS_KEYS.A_PAGE)
+  const queryParameter = pickFirstSearchParameter(searchParams, SEARCH_PARAMS_KEYS.A_QUERY)
 
-  return { page, query, pageSize: 10 }
+  const page = isNaN(Number(pageParameter)) ? '1' : pageParameter
+  const query = queryParameter?.trim() ?? ''
+  const pageSize = 10
+
+  return { [SEARCH_PARAMS_KEYS.A_QUERY]: query, [SEARCH_PARAMS_KEYS.A_PAGE]: page, pageSize }
 }
