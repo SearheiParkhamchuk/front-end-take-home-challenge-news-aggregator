@@ -9,8 +9,20 @@ export type Article = {
   title: string
 }
 
+export type ArticleSerialized = {
+  description: string
+  publishedAt: string
+  source: { name: string, src: string }
+  thumbnail: string | null
+  title: string
+}
+
 export type ArticleResponseQueryMany = ApiResponse<{
   data: Article[]
+}>
+
+export type ArticleSerializedResponseQueryMany = ApiResponse<{
+  data: ArticleSerialized[]
 }>
 
 export type ArticlesQueryParams = {
