@@ -3,11 +3,13 @@ import ArticlesSearch from '@/05-entities/articles/ui/ArticlesSearch'
 
 import styles from './styles.module.scss'
 
-function PageHeader({ ...rest }: {}) {
+function PageHeader() {
   return (
-    <div {...rest} className={styles.inner}>
+    <div className={styles.inner}>
       <Logo />
-        <div className={styles['search-container']}><ArticlesSearch /></div>
+      <div className={styles['search-container']}>
+        <ArticlesSearch />
+      </div>
     </div>
   )
 }

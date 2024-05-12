@@ -3,6 +3,7 @@ import { useArticlesView } from '@/05-entities/articles/lib/useArticlesView'
 import { ARTICLE_ORIENTATION } from '@/05-entities/articles/ui/ArticleLayout/types'
 import ArticleSkeleton from '@/05-entities/articles/ui/ArticleSkeleton'
 import ArticlesGrid from '@/05-entities/articles/ui/ArticlesGrid'
+import { withSuspense } from '@/06-shared/lib/utils/HOK/withSuspense'
 import { GRID_VIEW } from '@/06-shared/ui/GridViewButton/model'
 
 function ArticlesSkeleton() {
@@ -20,4 +21,4 @@ function ArticlesSkeleton() {
   )
 }
 
-export default ArticlesSkeleton
+export default withSuspense(ArticlesSkeleton)
