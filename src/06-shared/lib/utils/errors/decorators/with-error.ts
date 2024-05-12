@@ -4,14 +4,9 @@ import { type ApiResponse } from '../types/ApiResponse'
 
 type AnyFunction<TArgs extends unknown[], TReturn> = (...args: TArgs) => Promise<TReturn>
 
-export function withError<
-TArgs extends unknown[],
-E extends ApiError,
-Details extends object,
-TReturn extends ApiResponse<unknown, Details>
->(
+export function withError<TArgs extends unknown[], TReturn extends ApiResponse<unknown, any>>(
   func: AnyFunction<TArgs, TReturn>,
-  handler: BaseErrorHandler<E>
+  handler: BaseErrorHandler<ApiError>
 ) {
   return async function(...args: TArgs): Promise<TReturn> {
     try {

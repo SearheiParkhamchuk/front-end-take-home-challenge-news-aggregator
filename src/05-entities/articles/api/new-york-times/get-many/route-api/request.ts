@@ -1,16 +1,14 @@
 'use server'
 import { SEARCH_PARAMS_KEYS } from '@/05-entities/app/lib/enums/search-params-keys'
 import { getFetcherInstance } from '@/06-shared/lib/third-party/fetcher/get-fetcher-instance'
-
 import { withError } from '@/06-shared/lib/utils/errors/decorators/with-error'
-
 import { UnhandledErrorHandler } from '@/06-shared/lib/utils/errors/handlers/UnhandledErrorHandler'
 
-import { type QueryParams, type QuerySuccess } from './@types'
+import { type QuerySuccess } from './@types'
 import { NewYorkTimesErrorHandler } from './error-handler'
-import { type Article, type ArticleResponseQueryMany } from '../../types/Article'
+import { type ArticleSerialized, type ArticleSerializedResponseQueryMany, type ArticlesQueryParams } from '../../../@types'
 
-function paramsAdapter(options: QueryParams): URL {
+function paramsAdapter(options: ArticlesQueryParams): URL {
   const url = new URL('https://api.nytimes.com/svc/search/v2/articlesearch.json')
   const query = options[SEARCH_PARAMS_KEYS.A_QUERY]
   const page = options[SEARCH_PARAMS_KEYS.A_PAGE]
@@ -24,13 +22,13 @@ function paramsAdapter(options: QueryParams): URL {
   return url
 }
 
-function responseAdapter(data: QuerySuccess): { data: Article[] } {
+function responseAdapter(data: QuerySuccess): { data: ArticleSerialized[] } {
   return {
     data: data.response.docs.map(article => {
       const imagePath = article.multimedia[0]?.url
       return {
         description: article.lead_paragraph,
-        publishedAt: new Date(article.pub_date),
+        publishedAt: article.pub_date,
         source: { name: article.source, src: article.web_url },
         thumbnail: imagePath ? new URL(imagePath, 'https://www.nytimes.com').toString() : null,
         title: article.abstract
@@ -39,7 +37,7 @@ function responseAdapter(data: QuerySuccess): { data: Article[] } {
   }
 }
 
-export async function serverQuery(params: QueryParams): Promise<ArticleResponseQueryMany> {
+async function request(params: ArticlesQueryParams): Promise<ArticleSerializedResponseQueryMany> {
   const fetcher = getFetcherInstance()
 
   const response = await fetcher.request<QuerySuccess>({
@@ -50,4 +48,4 @@ export async function serverQuery(params: QueryParams): Promise<ArticleResponseQ
   return { error: null, data: responseAdapter(response.data) }
 }
 
-export const NYTArticlesServerQuery = withError(serverQuery, new NewYorkTimesErrorHandler(new UnhandledErrorHandler(null)))
+export const NYTArticlesRouteApiRequest = withError(request, new NewYorkTimesErrorHandler(new UnhandledErrorHandler(null)))

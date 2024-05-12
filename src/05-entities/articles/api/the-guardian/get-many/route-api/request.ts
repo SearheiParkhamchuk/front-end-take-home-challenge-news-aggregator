@@ -6,11 +6,11 @@ import { withError } from '@/06-shared/lib/utils/errors/decorators/with-error'
 
 import { UnhandledErrorHandler } from '@/06-shared/lib/utils/errors/handlers/UnhandledErrorHandler'
 
-import { type QueryParams, type QuerySuccess } from './@types'
+import { type QuerySuccess } from './@types'
 import { TheGuardianErrorHandler } from './error-handler'
-import { type Article, type ArticleResponseQueryMany } from '../../types/Article'
+import { type ArticleSerialized, type ArticleSerializedResponseQueryMany, type ArticlesQueryParams } from '../../../@types'
 
-function paramsAdapter(options: QueryParams): URL {
+function paramsAdapter(options: ArticlesQueryParams): URL {
   const url = new URL('https://content.guardianapis.com/search')
   const query = options[SEARCH_PARAMS_KEYS.A_QUERY]
   const page = options[SEARCH_PARAMS_KEYS.A_PAGE]
@@ -25,11 +25,11 @@ function paramsAdapter(options: QueryParams): URL {
   return url
 }
 
-function responseAdapter(data: QuerySuccess): { data: Article[] } {
+function responseAdapter(data: QuerySuccess): { data: ArticleSerialized[] } {
   return {
     data: data.response.results.map(article => ({
       description: article.fields.trailText,
-      publishedAt: new Date(article.webPublicationDate),
+      publishedAt: article.webPublicationDate,
       source: { name: 'The Guardian', src: article.webUrl },
       thumbnail: article.fields.thumbnail,
       title: article.webTitle
@@ -37,7 +37,7 @@ function responseAdapter(data: QuerySuccess): { data: Article[] } {
   }
 }
 
-export async function serverQuery(params: QueryParams): Promise<ArticleResponseQueryMany> {
+export async function request(params: ArticlesQueryParams): Promise<ArticleSerializedResponseQueryMany> {
   const response = await getFetcherInstance().request<QuerySuccess>({
     method: 'GET',
     url: paramsAdapter(params).toString()
@@ -46,4 +46,7 @@ export async function serverQuery(params: QueryParams): Promise<ArticleResponseQ
   return { error: null, data: responseAdapter(response.data) }
 }
 
-export const theGuardianArticlesServerQuery = withError(serverQuery, new TheGuardianErrorHandler(new UnhandledErrorHandler(null)))
+export const theGuardianArticlesApiRequest = withError(
+  request,
+  new TheGuardianErrorHandler(new UnhandledErrorHandler(null))
+)

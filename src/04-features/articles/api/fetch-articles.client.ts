@@ -1,24 +1,14 @@
 'use client'
-import { useQueries } from '@tanstack/react-query'
+import { type ArticlesQueryParams } from '@/05-entities/articles/api/@types'
+import { useAllArticles } from '@/05-entities/articles/api/all-articles/client-api/query-cache.client'
+import { EMPTY_ARRAY } from '@/06-shared/lib/constants/empty-array'
 
-import { queryOptionsNyt } from '@/05-entities/articles/api/new-york-times/get-many/query-cache.client'
-
-import { queryOptionsNewApi } from '@/05-entities/articles/api/news-api/get-many/query-cache.client'
-import { queryOptionsTheGuardian } from '@/05-entities/articles/api/the-guardian/get-many/query-cache.client'
-import { type ArticleResponseQueryMany, type ArticlesQueryParams } from '@/05-entities/articles/api/types/Article'
-
-import { mergeArticles } from '../lib/merge-articles'
-import { mergeArticlesErrors } from '../lib/merge-articles-errors'
-
-const newsSourceQueries = [queryOptionsNyt, queryOptionsTheGuardian, queryOptionsNewApi]
+import { mergeArticlesErrors } from '../../../05-entities/articles/lib/merge-articles-errors'
+import { prepareArticles } from '../lib/prepare-articles'
 
 export function useFetchArticles(params: ArticlesQueryParams) {
-  const rawResponse = useQueries({ queries: newsSourceQueries.map(query => query(params)) })
-
-  const responseData = rawResponse.map(d => d.data).filter((d): d is ArticleResponseQueryMany => !!d)
-  const isFetching = rawResponse.some(d => d.isFetching)
-  const articles = mergeArticles(responseData)
-  const errors = mergeArticlesErrors(responseData)
-
+  const { data: rawArticles = EMPTY_ARRAY, isFetching } = useAllArticles(params)
+  const articles = prepareArticles(rawArticles)
+  const errors = mergeArticlesErrors(rawArticles)
   return { articles, errors, isFetching }
 }

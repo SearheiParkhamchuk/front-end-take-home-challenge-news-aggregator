@@ -1,23 +1,16 @@
 'use server'
-import { NYTArticlesQueryCache } from '@/05-entities/articles/api/new-york-times/get-many/query-cache.server'
-import { newsApiArticlesQueryCache } from '@/05-entities/articles/api/news-api/get-many/query-cache.server'
-import { theGuardianArticlesQueryCache } from '@/05-entities/articles/api/the-guardian/get-many/query-cache.server'
-import { type ArticlesQueryParams } from '@/05-entities/articles/api/types/Article'
+import { type ArticlesQueryParams } from '@/05-entities/articles/api/@types'
+
+import { allArticlesQueryCache } from '@/05-entities/articles/api/all-articles/client-api/query-cache.server'
 import { getCacheInstance } from '@/06-shared/lib/third-party/cache/get-cache-instance'
 
-import { mergeArticles } from '../lib/merge-articles'
-import { mergeArticlesErrors } from '../lib/merge-articles-errors'
+import { mergeArticlesErrors } from '../../../05-entities/articles/lib/merge-articles-errors'
+import { prepareArticles } from '../lib/prepare-articles'
 
 export async function fetchArticles(params: ArticlesQueryParams) {
   const cache = getCacheInstance()
-  const response = await Promise.all([
-    newsApiArticlesQueryCache(cache, params),
-    theGuardianArticlesQueryCache(cache, params),
-    NYTArticlesQueryCache(cache, params)
-  ])
-
-  const articles = mergeArticles(response)
-  const errors = mergeArticlesErrors(response)
-
+  const rawArticles = await allArticlesQueryCache(cache, params)
+  const articles = prepareArticles(rawArticles)
+  const errors = mergeArticlesErrors(rawArticles)
   return { articles, errors, cache }
 }
