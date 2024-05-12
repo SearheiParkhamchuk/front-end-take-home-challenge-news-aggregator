@@ -5,8 +5,8 @@ import { useArticlesView } from '@/05-entities/articles/lib/useArticlesView'
 import Article from '@/05-entities/articles/ui/Article'
 import { ARTICLE_ORIENTATION } from '@/05-entities/articles/ui/ArticleLayout/types'
 import ArticlesGrid from '@/05-entities/articles/ui/ArticlesGrid'
-
 import { useSearchParams } from '@/06-shared/lib/third-party/router/useSearchParams'
+import { withSuspense } from '@/06-shared/lib/utils/HOK/withSuspense'
 import { GRID_VIEW } from '@/06-shared/ui/GridViewButton/model'
 
 import { getArticlesQueryParams } from '../../lib/get-articles-query-params'
@@ -38,4 +38,4 @@ function Articles() {
   )
 }
 
-export default Articles
+export default withSuspense(Articles)
