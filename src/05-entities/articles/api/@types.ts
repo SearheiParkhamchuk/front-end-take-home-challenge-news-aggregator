@@ -26,7 +26,13 @@ export type ArticleSerializedResponseQueryMany = ApiResponse<{
 }>
 
 export type ArticlesQueryParams = {
-  [SEARCH_PARAMS_KEYS.A_PAGE]: string | undefined
-  pageSize: number | undefined
-  [SEARCH_PARAMS_KEYS.A_QUERY]: string | undefined
+  [SEARCH_PARAMS_KEYS.A_PAGE]: string
+  [SEARCH_PARAMS_KEYS.A_PAGE_SIZE]?: string
+  [SEARCH_PARAMS_KEYS.A_QUERY]?: string
+}
+
+export type ArticlesLocalQueryParams = {
+  page?: number
+  pageSize?: number
+  query?: string
 }

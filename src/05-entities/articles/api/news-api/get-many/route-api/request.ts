@@ -13,10 +13,11 @@ function paramsAdapter(options: ArticlesQueryParams): URL {
 
   const query = options[SEARCH_PARAMS_KEYS.A_QUERY]
   const page = options[SEARCH_PARAMS_KEYS.A_PAGE]
+  const pageSize = options[SEARCH_PARAMS_KEYS.A_PAGE_SIZE]
 
   if (query) url.searchParams.set('q', query)
   if (page) url.searchParams.set('page', page.toString())
-  if (options.pageSize) url.searchParams.set('pageSize', options.pageSize.toString())
+  if (pageSize) url.searchParams.set('pageSize', pageSize.toString())
   url.searchParams.set('apiKey', process.env.API_KEY_NEWS_API)
 
   return url

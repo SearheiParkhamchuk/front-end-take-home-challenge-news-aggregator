@@ -19,9 +19,9 @@ const classnames = {
   }
 }
 
-function ArticleLayout({ Image, Content, Footer, orientation = ARTICLE_ORIENTATION.VERTICAL }: ArticleLayoutProps) {
+function ArticleLayout({ Image, Content, Footer, orientation = ARTICLE_ORIENTATION.VERTICAL, ...rest }: ArticleLayoutProps) {
   return (
-    <article className={`${styles.container} ${classnames[orientation].container}`}>
+    <article {...rest} className={`${styles.container} ${classnames[orientation].container}`}>
       <div className={`${styles.image} ${classnames[orientation].image}`}>
         {Image}
       </div>

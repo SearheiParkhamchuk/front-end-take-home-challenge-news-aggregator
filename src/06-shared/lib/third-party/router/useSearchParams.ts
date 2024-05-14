@@ -1,21 +1,25 @@
 import { useSearchParams as useNextSearchParams, usePathname } from 'next/navigation'
 import { useCallback } from 'react'
 
-export function useSearchParams() {
-  const _searchParams = useNextSearchParams()
+import { getSearchParams } from './get-search-params'
+import { mergeSearchParams } from './merge-search-params'
+
+type SearchParams<P extends Record<string, string>> = P | ((old: URLSearchParams) => P | URLSearchParams)
+
+export function useSearchParams<P extends Record<string, string>>() {
+  const searchParams = useNextSearchParams()
   const _pathname = usePathname()
 
-  const merge = useCallback((params: URLSearchParams) => {
-    const newSearchParams = new URLSearchParams(_searchParams)
+  const set = useCallback((params: SearchParams<P>) => {
+    const p = typeof params === 'function' ? params(new URLSearchParams(window.location.search)) : params
+    window.history.pushState({}, '', getSearchParams(p))
+  },
+  []
+  )
 
-    Array.from(params.entries()).forEach(([key, value]) => { newSearchParams.set(key, value) })
-    return newSearchParams
-  }, [_searchParams])
+  const getFullPath = useCallback((params: Record<string, string> | URLSearchParams) => {
+    return `${_pathname}?${mergeSearchParams([searchParams, new URLSearchParams(params)])}`
+  }, [_pathname, searchParams])
 
-  const set = useCallback((params: Record<string, string>) => {
-    const searchParams = merge(new URLSearchParams(params))
-    window.history.pushState({}, '', `${_pathname}?${searchParams.toString()}`)
-  }, [_pathname, merge])
-
-  return [_searchParams, { merge, set }] as const
+  return [searchParams, { merge: mergeSearchParams, set, getFullPath }] as const
 }
