@@ -14,10 +14,11 @@ function paramsAdapter(options: ArticlesQueryParams): URL {
   const url = new URL('https://content.guardianapis.com/search')
   const query = options[SEARCH_PARAMS_KEYS.A_QUERY]
   const page = options[SEARCH_PARAMS_KEYS.A_PAGE]
+  const pageSize = options[SEARCH_PARAMS_KEYS.A_PAGE_SIZE]
 
   if (query) url.searchParams.set('q', query)
   if (page) url.searchParams.set('page', page.toString())
-  if (options.pageSize) url.searchParams.set('page-size', options.pageSize.toString())
+  if (pageSize) url.searchParams.set('page-size', pageSize.toString())
 
   url.searchParams.set('api-key', process.env.API_KEY_THE_GUARDIAN)
   url.searchParams.set('show-fields', 'trail-text,thumbnail')

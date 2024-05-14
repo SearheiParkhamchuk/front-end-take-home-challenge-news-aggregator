@@ -9,13 +9,14 @@ import styles from './styles.module.scss'
 import { type ArticleProps } from './types'
 import ArticleLayout from '../ArticleLayout'
 
-function Article({ publishedAt, alt, src, title, description, source, orientation }: ArticleProps) {
+function Article({ publishedAt, alt, src, title, description, source, orientation, ...rest }: ArticleProps) {
   return (
     <ArticleLayout
+      {...rest}
       Content={
         <>
           <Title color='primary' order={4}>{title}</Title>
-          <Text className={styles.description} color='text-secondary' dangerouslySetInnerHTML={description} fz='sm' />
+          <Text span className={styles.description} color='text-secondary' dangerouslySetInnerHTML={description} fz='sm' />
         </>
       }
       Footer={

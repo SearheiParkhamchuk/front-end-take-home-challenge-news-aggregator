@@ -1,5 +1,7 @@
 import { Button as MButton } from '@mantine/core'
 
+import { type ForwardedRef, forwardRef } from 'react'
+
 import { type ButtonProps } from './types'
 
 function Button({
@@ -18,8 +20,7 @@ function Button({
   type,
   size,
   ...props
-}: ButtonProps
-) {
+}: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
   return (
     <MButton
       {...props}
@@ -31,6 +32,8 @@ function Button({
       fullWidth={fullWidth}
       id={id}
       leftSection={leftSection}
+      loading={loading}
+      ref={ref}
       rightSection={rightSection}
       role={role}
       size={size}
@@ -43,4 +46,7 @@ function Button({
   )
 }
 
-export default Button
+const ForwardedButton = forwardRef<HTMLButtonElement, ButtonProps>(Button)
+ForwardedButton.displayName = 'Button'
+
+export default ForwardedButton

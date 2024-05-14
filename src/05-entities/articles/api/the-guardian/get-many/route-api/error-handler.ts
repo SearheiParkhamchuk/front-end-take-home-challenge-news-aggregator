@@ -7,14 +7,14 @@ import { type QueryError } from './@types'
 
 export class TheGuardianErrorHandler extends BaseErrorHandler<ApiError<{}>> {
   canHandle(e: unknown): boolean {
-    return e instanceof FetcherError && !!(e as FetcherError<QueryError>).response?.data.response
+    return e instanceof FetcherError && !!(e as FetcherError<QueryError>).response?.data.message
   }
 
   specificHandler(e: FetcherError<QueryError>): ApiError<QueryError> {
     return new ApiError({
       statusCode: e.response?.status ?? e.status ?? 400,
       code: ApiErrorCodes.BAD_REQUEST,
-      message: e.response?.data.response.message ?? e.message,
+      message: e.response?.data.message ?? e.message,
       details: e.response?.data
     })
   }
