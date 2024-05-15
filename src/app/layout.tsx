@@ -1,3 +1,4 @@
+import { Notifications } from '@mantine/notifications'
 import { type ReactNode } from 'react'
 
 import CacheProvider from '@/01-app/cache/lib/providers/QueryClientProvider'
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body>
         <CacheProvider>
           <ThemeProvider>
+            <Notifications />
             <SingleColumnLayout
               body={children}
               footer={<PageFooter />}

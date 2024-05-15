@@ -54,7 +54,7 @@ describe('Button component', () => {
     const element = render({ loading: true }).component
 
     expect(element).toBeInTheDocument()
-    expect(element).toHaveAttribute('aria-disabled', 'true')
+    expect(element).toHaveAttribute('disabled')
     expect(element).toBeDisabled()
   })
 })

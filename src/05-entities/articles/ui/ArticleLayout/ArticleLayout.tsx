@@ -2,7 +2,8 @@ import Divider from '@/06-shared/ui/Divider'
 import Stack from '@/06-shared/ui/Stack'
 
 import styles from './styles.module.scss'
-import { ARTICLE_ORIENTATION, type ArticleLayoutProps } from './types'
+import { type ArticleLayoutProps } from './types'
+import { ARTICLE_ORIENTATION } from '../../model/article-orientation'
 
 const classnames = {
   [ARTICLE_ORIENTATION.VERTICAL]: {

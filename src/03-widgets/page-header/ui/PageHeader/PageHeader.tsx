@@ -1,5 +1,5 @@
+import ArticlesSearch from '@/04-features/articles-search/ui/ArticlesSearch'
 import Logo from '@/05-entities/app/ui/Logo'
-import ArticlesSearch from '@/05-entities/articles/ui/ArticlesSearch'
 
 import styles from './styles.module.scss'
 

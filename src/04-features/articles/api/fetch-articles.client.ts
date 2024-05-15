@@ -1,10 +1,10 @@
 'use client'
-import { type ArticlesQueryParams } from '@/05-entities/articles/api/@types'
-import { useAllArticles } from '@/05-entities/articles/api/all-articles/client-api/query-cache.client'
+import { useAllArticles } from '@/04-features/articles/api/news-sources/all-articles/client-api/query-cache.client'
+import { type ArticlesQueryParams } from '@/04-features/articles/model/@types'
 import { EMPTY_ARRAY } from '@/06-shared/lib/constants/empty-array'
 
-import { mergeArticlesErrors } from '../../../05-entities/articles/lib/merge-articles-errors'
-import { prepareArticles } from '../lib/prepare-articles'
+import { mergeArticlesErrors } from '../lib/merge-articles-errors'
+import { prepareArticles } from '../model/prepare-articles'
 
 export function useFetchArticles(params: ArticlesQueryParams) {
   const { data: rawArticles = EMPTY_ARRAY, isFetching } = useAllArticles(params)

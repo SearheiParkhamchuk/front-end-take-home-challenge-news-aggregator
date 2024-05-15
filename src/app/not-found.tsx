@@ -1,7 +1,7 @@
-import NotFound from '@/05-entities/app/ui/NotFound'
+import PageError from '@/06-shared/ui/PageError'
 
 function NotFoundPage() {
-  return <NotFound title='Page Not Found' />
+  return <PageError title='Page Not Found' />
 }
 
 export default NotFoundPage

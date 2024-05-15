@@ -1,7 +1,7 @@
 import Skeleton from '@/06-shared/ui/Skeleton'
 
+import { type ARTICLE_ORIENTATION } from '../../model/article-orientation'
 import ArticleLayout from '../ArticleLayout'
-import { type ARTICLE_ORIENTATION } from '../ArticleLayout/types'
 
 function ArticleSkeleton({ orientation }: { orientation?: ARTICLE_ORIENTATION }) {
   return (

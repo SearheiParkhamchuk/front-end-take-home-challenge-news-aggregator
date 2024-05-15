@@ -1,4 +1,4 @@
-import { type ARTICLE_ORIENTATION } from '../ArticleLayout/types'
+import { type ARTICLE_ORIENTATION } from '../../model/article-orientation'
 
 export type ArticleProps = {
   alt: string

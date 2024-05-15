@@ -1,5 +1,4 @@
 import Link from '@/06-shared/ui/Link'
-
 import Text from '@/06-shared/ui/Text'
 
 import { type LoadMoreButtonProps } from './types'
@@ -13,10 +12,7 @@ function LoadMoreButton({ href, loading, loadMore, onClick, ...rest }: LoadMoreB
         component='button'
         href={href}
         loading={loading}
-        onClick={async (event) => {
-          event.preventDefault()
-          onClick()
-        }}
+        onClick={onClick}
       >
         Load more
       </Link>)
