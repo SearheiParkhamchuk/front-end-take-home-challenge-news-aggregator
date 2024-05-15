@@ -1,8 +1,8 @@
 'use server'
-import { type ArticlesQueryParams } from '@/05-entities/articles/api/@types'
 
-import { allArticlesQueryCacheInfinite } from '@/05-entities/articles/api/all-articles/client-api/query-cache-infinite.server'
-import { mergeArticlesErrors } from '@/05-entities/articles/lib/merge-articles-errors'
+import { allArticlesQueryCacheInfinite } from '@/04-features/articles/api/news-sources/all-articles/client-api/query-cache-infinite.server'
+import { mergeArticlesErrors } from '@/04-features/articles/lib/merge-articles-errors'
+import { type ArticlesQueryParams } from '@/04-features/articles/model/@types'
 import { getCacheInstance } from '@/06-shared/lib/third-party/cache/get-cache-instance'
 
 export async function fetchArticlesInfinite(params: ArticlesQueryParams) {

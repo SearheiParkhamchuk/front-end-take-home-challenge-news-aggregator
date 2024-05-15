@@ -1,11 +1,11 @@
 'use server'
-import { type ArticlesQueryParams } from '@/05-entities/articles/api/@types'
+import { allArticlesQueryCache } from '@/04-features/articles/api/news-sources/all-articles/client-api/query-cache.server'
+import { type ArticlesQueryParams } from '@/04-features/articles/model/@types'
 
-import { allArticlesQueryCache } from '@/05-entities/articles/api/all-articles/client-api/query-cache.server'
 import { getCacheInstance } from '@/06-shared/lib/third-party/cache/get-cache-instance'
 
-import { mergeArticlesErrors } from '../../../05-entities/articles/lib/merge-articles-errors'
-import { prepareArticles } from '../lib/prepare-articles'
+import { mergeArticlesErrors } from '../lib/merge-articles-errors'
+import { prepareArticles } from '../model/prepare-articles'
 
 export async function fetchArticles(params: ArticlesQueryParams) {
   const cache = getCacheInstance()

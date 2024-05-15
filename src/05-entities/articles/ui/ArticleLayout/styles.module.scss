@@ -4,6 +4,7 @@
   padding: clamp(0.5rem, 1vw, 1.5rem);
   border-radius: 0.5rem;
   gap: var(--app-spacing-sm);
+  height: 100%;
 
   &-vertical {
     flex-direction: column;

@@ -1,9 +1,6 @@
 import { type ReactElement } from 'react'
 
-export enum ARTICLE_ORIENTATION {
-  VERTICAL = 'vertical',
-  HORIZONTAL = 'horizontal'
-}
+import { type ARTICLE_ORIENTATION } from '../../model/article-orientation'
 
 export type ArticleLayoutProps = {
   Content: ReactElement

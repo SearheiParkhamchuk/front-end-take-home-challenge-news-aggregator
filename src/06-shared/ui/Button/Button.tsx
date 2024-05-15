@@ -25,7 +25,6 @@ function Button({
     <MButton
       {...props}
       autoContrast
-      aria-disabled={disabled || loading}
       aria-label={ariaLabel}
       className={className}
       disabled={disabled || loading}

@@ -21,7 +21,6 @@ function Link({
 }: LinkProps, ref: ForwardedRef<HTMLAnchorElement>) {
   const props = {
     ...rest,
-    'aria-disabled': loading,
     'className': `${className} ${styles.link}`,
     'disabled': loading,
     href,

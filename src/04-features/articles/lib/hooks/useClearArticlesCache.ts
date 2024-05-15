@@ -1,9 +1,9 @@
 import { usePrevious } from '@mantine/hooks'
 import { useLayoutEffect } from 'react'
 
-import { SEARCH_PARAMS_KEYS } from '@/05-entities/app/lib/enums/search-params-keys'
-import { queryKeyInfinite } from '@/05-entities/articles/api/all-articles/client-api/query-cache-options-getter-infinite'
-import { useArticlesSearchParams } from '@/05-entities/articles/lib/useArticlesSearchParams'
+import { queryKeyInfinite } from '@/04-features/articles/api/news-sources/all-articles/client-api/query-cache-options-getter-infinite'
+import { useArticlesSearchParams } from '@/04-features/articles/model/useArticlesSearchParams'
+import { SEARCH_PARAMS_KEYS } from '@/05-entities/app/model/search-params-keys'
 import { useClearCache } from '@/06-shared/lib/third-party/cache/useClearCache'
 
 export function useClearArticlesCache(): void {

@@ -1,4 +1,4 @@
-import ArticlesGridViewButton from '@/04-features/articles/ui/ArticlesGridViewButton'
+import ArticlesGridViewButton from '@/04-features/articles-view/ui/ArticlesGridViewButton'
 import Group from '@/06-shared/ui/Group'
 
 import styles from './styles.module.scss'
