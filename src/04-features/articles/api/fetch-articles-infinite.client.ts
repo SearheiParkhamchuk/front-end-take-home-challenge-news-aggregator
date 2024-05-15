@@ -1,11 +1,16 @@
 'use client'
 import { type DefaultError, type InfiniteData, useInfiniteQuery } from '@tanstack/react-query'
 
+import { useMemo } from 'react'
+
 import { queryKeyInfinite } from '@/04-features/articles/api/news-sources/all-articles/client-api/query-cache-options-getter-infinite'
 import { allArticlesClientApiRequest } from '@/04-features/articles/api/news-sources/all-articles/client-api/request'
 import { mergeArticles } from '@/04-features/articles/lib/merge-articles'
 import { type ArticleSerializedResponseQueryMany, type ArticlesQueryParams } from '@/04-features/articles/model/@types'
 import { SEARCH_PARAMS_KEYS } from '@/05-entities/app/model/search-params-keys'
+
+import { mergeArticlesErrors } from '../lib/merge-articles-errors'
+import { ARTICLES_DEFAULT_PAGE } from '../model/default-page'
 
 export function useFetchArticlesInfinite(params: ArticlesQueryParams) {
   const { fetchNextPage, data: _data, isLoading, hasNextPage, isFetching } = useInfiniteQuery<
@@ -19,16 +24,18 @@ export function useFetchArticlesInfinite(params: ArticlesQueryParams) {
     queryFn: async ({ signal, pageParam }) => {
       return allArticlesClientApiRequest({ ...params, [SEARCH_PARAMS_KEYS.A_PAGE]: pageParam }, { signal })
     },
-    initialPageParam: '1',
+    initialPageParam: ARTICLES_DEFAULT_PAGE,
     getNextPageParam: (lastPage, __, lastPageParam) => {
       if (mergeArticles(lastPage).length === 0) return undefined
       return (Number(lastPageParam) + 1).toString()
     }
   })
 
-  const data = _data ?? { pages: [], pageParams: [] }
+  const data = useMemo(() => _data ?? { pages: [], pageParams: [] }, [_data])
+  const errors = useMemo(() => mergeArticlesErrors(data.pages.flat()), [data.pages])
+
   const lastPage = data.pageParams.at(-1)
   const nextPage = Number(lastPage) + 1
 
-  return { fetchNextPage, data, isLoading, isFetching, hasNextPage, lastPage, nextPage }
+  return { fetchNextPage, errors, data, isLoading, isFetching, hasNextPage, lastPage, nextPage }
 }

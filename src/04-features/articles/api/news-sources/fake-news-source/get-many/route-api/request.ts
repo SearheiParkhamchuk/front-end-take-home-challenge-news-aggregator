@@ -22,8 +22,8 @@ export async function request(params: ArticlesQueryParams): Promise<ArticleSeria
 
   await sleep(1000)
 
-  const pageSize = Number(articlesPageParams.pageSize)
-  const page = Number(articlesPageParams[SEARCH_PARAMS_KEYS.A_PAGE]) - 1
+  const pageSize = Number(articlesPageParams[SEARCH_PARAMS_KEYS.A_PAGE_SIZE])
+  const page = Number(articlesPageParams[SEARCH_PARAMS_KEYS.A_PAGE])
 
   return { error: null, data: { data: filteredData.slice(pageSize * page, pageSize * page + pageSize) } }
 }

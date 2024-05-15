@@ -4,7 +4,7 @@ import NextImage from 'next/image'
 import styles from './styles.module.scss'
 import { type ImageProps } from './types'
 
-function Image({ src, alt, width, height, external, ...rest }: ImageProps) {
+function Image({ src, alt, width, height, external, sizes, ...rest }: ImageProps) {
   if (!src) {
     return (
       <div className={styles['no-image-plug']} {...rest}>
@@ -19,6 +19,7 @@ function Image({ src, alt, width, height, external, ...rest }: ImageProps) {
       alt={alt}
       fill={external}
       height={height}
+      sizes={sizes}
       src={src}
       width={width}
     />

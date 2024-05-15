@@ -16,7 +16,7 @@ function paramsAdapter(options: ArticlesQueryParams): URL {
   const pageSize = options[SEARCH_PARAMS_KEYS.A_PAGE_SIZE]
 
   if (query) url.searchParams.set('q', query)
-  if (page) url.searchParams.set('page', page.toString())
+  if (page) url.searchParams.set('page', (page + 1).toString())
   if (pageSize) url.searchParams.set('pageSize', pageSize.toString())
   url.searchParams.set('apiKey', process.env.API_KEY_NEWS_API)
 
@@ -30,7 +30,8 @@ function responseAdapter(data: QuerySuccess): { data: ArticleSerialized[] } {
       publishedAt: article.publishedAt,
       source: { name: article.source.name, src: article.url },
       thumbnail: article.urlToImage,
-      title: article.title
+      title: article.title,
+      id: article.url
     }))
   }
 }

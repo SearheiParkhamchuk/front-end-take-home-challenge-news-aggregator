@@ -4,9 +4,9 @@ import Text from '@/06-shared/ui/Text'
 import Title from '@/06-shared/ui/Title'
 
 import styles from './styles.module.scss'
-import { type NotFoundProps } from './types'
+import { type PageErrorProps } from './types'
 
-function NotFound({ title, description }: NotFoundProps) {
+function PageError({ title, description }: PageErrorProps) {
   return (
     <Stack className={styles['not-found']}>
       <Image alt='Not Found' height={320} src='/assets/images/not-found.png' width={320} />
@@ -16,4 +16,4 @@ function NotFound({ title, description }: NotFoundProps) {
   )
 }
 
-export default NotFound
+export default PageError

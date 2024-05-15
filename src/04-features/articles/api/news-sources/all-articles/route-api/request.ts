@@ -1,5 +1,6 @@
 'use server'
-import { type ArticlesQueryParams } from '../../../../model/@types'
+import { type ArticlesQueryParams } from '@/04-features/articles/model/@types'
+
 import { fakeNewsArticlesApiRequest } from '../../fake-news-source/get-many/route-api/request'
 import { NYTArticlesRouteApiRequest } from '../../new-york-times/get-many/route-api/request'
 import { newsApiArticlesApiRequest } from '../../news-api/get-many/route-api/request'

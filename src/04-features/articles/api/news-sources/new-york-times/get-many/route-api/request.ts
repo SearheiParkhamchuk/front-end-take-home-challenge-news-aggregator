@@ -12,11 +12,13 @@ function paramsAdapter(options: ArticlesQueryParams): URL {
   const url = new URL('https://api.nytimes.com/svc/search/v2/articlesearch.json')
   const query = options[SEARCH_PARAMS_KEYS.A_QUERY]
   const page = options[SEARCH_PARAMS_KEYS.A_PAGE]
+  const orderBy = options[SEARCH_PARAMS_KEYS.A_ORDER_BY]
 
   if (query) url.searchParams.set('q', query)
   if (page) url.searchParams.set('page', page.toString())
+  if (orderBy) url.searchParams.set('sort', orderBy)
 
-  url.searchParams.set('fl', 'lead_paragraph,pub_date,source,web_url,multimedia,abstract')
+  url.searchParams.set('fl', 'lead_paragraph,pub_date,source,web_url,multimedia,abstract,headline')
   url.searchParams.set('api-key', process.env.API_KEY_NEW_YORK_TIMES_ARTICLES)
 
   return url
@@ -31,7 +33,8 @@ function responseAdapter(data: QuerySuccess): { data: ArticleSerialized[] } {
         publishedAt: article.pub_date,
         source: { name: article.source, src: article.web_url },
         thumbnail: imagePath ? new URL(imagePath, 'https://www.nytimes.com').toString() : null,
-        title: article.abstract
+        title: article.headline.main,
+        id: article._id
       }
     })
   }

@@ -4,7 +4,7 @@ import { withSuspense } from '@/06-shared/lib/utils/HOK/withSuspense'
 
 import { type ArticleRenderOptions, type ArticlesProps } from './types'
 import { useFetchArticlesInfinite } from '../../api/fetch-articles-infinite.client'
-import { useClearArticlesCache } from '../../lib/hooks/useClearArticlesCache'
+import { useClearArticlesCache } from '../../lib/useClearArticlesCache'
 import { type Article } from '../../model/@types'
 import { prepareArticles } from '../../model/prepare-articles'
 import { useArticlesSearchParams } from '../../model/useArticlesSearchParams'
@@ -16,12 +16,12 @@ function Articles({ orientation, renderItem, ...rest }: ArticlesProps) {
 
   useClearArticlesCache()
 
-  const articleRenderer = (article: Article, options: ArticleRenderOptions) => (
+  const articleRenderer = (article: Article) => (
     <ArticleComponent
       {...rest}
       alt={article.title}
       description={article.description}
-      key={`${options.pageIndex}-${options.articleIndex}`}
+      key={article.id}
       orientation={orientation}
       publishedAt={article.publishedAt}
       source={article.source}
@@ -34,7 +34,7 @@ function Articles({ orientation, renderItem, ...rest }: ArticlesProps) {
     (articles, pageIndex) => articles.map(
       (article, articleIndex) => {
         const renderOptions: ArticleRenderOptions = { page: inifinite.data.pageParams[pageIndex], pageIndex, articleIndex }
-        const render = articleRenderer(article, renderOptions)
+        const render = articleRenderer(article)
         return renderItem ? renderItem(render, renderOptions) : render
       }))
 }

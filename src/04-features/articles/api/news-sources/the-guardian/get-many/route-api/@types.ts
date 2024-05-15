@@ -31,6 +31,8 @@ export type QuerySuccess = {
 }
 
 export type QueryError = {
-  message: string
-  status: 'error'
+  response: {
+    message: string
+    status: 'error'
+  }
 }
