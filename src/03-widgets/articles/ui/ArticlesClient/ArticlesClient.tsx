@@ -1,9 +1,10 @@
 'use client'
 
 import { notifications } from '@mantine/notifications'
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 
 import { useFetchArticlesInfinite } from '@/04-features/articles/api/fetch-articles-infinite.client'
+import { mergeArticlesErrors } from '@/04-features/articles/lib/merge-articles-errors'
 import { prepareArticles } from '@/04-features/articles/model/prepare-articles'
 import { useArticlesSearchParams } from '@/04-features/articles/model/useArticlesSearchParams'
 import Articles from '@/04-features/articles/ui/Articles'
@@ -25,10 +26,10 @@ function ArticlesClient() {
 
   const inifinite = useFetchArticlesInfinite(searchParams)
   const noArticlesFound = inifinite.data.pages.map(prepareArticles).flat().length === 0
-  const errors = inifinite.errors
+  const errors = useMemo(() => mergeArticlesErrors(inifinite.data.pages[0]?.flat() ?? []), [inifinite.data.pages])
 
   useEffect(() => {
-    errors.forEach((error) => notifications.show({ message: error.message }))
+    errors.forEach(error => notifications.show({ message: error.message }))
   }, [errors])
 
   if (inifinite.isLoading) return <ArticlesGridViewSkeleton />
