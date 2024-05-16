@@ -9,7 +9,6 @@ import { mergeArticles } from '@/04-features/articles/lib/merge-articles'
 import { type ArticleSerializedResponseQueryMany, type ArticlesQueryParams } from '@/04-features/articles/model/@types'
 import { SEARCH_PARAMS_KEYS } from '@/05-entities/app/model/search-params-keys'
 
-import { mergeArticlesErrors } from '../lib/merge-articles-errors'
 import { ARTICLES_DEFAULT_PAGE } from '../model/default-page'
 
 export function useFetchArticlesInfinite(params: ArticlesQueryParams) {
@@ -32,10 +31,8 @@ export function useFetchArticlesInfinite(params: ArticlesQueryParams) {
   })
 
   const data = useMemo(() => _data ?? { pages: [], pageParams: [] }, [_data])
-  const errors = useMemo(() => mergeArticlesErrors(data.pages.flat()), [data.pages])
-
   const lastPage = data.pageParams.at(-1)
   const nextPage = Number(lastPage) + 1
 
-  return { fetchNextPage, errors, data, isLoading, isFetching, hasNextPage, lastPage, nextPage }
+  return { fetchNextPage, data, isLoading, isFetching, hasNextPage, lastPage, nextPage }
 }

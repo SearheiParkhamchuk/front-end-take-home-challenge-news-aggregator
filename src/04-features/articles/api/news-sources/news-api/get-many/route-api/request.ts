@@ -9,7 +9,7 @@ import { NewsApiErrorHandler } from './error-handler'
 import { type ArticleSerialized, type ArticleSerializedResponseQueryMany, type ArticlesQueryParams } from '../../../../../model/@types'
 
 function paramsAdapter(options: ArticlesQueryParams): URL {
-  const url = new URL('https://newsapi.org/v2/everything')
+  const url = new URL('https://newsapi.org/v2/top-headlines')
 
   const query = options[SEARCH_PARAMS_KEYS.A_QUERY]
   const page = options[SEARCH_PARAMS_KEYS.A_PAGE]
@@ -19,6 +19,7 @@ function paramsAdapter(options: ArticlesQueryParams): URL {
   if (page) url.searchParams.set('page', (page + 1).toString())
   if (pageSize) url.searchParams.set('pageSize', pageSize.toString())
   url.searchParams.set('apiKey', process.env.API_KEY_NEWS_API)
+  url.searchParams.set('sources', 'us,cn,gb,ru,ua,de')
 
   return url
 }

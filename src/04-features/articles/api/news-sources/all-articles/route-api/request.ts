@@ -6,11 +6,11 @@ import { NYTArticlesRouteApiRequest } from '../../new-york-times/get-many/route-
 import { newsApiArticlesApiRequest } from '../../news-api/get-many/route-api/request'
 import { theGuardianArticlesApiRequest } from '../../the-guardian/get-many/route-api/request'
 
-const newsSourceQueries = [NYTArticlesRouteApiRequest, newsApiArticlesApiRequest, theGuardianArticlesApiRequest]
+const newsSources = [NYTArticlesRouteApiRequest, newsApiArticlesApiRequest, theGuardianArticlesApiRequest]
 const fakeNewsSources = [fakeNewsArticlesApiRequest]
 
-const newsSources = process.env.NODE_ENV === 'development' ? fakeNewsSources : newsSourceQueries
+const sources = process.env.NODE_ENV === 'development' ? fakeNewsSources : newsSources
 
 export async function getAllArticlesApiRequest(params: ArticlesQueryParams) {
-  return await Promise.all(newsSources.map(async query => query(params)))
+  return await Promise.all(sources.map(async query => query(params)))
 }
