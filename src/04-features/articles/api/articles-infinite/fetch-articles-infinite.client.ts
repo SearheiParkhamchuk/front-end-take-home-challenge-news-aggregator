@@ -3,29 +3,28 @@ import { type DefaultError, type InfiniteData, useInfiniteQuery } from '@tanstac
 
 import { useMemo } from 'react'
 
-import { queryKeyInfinite } from '@/04-features/articles/api/news-sources/all-articles/client-api/query-cache-options-getter-infinite'
-import { allArticlesClientApiRequest } from '@/04-features/articles/api/news-sources/all-articles/client-api/request'
-import { mergeArticles } from '@/04-features/articles/lib/merge-articles'
-import { type ArticleSerializedResponseQueryMany, type ArticlesQueryParams } from '@/04-features/articles/model/@types'
+import { queryKeyInfinite } from '@/04-features/articles/api/articles-infinite/query-cache-options-getter-infinite'
+import { articlesRequest } from '@/04-features/articles/api/request'
+import { type ArticlesQueryParams, type ArticlesResponse } from '@/04-features/articles/model/@types'
 import { SEARCH_PARAMS_KEYS } from '@/05-entities/app/model/search-params-keys'
 
-import { ARTICLES_DEFAULT_PAGE } from '../model/default-page'
+import { ARTICLES_DEFAULT_PAGE } from '../../model/default-page'
 
 export function useFetchArticlesInfinite(params: ArticlesQueryParams) {
   const { fetchNextPage, data: _data, isLoading, hasNextPage, isFetching } = useInfiniteQuery<
-  ArticleSerializedResponseQueryMany[],
+  ArticlesResponse,
   DefaultError,
-  InfiniteData<ArticleSerializedResponseQueryMany[], string>,
+  InfiniteData<ArticlesResponse, string>,
   unknown[],
   string
   >({
     queryKey: queryKeyInfinite(params),
     queryFn: async ({ signal, pageParam }) => {
-      return allArticlesClientApiRequest({ ...params, [SEARCH_PARAMS_KEYS.A_PAGE]: pageParam }, { signal })
+      return articlesRequest({ ...params, [SEARCH_PARAMS_KEYS.A_PAGE]: pageParam }, { signal })
     },
     initialPageParam: ARTICLES_DEFAULT_PAGE,
     getNextPageParam: (lastPage, __, lastPageParam) => {
-      if (mergeArticles(lastPage).length === 0) return undefined
+      if (!lastPage.data?.length) return undefined
       return (Number(lastPageParam) + 1).toString()
     }
   })

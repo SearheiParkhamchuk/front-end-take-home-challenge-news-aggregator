@@ -5,7 +5,7 @@ import LoadMoreButton from '@/05-entities/articles/ui/LoadMoreButton'
 import { useSearchParams } from '@/06-shared/lib/third-party/router/useSearchParams'
 
 import { type LoadMoreButtonProps } from './types'
-import { useFetchArticlesInfinite } from '../../api/fetch-articles-infinite.client'
+import { useFetchArticlesInfinite } from '../../api/articles-infinite/fetch-articles-infinite.client'
 import { useArticlesSearchParams } from '../../model/useArticlesSearchParams'
 
 function LoadMore({ ...rest }: LoadMoreButtonProps) {

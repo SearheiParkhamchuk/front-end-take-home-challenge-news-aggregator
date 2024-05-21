@@ -1,9 +1,3 @@
-import { type ApiErrorSerialized } from './ApiErrorSerialized'
-
-export type ApiResponse<D, E = any> = {
+export type ApiResponse<D> = {
   data: D
-  error: null
-} | {
-  data: null
-  error: ApiErrorSerialized<E>
 }

@@ -9,7 +9,7 @@ import styles from './styles.module.scss'
 import { type ArticleProps } from './types'
 import ArticleLayout from '../ArticleLayout'
 
-function Article({ publishedAt, alt, src, title, description, source, orientation, ...rest }: ArticleProps) {
+function Article({ publishedAt, alt, poster, title, description, source, orientation, ...rest }: ArticleProps) {
   return (
     <ArticleLayout
       {...rest}
@@ -33,7 +33,7 @@ function Article({ publishedAt, alt, src, title, description, source, orientatio
           </Group>
         </>
       }
-      Image={<Image external alt={alt} sizes='450px' src={src} />}
+      Image={<Image external alt={alt} sizes='450px' src={poster} />}
       orientation={orientation}
     />
   )
