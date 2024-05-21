@@ -1,7 +1,7 @@
 import { usePrevious } from '@mantine/hooks'
 import { useLayoutEffect } from 'react'
 
-import { queryKeyInfinite } from '@/04-features/articles/api/news-sources/all-articles/client-api/query-cache-options-getter-infinite'
+import { queryKeyInfinite } from '@/04-features/articles/api/articles-infinite/query-cache-options-getter-infinite'
 import { useArticlesSearchParams } from '@/04-features/articles/model/useArticlesSearchParams'
 import { SEARCH_PARAMS_KEYS } from '@/05-entities/app/model/search-params-keys'
 import { useClearCache } from '@/06-shared/lib/third-party/cache/useClearCache'
@@ -12,7 +12,11 @@ export function useClearArticlesCache(): void {
   const clearCache = useClearCache()
   const [searchParams, { set }] = useArticlesSearchParams()
 
-  const currentValue = JSON.stringify([searchParams.a_query, searchParams.a_page_size, searchParams.a_order_by])
+  const currentValue = JSON.stringify([
+    searchParams.a_query,
+    searchParams.a_page_size,
+    searchParams.a_order_by
+  ])
   const previousValue = usePrevious(currentValue)
   const enabled =
     previousValue !== undefined &&

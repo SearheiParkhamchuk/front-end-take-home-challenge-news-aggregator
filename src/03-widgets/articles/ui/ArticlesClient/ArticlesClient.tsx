@@ -1,10 +1,8 @@
 'use client'
 
-import { notifications } from '@mantine/notifications'
-import { useCallback, useEffect, useMemo } from 'react'
+import { useCallback } from 'react'
 
-import { useFetchArticlesInfinite } from '@/04-features/articles/api/fetch-articles-infinite.client'
-import { mergeArticlesErrors } from '@/04-features/articles/lib/merge-articles-errors'
+import { useFetchArticlesInfinite } from '@/04-features/articles/api/articles-infinite/fetch-articles-infinite.client'
 import { prepareArticles } from '@/04-features/articles/model/prepare-articles'
 import { useArticlesSearchParams } from '@/04-features/articles/model/useArticlesSearchParams'
 import Articles from '@/04-features/articles/ui/Articles'
@@ -14,7 +12,6 @@ import ArticlesGridViewSkeleton from '@/04-features/articles-view/ui/ArticlesGri
 import { SEARCH_PARAMS_KEYS } from '@/05-entities/app/model/search-params-keys'
 import { ARTICLE_ORIENTATION } from '@/05-entities/articles/model/article-orientation'
 import { withSuspense } from '@/06-shared/lib/utils/HOK/withSuspense'
-import Alert from '@/06-shared/ui/Alert'
 import { GRID_VIEW } from '@/06-shared/ui/GridViewButton/model'
 import InfiniteScroll from '@/06-shared/ui/InfiniteScroll'
 import PageError from '@/06-shared/ui/PageError'
@@ -25,26 +22,27 @@ function ArticlesClient() {
   const onPage = useCallback((page: string) => { set({ [SEARCH_PARAMS_KEYS.A_PAGE]: page }) }, [set])
 
   const inifinite = useFetchArticlesInfinite(searchParams)
-  const noArticlesFound = inifinite.data.pages.map(prepareArticles).flat().length === 0
-  const errors = useMemo(() => mergeArticlesErrors(inifinite.data.pages[0]?.flat() ?? []), [inifinite.data.pages])
-
-  useEffect(() => {
-    errors.forEach(error => notifications.show({ message: error.message }))
-  }, [errors])
+  const noArticlesFound = inifinite.data.pages.map((d) => prepareArticles(d.data)).flat().length === 0
 
   if (inifinite.isLoading) return <ArticlesGridViewSkeleton />
   if (noArticlesFound || !inifinite.data) return <PageError title='No articles found' />
 
   return (
     <Stack>
-      {!!errors.length && errors.map((e, index) => <Alert closable key={index} variant='error'>{e.message}</Alert>)}
       <InfiniteScroll reobserveOnChange={inifinite.data} onLastPage={inifinite.fetchNextPage} onPage={onPage}>
         {({ page }) => (
           <ArticlesGridView>
             {({ view }) => (
               <Articles
                 orientation={view === GRID_VIEW.GRID ? ARTICLE_ORIENTATION.VERTICAL : ARTICLE_ORIENTATION.HORIZONTAL}
-                renderItem={(article, options) => <div {...(options.articleIndex === 0 && page(options.page))}>{article}</div>}
+                renderItem={(article, options) => (
+                  <div
+                    key={article.key}
+                    {...(options.articleIndex === 0 && page(options.page))}
+                  >
+                    {article}
+                  </div>
+                )}
               />
             )}
           </ArticlesGridView>
