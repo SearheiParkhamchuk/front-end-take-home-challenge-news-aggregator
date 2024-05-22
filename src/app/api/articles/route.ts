@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
   const queryParameter = params.get(SEARCH_PARAMS_KEYS.A_QUERY)
   const orderParameter = pickEnumSearchParameter(params, ARTICLES_ORDER_BY, SEARCH_PARAMS_KEYS.A_ORDER_BY) ?? DEFAULT_ORDER
 
-  const page = isNaN(pageParameter) ? DEFAULT_PAGE : Math.abs(pageParameter)
+  const page = isNaN(pageParameter) || pageParameter < 0 ? DEFAULT_PAGE : pageParameter
   const size = isNaN(sizeParameter) || sizeParameter > MAX_PAGE_SIZE || sizeParameter < MIN_PAGE_SIZE
     ? DEFAULT_PAGE_SIZE
     : sizeParameter
