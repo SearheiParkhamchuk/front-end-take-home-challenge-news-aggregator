@@ -16,6 +16,7 @@ import { withSuspense } from '@/06-shared/lib/utils/HOK/withSuspense'
 import { GRID_VIEW } from '@/06-shared/ui/GridViewButton/model'
 import InfiniteScroll from '@/06-shared/ui/InfiniteScroll'
 import PageError from '@/06-shared/ui/PageError'
+import ScrollToTop from '@/06-shared/ui/ScrollToEdge'
 import Stack from '@/06-shared/ui/Stack'
 
 function ArticlesClient() {
@@ -30,6 +31,7 @@ function ArticlesClient() {
 
   return (
     <Stack>
+      <ScrollToTop />
       {inifinite.hasPreviousPage && <Stack align='center'><LoadPreviousPage /></Stack>}
       <InfiniteScroll reobserveOnChange={inifinite.data} onLastPage={inifinite.fetchNextPage} onPage={onPage}>
         {({ page }) => (
