@@ -15,7 +15,12 @@ function Article({ publishedAt, alt, poster, title, description, source, orienta
       {...rest}
       Content={
         <>
-          <Title color='primary' order={4}>{title}</Title>
+
+          <Title color='primary' order={4}>
+            <Link href={source} rel='noopener noferrer' target='_blank'>
+              {title}
+            </Link>
+          </Title>
           <Text span className={styles.description} color='text-secondary' dangerouslySetInnerHTML={description} fz='sm' />
         </>
       }
