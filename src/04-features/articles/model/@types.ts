@@ -13,8 +13,9 @@ export type Article = {
   media: {
     images: ArticleMedia[]
   }
-  publishedAt: Date
-  source: { name: string, src: string }
+  published_at: Date
+  source: string
+  source_name: string
   title: string
   uuid: string
   description?: string

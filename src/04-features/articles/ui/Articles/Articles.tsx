@@ -24,8 +24,9 @@ function Articles({ orientation, renderItem, ...rest }: ArticlesProps) {
       key={article.uuid}
       orientation={orientation}
       poster={article.thumbnail ?? article.media.images[0]?.url ?? null}
-      publishedAt={article.publishedAt}
+      publishedAt={article.published_at}
       source={article.source}
+      sourceName={article.source_name}
       title={article.title}
     />
   )

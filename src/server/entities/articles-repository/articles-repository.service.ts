@@ -30,7 +30,7 @@ export class ArticlessRepository {
         .insert()
         .into(ArticleEntity)
         .values(data)
-        .orUpdate(['title', 'description', 'expireAt'])
+        .orUpdate(['title', 'description', 'expire_at'])
         .orIgnore()
         .returning('*')
         .execute()
@@ -39,8 +39,7 @@ export class ArticlessRepository {
 
       const hydratedResult = rawData.map(d => ({
         ...d,
-        media: JSON.parse(d.media),
-        source: JSON.parse(d.source)
+        media: JSON.parse(d.media)
       }))
       return hydratedResult
     } catch (e) {
@@ -65,7 +64,7 @@ export class ArticlessRepository {
   }
 
   async deleteExpired(): Promise<void> {
-    const expired = await this.repository.findBy({ expireAt: LessThanOrEqual(new Date()) })
+    const expired = await this.repository.findBy({ expire_at: LessThanOrEqual(new Date()) })
     await this.repository.remove(expired)
   }
 }

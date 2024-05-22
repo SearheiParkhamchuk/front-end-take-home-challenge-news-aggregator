@@ -10,13 +10,14 @@ const MAX_PAGE_SIZE = 50
 
 const DEFAULT_PAGE = 0
 const DEFAULT_PAGE_SIZE = MIN_PAGE_SIZE
+const DEFAULT_ORDER = ARTICLES_ORDER_BY.NEWEST
 
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams
   const pageParameter = Number(params.get(SEARCH_PARAMS_KEYS.A_PAGE))
   const sizeParameter = Number(params.get(SEARCH_PARAMS_KEYS.A_PAGE_SIZE))
   const queryParameter = params.get(SEARCH_PARAMS_KEYS.A_QUERY)
-  const orderParameter = pickEnumSearchParameter(params, ARTICLES_ORDER_BY, SEARCH_PARAMS_KEYS.A_ORDER_BY)
+  const orderParameter = pickEnumSearchParameter(params, ARTICLES_ORDER_BY, SEARCH_PARAMS_KEYS.A_ORDER_BY) ?? DEFAULT_ORDER
 
   const page = isNaN(pageParameter) ? DEFAULT_PAGE : Math.abs(pageParameter)
   const size = isNaN(sizeParameter) || sizeParameter > MAX_PAGE_SIZE || sizeParameter < MIN_PAGE_SIZE
@@ -29,7 +30,7 @@ export async function GET(request: NextRequest) {
     page,
     size,
     sort: {
-      by: 'publishedAt',
+      by: 'published_at',
       direction: orderParameter === ARTICLES_ORDER_BY.NEWEST ? 'DESC' : 'ASC'
     }
   })

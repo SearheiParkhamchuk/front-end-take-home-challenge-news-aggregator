@@ -2,7 +2,7 @@ import { Group as MantineGroup } from '@mantine/core'
 
 import { type GroupProps } from './types'
 
-function Group({ children, gap = 1, className, align, grow, justify, ...rest }: GroupProps) {
+function Group({ children, gap = 'sm', className, align, grow, justify, ...rest }: GroupProps) {
   return (
     <MantineGroup
       {...rest}

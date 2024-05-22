@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity } from 'typeorm'
+import { Column, Entity } from 'typeorm'
 
 import { type ArticleRemoteSourceMedia } from '../news-sources/@types'
 
@@ -7,13 +7,13 @@ export class ArticleEntity {
   @Column({ name: 'uuid', type: 'uuid', primary: true, unique: true, generated: 'uuid' })
     uuid: string
 
-  @Column({ name: 'publishedAt', type: 'date', nullable: false })
-    publishedAt: Date
+  @Column({ name: 'published_at', type: 'timestamp', nullable: false })
+    published_at: Date
 
-  @CreateDateColumn()
-    createdAt: Date
+  @Column({ name: 'created_at', type: 'timestamp', default: 'now()', nullable: false })
+    created_at: Date
 
-  @Column({ name: 'id', type: 'varchar', length: 200, nullable: true })
+  @Column({ name: 'id', type: 'varchar', length: 512, nullable: true })
     id: string
 
   @Column({ name: 'description', type: 'text', nullable: true })
@@ -22,15 +22,18 @@ export class ArticleEntity {
   @Column({ name: 'thumbnail', type: 'text', nullable: true })
     thumbnail?: string
 
-  @Column({ name: 'title', type: 'varchar', length: 200, nullable: false })
+  @Column({ name: 'title', type: 'varchar', length: 256, nullable: false })
     title: string
 
-  @Column({ name: 'source', type: 'simple-json', nullable: false })
-    source: { name: string, src: string }
+  @Column({ name: 'source', type: 'varchar', length: 512, nullable: false, unique: true })
+    source: string
+
+  @Column({ name: 'source_name', type: 'varchar', length: 128, nullable: false })
+    source_name: string
 
   @Column({ name: 'media', type: 'simple-json', nullable: false })
     media: { images: ArticleRemoteSourceMedia[] }
 
-  @CreateDateColumn({ name: 'expireAt', type: 'date', nullable: false })
-    expireAt: Date
+  @Column({ name: 'expire_at', type: 'timestamp', nullable: false })
+    expire_at: Date
 }
