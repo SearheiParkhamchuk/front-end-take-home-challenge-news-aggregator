@@ -23,7 +23,7 @@ function Article({ publishedAt, alt, poster, title, description, source, orienta
         <>
           <Group align='center' gap='xs'>
             <Text span fz='sm'>Published at:</Text>
-            <Date color='primary' date={publishedAt} fz='xs' />
+            <Date relative color='primary' date={publishedAt} fz='xs' />
           </Group>
           <Group align='center' gap='xs'>
             <Text span fz='sm'>Source:</Text>

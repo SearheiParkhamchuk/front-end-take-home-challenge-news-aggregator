@@ -5,5 +5,5 @@ export type TextColor = 'text-primary' | 'text-secondary' | 'primary'
 
 export type DateProps = PropsWithChildren<
 Pick<MantineTextProps, 'className' | 'size' | 'lineClamp' | 'inherit' | 'fz'>
-& { date: Date, color?: TextColor }
+& { date: Date, color?: TextColor, relative?: boolean }
 >

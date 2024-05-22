@@ -1,8 +1,9 @@
 import { Text as MantineText } from '@mantine/core'
+import { formatRelative } from 'date-fns'
 
 import { type DateProps } from './types'
 
-function Date({
+function DateComponent({
   children,
   date,
   className,
@@ -11,6 +12,7 @@ function Date({
   inherit,
   color = 'primary',
   fz,
+  relative,
   ...rest
 }: DateProps) {
   return (
@@ -23,11 +25,12 @@ function Date({
       inherit={inherit}
       lineClamp={lineClamp}
       size={size}
+      title={date.toLocaleString()}
       {...rest}
     >
-      {children || date.toDateString()}
+      {children || relative ? formatRelative(date, new Date()) : date.toDateString()}
     </MantineText>
   )
 }
 
-export default Date
+export default DateComponent
