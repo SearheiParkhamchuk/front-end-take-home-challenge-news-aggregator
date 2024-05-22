@@ -9,7 +9,7 @@ export class NewsDeletionSchedulerService {
 
   private constructor(private readonly articlesRepository: ArticlessRepository) {
     NewsDeletionSchedulerService.job = CronJob.from({
-      cronTime: '*/30 * * * *',
+      cronTime: `*/${process.env.NEWS_EXPIRATION_CHECK_INTERVAL_MINUTES} * * * *`,
       onTick: this.tick.bind(this),
       start: false
     })
