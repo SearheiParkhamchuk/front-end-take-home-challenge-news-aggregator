@@ -11,7 +11,17 @@ import { SEARCH_PARAMS_KEYS } from '@/05-entities/app/model/search-params-keys'
 import { ARTICLES_DEFAULT_PAGE } from '../../model/default-page'
 
 export function useFetchArticlesInfinite(params: ArticlesQueryParams) {
-  const { fetchNextPage, data: _data, isLoading, hasNextPage, isFetching } = useInfiniteQuery<
+  const {
+    fetchNextPage,
+    fetchPreviousPage,
+    data: _data,
+    isLoading,
+    isFetchingNextPage,
+    isFetchingPreviousPage,
+    hasNextPage,
+    hasPreviousPage,
+    isFetching
+  } = useInfiniteQuery<
   ArticlesResponse,
   DefaultError,
   InfiniteData<ArticlesResponse, string>,
@@ -26,12 +36,34 @@ export function useFetchArticlesInfinite(params: ArticlesQueryParams) {
     getNextPageParam: (lastPage, __, lastPageParam) => {
       if (!lastPage.data?.length) return undefined
       return (Number(lastPageParam) + 1).toString()
+    },
+    getPreviousPageParam: (firstPage, __, firstPageParam) => {
+      if (!firstPage.data?.length) return undefined
+
+      const previousPage = (Number(firstPageParam) - 1)
+      if (previousPage < 0) return undefined
+      return previousPage.toString()
     }
   })
 
   const data = useMemo(() => _data ?? { pages: [], pageParams: [] }, [_data])
   const lastPage = data.pageParams.at(-1)
+  const firstPage = data.pageParams[0]
   const nextPage = Number(lastPage) + 1
+  const previousPage = Number(firstPage) - 1
 
-  return { fetchNextPage, data, isLoading, isFetching, hasNextPage, lastPage, nextPage }
+  return {
+    fetchNextPage,
+    fetchPreviousPage,
+    data,
+    isLoading,
+    isFetching,
+    hasNextPage,
+    hasPreviousPage,
+    isFetchingNextPage,
+    isFetchingPreviousPage,
+    lastPage,
+    nextPage,
+    previousPage
+  }
 }

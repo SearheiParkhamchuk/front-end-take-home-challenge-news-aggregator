@@ -6,7 +6,8 @@ import { useFetchArticlesInfinite } from '@/04-features/articles/api/articles-in
 import { prepareArticles } from '@/04-features/articles/model/prepare-articles'
 import { useArticlesSearchParams } from '@/04-features/articles/model/useArticlesSearchParams'
 import Articles from '@/04-features/articles/ui/Articles'
-import LoadMore from '@/04-features/articles/ui/LoadMore'
+import LoadNextPage from '@/04-features/articles/ui/LoadNextPage'
+import LoadPreviousPage from '@/04-features/articles/ui/LoadPreviousPage'
 import ArticlesGridView from '@/04-features/articles-view/ui/ArticlesGridView'
 import ArticlesGridViewSkeleton from '@/04-features/articles-view/ui/ArticlesGridViewSkeleton'
 import { SEARCH_PARAMS_KEYS } from '@/05-entities/app/model/search-params-keys'
@@ -29,6 +30,7 @@ function ArticlesClient() {
 
   return (
     <Stack>
+      {inifinite.hasPreviousPage && <Stack align='center'><LoadPreviousPage /></Stack>}
       <InfiniteScroll reobserveOnChange={inifinite.data} onLastPage={inifinite.fetchNextPage} onPage={onPage}>
         {({ page }) => (
           <ArticlesGridView>
@@ -48,9 +50,7 @@ function ArticlesClient() {
           </ArticlesGridView>
         )}
       </InfiniteScroll>
-      <Stack align='center'>
-        <LoadMore />
-      </Stack>
+      <Stack align='center'><LoadNextPage /></Stack>
     </Stack>
   )
 }
