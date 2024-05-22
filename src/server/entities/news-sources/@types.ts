@@ -8,8 +8,9 @@ export type ArticleRemoteSource = {
   media: {
     images: ArticleRemoteSourceMedia[]
   }
-  publishedAt: Date
-  source: { name: string, src: string }
+  published_at: Date
+  source: string
+  source_name: string
   title: string
   description?: string
   id?: string

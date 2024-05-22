@@ -9,7 +9,7 @@ import styles from './styles.module.scss'
 import { type ArticleProps } from './types'
 import ArticleLayout from '../ArticleLayout'
 
-function Article({ publishedAt, alt, poster, title, description, source, orientation, ...rest }: ArticleProps) {
+function Article({ publishedAt, alt, poster, title, description, source, orientation, sourceName, ...rest }: ArticleProps) {
   return (
     <ArticleLayout
       {...rest}
@@ -28,7 +28,7 @@ function Article({ publishedAt, alt, poster, title, description, source, orienta
           <Group align='center' gap='xs'>
             <Text span fz='sm'>Source:</Text>
             <Text color='primary' size='xs'>
-              <Link href={source.src} rel='noopener noferrer' target='_blank'>{source.name}</Link>
+              <Link href={source} rel='noopener noferrer' target='_blank'>{sourceName}</Link>
             </Text>
           </Group>
         </>

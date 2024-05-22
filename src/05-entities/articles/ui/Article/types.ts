@@ -5,7 +5,8 @@ export type ArticleProps = {
   description: string
   poster: string | null
   publishedAt: Date
-  source: { name: string, src: string }
+  source: string
+  sourceName: string
   title: string
   orientation?: ARTICLE_ORIENTATION
 }

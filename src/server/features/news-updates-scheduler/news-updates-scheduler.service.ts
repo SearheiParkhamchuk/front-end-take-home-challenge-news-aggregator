@@ -14,7 +14,7 @@ export class NewsUpdatesSchedulerService {
     private readonly articlesRepository: ArticlessRepository
   ) {
     NewsUpdatesSchedulerService.job = CronJob.from({
-      cronTime: '*/15 * * * *',
+      cronTime: `*/${process.env.NEWS_UPDATES_CHECK_INTERVAL_MINUTES} * * * *`,
       onTick: this.tick.bind(this),
       start: false
     })
@@ -43,11 +43,11 @@ export class NewsUpdatesSchedulerService {
 
   async tick(): Promise<void> {
     try {
-      const now = new Date()
-      now.setMinutes(now.getMinutes() + 30)
+      const expireAt = new Date()
+      expireAt.setMinutes(expireAt.getMinutes() + Number(process.env.NEWS_EXPIRATION_MINUTES))
       const rawData = await this.entitiesService.fetchAll()
       const articlesReceived = NewsSourcesEntitiesService.selectData(rawData)
-      const articles: ArticleSourceDTO[] = articlesReceived.map(d => ({ ...d, expireAt: now }))
+      const articles: ArticleSourceDTO[] = articlesReceived.map(d => ({ ...d, expire_at: expireAt }))
       await this.articlesRepository.insertMany(articles)
 
       const errors = rawData.filter(d => !!d.error)

@@ -1,8 +1,8 @@
 import { type ArticleRemoteSource } from '@/server/entities/news-sources/@types'
 
 export type ArticleLocalSource = ArticleRemoteSource & {
-  createdAt: Date
-  expireAt: Date
+  created_at: Date
+  expire_at: Date
   uuid: string
 }
 
@@ -12,5 +12,5 @@ export type ArticleLocalSourceDehydrated = ArticleLocalSource & {
 }
 
 export type ArticleSourceDTO = ArticleRemoteSource & {
-  expireAt: Date
+  expire_at: Date
 }

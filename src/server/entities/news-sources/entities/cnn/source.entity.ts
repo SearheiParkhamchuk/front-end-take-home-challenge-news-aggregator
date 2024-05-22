@@ -18,8 +18,9 @@ export class CNNNewsSourceEntity extends NewsSource<RawDataSource> {
     const data = rawData.rss.channel.item.map(item => ({
       description: item.description,
       id: item.guid['#text'],
-      publishedAt: new Date(item.pubDate),
-      source: { name: rawData.rss.channel.title, src: item.link },
+      published_at: new Date(item.pubDate),
+      source: item.link,
+      source_name: rawData.rss.channel.title,
       thumbnail: item['media:thumbnail']?.['@_url'] ?? undefined,
       title: item.title,
       media: {

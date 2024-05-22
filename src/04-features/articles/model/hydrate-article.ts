@@ -4,6 +4,6 @@ import { type ArticleLocalSource } from '@/server/entities/articles-repository/@
 export function hydrateArticle(serializedArticle: ArticleLocalSource): Article {
   return {
     ...serializedArticle,
-    publishedAt: new Date(serializedArticle.publishedAt)
+    published_at: new Date(serializedArticle.published_at)
   }
 }

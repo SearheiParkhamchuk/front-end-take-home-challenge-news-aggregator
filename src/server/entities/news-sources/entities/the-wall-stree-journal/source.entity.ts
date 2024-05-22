@@ -20,8 +20,9 @@ export class TheWallStreeJournalNewsSourceEntity extends NewsSource<RawDataSourc
     const data = rawData.rss.channel.item.map(item => ({
       description: item.description,
       id: item.guid['#text'],
-      publishedAt: new Date(item.pubDate),
-      source: { name: rawData.rss.channel.title, src: item.link },
+      published_at: new Date(item.pubDate),
+      source: item.link,
+      source_name: rawData.rss.channel.title,
       thumbnail: DEFAULT_POSTER,
       title: item.title,
       media: { images: [] }
