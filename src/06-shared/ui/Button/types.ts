@@ -11,6 +11,8 @@ MButtonProps,
 | 'fullWidth'
 | 'loading'
 | 'size'
+| 'style'
+| 'variant'
 >
 & Pick<HTMLAttributes<HTMLButtonElement>, 'aria-label' | 'onClick' | 'role' | 'tabIndex' | 'id'>
 & Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'type'>

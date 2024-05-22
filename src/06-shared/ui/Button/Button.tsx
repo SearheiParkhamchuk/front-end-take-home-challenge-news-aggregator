@@ -19,6 +19,8 @@ function Button({
   tabIndex,
   type,
   size,
+  style,
+  variant,
   ...props
 }: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
   return (
@@ -36,8 +38,10 @@ function Button({
       rightSection={rightSection}
       role={role}
       size={size}
+      style={style}
       tabIndex={tabIndex}
       type={type}
+      variant={variant}
       onClick={onClick}
     >
       {children}
