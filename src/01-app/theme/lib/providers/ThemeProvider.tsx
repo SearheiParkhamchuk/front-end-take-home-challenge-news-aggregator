@@ -7,10 +7,10 @@ import { cssVariablesResolver, theme } from '@/06-shared/lib/theme'
 function ThemeProvider({ children }: PropsWithChildren<{}>) {
   return (
     <>
-      <ColorSchemeScript defaultColorScheme="dark" />
+      <ColorSchemeScript defaultColorScheme="auto" />
       <MantineProvider
         cssVariablesResolver={cssVariablesResolver}
-        defaultColorScheme='dark'
+        defaultColorScheme='auto'
         theme={theme}
       >
         {children}

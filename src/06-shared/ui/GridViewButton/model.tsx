@@ -1,6 +1,5 @@
+import { VisuallyHidden } from '@mantine/core'
 import { IconLayoutGridFilled, IconList } from '@tabler/icons-react'
-
-import Tooltip from '@/06-shared/ui/Tooltip'
 
 export enum GRID_VIEW {
   LIST = 'list',
@@ -10,12 +9,18 @@ export enum GRID_VIEW {
 export const model = [{
   value: GRID_VIEW.LIST,
   label: (
-    <Tooltip label='List view'><IconList style={{ display: 'block' }} /></Tooltip>
+    <>
+      <IconList style={{ display: 'block' }} />
+      <VisuallyHidden>List view</VisuallyHidden>
+    </>
   )
 },
 {
   value: GRID_VIEW.GRID,
   label: (
-    <Tooltip label='Grid view'><IconLayoutGridFilled style={{ display: 'block' }} /></Tooltip>
+    <>
+      <IconLayoutGridFilled style={{ display: 'block' }} />
+      <VisuallyHidden>Grid view</VisuallyHidden>
+    </>
   )
 }]

@@ -1,18 +1,22 @@
 import ButtonSegmented from '@/06-shared/ui/ButtonSegmented'
 
+import Tooltip from '@/06-shared/ui/Tooltip'
+
 import { model } from './model'
 import { type GridViewButtonProps } from './types'
 
 function GridViewButton({ disabled, value, className, onChange }: GridViewButtonProps) {
   return (
-    <ButtonSegmented
-      className={className}
-      data={model}
-      disabled={disabled}
-      value={value}
-      // @ts-ignore
-      onChange={onChange}
-    />
+    <Tooltip label='Change view'>
+      <ButtonSegmented
+        className={className}
+        data={model}
+        disabled={disabled}
+        value={value}
+        // @ts-ignore
+        onChange={onChange}
+      />
+    </Tooltip>
   )
 }
 
