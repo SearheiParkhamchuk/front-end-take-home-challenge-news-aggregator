@@ -15,7 +15,6 @@ function Article({ publishedAt, alt, poster, title, description, source, orienta
       {...rest}
       Content={
         <>
-
           <Title color='primary' order={4}>
             <Link href={source} rel='noopener noferrer' target='_blank'>
               {title}
@@ -38,7 +37,7 @@ function Article({ publishedAt, alt, poster, title, description, source, orienta
           </Group>
         </>
       }
-      Image={<Image external alt={alt} sizes='450px' src={poster} />}
+      Image={<Image external alt={alt} className={styles.image} sizes='450px' src={poster} />}
       orientation={orientation}
     />
   )
