@@ -9,6 +9,7 @@ declare namespace NodeJS {
     NEWS_EXPIRATION_MINUTES: string
     NEWS_UPDATES_CHECK_INTERVAL_MINUTES: string
 
+    NEXT_PUBLIC_API_BASE_URL: string
     NEXT_PUBLIC_APP_BASE_URL: string
   }
 }

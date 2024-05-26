@@ -1,7 +1,6 @@
 import { type ARTICLES_ORDER_BY } from '@/04-features/articles-sorting/model'
 import { type SEARCH_PARAMS_KEYS } from '@/05-entities/app/model/search-params-keys'
 import { type ApiResponse } from '@/06-shared/lib/utils/errors/types/ApiResponse'
-import { type ArticleLocalSource } from '@/server/entities/articles-repository/@types'
 
 type ArticleMedia = {
   height: string
@@ -14,8 +13,8 @@ export type Article = {
     images: ArticleMedia[]
   }
   published_at: Date
-  source: string
   source_name: string
+  source_url: string
   title: string
   uuid: string
   description?: string
@@ -23,7 +22,21 @@ export type Article = {
   thumbnail?: string
 }
 
-export type ArticlesResponse = ApiResponse<ArticleLocalSource[]>
+export type ArticleServer = {
+  media: {
+    images: ArticleMedia[]
+  }
+  published_at: Date
+  source_name: string
+  source_url: string
+  title: string
+  uuid: string
+  description?: string
+  id?: string
+  thumbnail?: string
+}
+
+export type ArticlesResponse = ApiResponse<ArticleServer[]>
 
 export type ArticlesQueryParams = {
   [SEARCH_PARAMS_KEYS.A_PAGE]: string

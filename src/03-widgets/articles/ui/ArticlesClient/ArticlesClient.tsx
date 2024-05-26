@@ -13,6 +13,7 @@ import ArticlesGridViewSkeleton from '@/04-features/articles-view/ui/ArticlesGri
 import { SEARCH_PARAMS_KEYS } from '@/05-entities/app/model/search-params-keys'
 import { ARTICLE_ORIENTATION } from '@/05-entities/articles/model/article-orientation'
 import { withSuspense } from '@/06-shared/lib/utils/HOK/withSuspense'
+import Alert from '@/06-shared/ui/Alert'
 import { GRID_VIEW } from '@/06-shared/ui/GridViewButton/model'
 import InfiniteScroll from '@/06-shared/ui/InfiniteScroll'
 import PageError from '@/06-shared/ui/PageError'
@@ -32,6 +33,7 @@ function ArticlesClient() {
   return (
     <Stack>
       <ScrollToTop />
+      {inifinite.error && <Alert variant='error'>{inifinite.error.message}</Alert>}
       {inifinite.hasPreviousPage && <Stack align='center'><LoadPreviousPage /></Stack>}
       <InfiniteScroll reobserveOnChange={inifinite.data} onLastPage={inifinite.fetchNextPage} onPage={onPage}>
         {({ page }) => (
