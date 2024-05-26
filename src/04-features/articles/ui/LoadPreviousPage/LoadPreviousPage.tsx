@@ -1,8 +1,11 @@
 import { IconReload } from '@tabler/icons-react'
 
+import { type MouseEvent } from 'react'
+
 import { SEARCH_PARAMS_KEYS } from '@/05-entities/app/model/search-params-keys'
 import { useSearchParams } from '@/06-shared/lib/third-party/router/useSearchParams'
 
+import { withSuspense } from '@/06-shared/lib/utils/HOK/withSuspense'
 import Link from '@/06-shared/ui/Link'
 
 import { useFetchArticlesInfinite } from '../../api/articles-infinite/fetch-articles-infinite.client'
@@ -13,7 +16,8 @@ function LoadPreviousPage({ ...rest }) {
   const [searchParams] = useArticlesSearchParams()
   const inifinite = useFetchArticlesInfinite(searchParams)
 
-  const handleClick = () => {
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault()
     inifinite.fetchPreviousPage()
   }
 
@@ -31,4 +35,4 @@ function LoadPreviousPage({ ...rest }) {
   )
 }
 
-export default LoadPreviousPage
+export default withSuspense(LoadPreviousPage)

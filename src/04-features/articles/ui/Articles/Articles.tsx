@@ -25,7 +25,7 @@ function Articles({ orientation, renderItem, ...rest }: ArticlesProps) {
       orientation={orientation}
       poster={article.thumbnail ?? article.media.images[0]?.url ?? null}
       publishedAt={article.published_at}
-      source={article.source}
+      source={article.source_url}
       sourceName={article.source_name}
       title={article.title}
     />

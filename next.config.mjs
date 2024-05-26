@@ -7,7 +7,6 @@ const _dirname = path.dirname(_filename)
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverComponentsExternalPackages: ['typeorm']
   },
   sassOptions: {
     includePaths: [path.join(_dirname, 'styles')]

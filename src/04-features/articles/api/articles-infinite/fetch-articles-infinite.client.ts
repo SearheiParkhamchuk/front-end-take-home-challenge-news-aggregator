@@ -20,7 +20,8 @@ export function useFetchArticlesInfinite(params: ArticlesQueryParams) {
     isFetchingPreviousPage,
     hasNextPage,
     hasPreviousPage,
-    isFetching
+    isFetching,
+    error
   } = useInfiniteQuery<
   ArticlesResponse,
   DefaultError,
@@ -64,6 +65,7 @@ export function useFetchArticlesInfinite(params: ArticlesQueryParams) {
     isFetchingPreviousPage,
     lastPage,
     nextPage,
-    previousPage
+    previousPage,
+    error
   }
 }
