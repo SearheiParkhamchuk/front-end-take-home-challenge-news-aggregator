@@ -26,8 +26,7 @@
   }
 
   &-horizontal {
-    flex-basis: 30%;
-    min-width: 150px;
+    // flex-basis: 30%;
     min-height: 200px;
     max-height: 300px;
   }
@@ -54,7 +53,7 @@
 }
 
 @media (max-width: 36em) {
-  .container {  
+  .container {
     &-horizontal {
       flex-direction: column;
     }

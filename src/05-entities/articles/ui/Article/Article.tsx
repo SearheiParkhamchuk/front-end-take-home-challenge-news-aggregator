@@ -37,7 +37,7 @@ function Article({ publishedAt, alt, poster, title, description, source, orienta
           </Group>
         </>
       }
-      Image={<Image external withBackground alt={alt} className={styles.image} sizes='450px' src={poster} />}
+      Image={<Image withBackground alt={alt} className={styles.image} src={poster} />}
       orientation={orientation}
     />
   )

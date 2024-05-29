@@ -1,4 +1,16 @@
 .section {
   display: flex;
   justify-content: space-between;
+  gap: var(--app-spacing-sm);
+}
+
+@media (max-width: 450px) {
+  .section {
+    flex-direction: column;
+  }
+
+  .group-right {
+    display: flex;
+    justify-content: space-between;
+  }
 }

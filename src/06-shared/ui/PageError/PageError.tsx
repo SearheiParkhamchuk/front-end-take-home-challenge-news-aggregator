@@ -8,9 +8,14 @@ import { type PageErrorProps } from './types'
 
 function PageError({ title, description }: PageErrorProps) {
   return (
-    <Stack className={styles['not-found']}>
-      <Image alt='Not Found' height={320} src='/assets/images/not-found.png' width={320} />
-      <Title>{title}</Title>
+    <Stack className={styles['not-found-container']}>
+      <div className={styles['not-found-image-container']}>
+        <Image
+          alt='Not Found'
+          src='/assets/images/not-found.png'
+        />
+      </div>
+      <Title responsive textAlign='center'>{title}</Title>
       {description ?? <Text>{description}</Text>}
     </Stack>
   )

@@ -9,10 +9,10 @@ function ArticlesTopPanel() {
   return (
     <section className={styles.section}>
       <Group>
-        <ArticlesSelectOrderBy />
-      </Group>
-      <Group>
         <ArticlesSearch />
+      </Group>
+      <Group className={styles['group-right']}>
+        <ArticlesSelectOrderBy />
         <ArticlesGridViewButton />
       </Group>
     </section>
