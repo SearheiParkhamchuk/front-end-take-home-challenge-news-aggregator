@@ -1,10 +1,10 @@
 import { type ArticlesQueryParams, type ArticlesResponse } from '@/04-features/articles/model/@types'
 import { getFetcherInstance } from '@/06-shared/lib/third-party/fetcher/get-fetcher-instance'
 
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL
+
 export const articlesRequest = async (params: ArticlesQueryParams, options?: { signal: AbortSignal }) => {
-  const response = await getFetcherInstance({
-    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL
-  }).request<ArticlesResponse>({
+  const response = await getFetcherInstance({ baseURL }).request<ArticlesResponse>({
     method: 'GET',
     url: '/api/articles',
     params: {

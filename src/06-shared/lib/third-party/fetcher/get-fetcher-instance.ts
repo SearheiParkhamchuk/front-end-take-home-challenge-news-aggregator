@@ -3,7 +3,7 @@ import { makeFetcherInstance } from './maket-fetcher-instance'
 
 let fetcherInstance: FetcherInstance | undefined
 const defaultConfig: FetcherConfig = {
-  baseURL: process.env.NEXT_PUBLIC_APP_BASE_URL
+  baseURL: process.env.NEXT_PUBLIC_APP_HOST
 }
 
 export function getFetcherInstance(config: FetcherConfig = defaultConfig) {
