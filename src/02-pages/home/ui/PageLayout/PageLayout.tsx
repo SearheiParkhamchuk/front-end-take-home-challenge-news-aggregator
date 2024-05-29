@@ -2,9 +2,11 @@ import { type ReactElement } from 'react'
 
 import Stack from '@/06-shared/ui/Stack'
 
+import styles from './styles.module.scss'
+
 function PageLayout({ TopPanel, Content }: { Content: ReactElement, TopPanel: ReactElement }) {
   return (
-    <Stack>
+    <Stack className={styles.container}>
       {TopPanel}
       {Content}
     </Stack>

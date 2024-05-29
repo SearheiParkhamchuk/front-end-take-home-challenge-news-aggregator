@@ -5,9 +5,13 @@
   align-items: center;
   justify-content: center;
   color: var(--app-color-text-secondary);
+}
+
+.image-bg {
   background-color: var(--app-color-bg-secondary);
 }
 
 .image {
-  background-color: var(--app-color-bg-secondary);
+  height: 100%;
+  width: 100%;
 }

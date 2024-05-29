@@ -1,28 +1,24 @@
 import { IconPhotoOff } from '@tabler/icons-react'
-import NextImage from 'next/image'
 
 import styles from './styles.module.scss'
 import { type ImageProps } from './types'
 
-function Image({ src, alt, width, height, external, sizes, className, withBackground, ...rest }: ImageProps) {
+function Image({ src, alt, className = '', withBackground, ...rest }: ImageProps) {
   if (!src) {
     return (
-      <div className={`${styles['no-image-plug']} ${className}`} {...rest}>
+      <div className={`${styles['no-image-plug']} ${withBackground ? styles['image-bg'] : ''} ${className}`} {...rest}>
         <IconPhotoOff style={{ width: '4rem', height: '4rem' }} />
       </div>
     )
   }
 
   return (
-    <NextImage
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
       {...rest}
       alt={alt}
-      className={`${className} ${withBackground ? styles.image : ''}`}
-      fill={external}
-      height={height}
-      sizes={sizes}
+      className={`${className} ${styles.image} ${withBackground ? styles['image-bg'] : ''}`}
       src={src}
-      width={width}
     />
   )
 }

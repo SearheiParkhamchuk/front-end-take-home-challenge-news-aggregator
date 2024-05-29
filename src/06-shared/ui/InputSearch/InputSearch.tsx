@@ -3,6 +3,7 @@ import { TextInput } from '@mantine/core'
 import { IconSearch } from '@tabler/icons-react'
 import { type ForwardedRef, forwardRef } from 'react'
 
+import styles from './styles.module.scss'
 import { type InputTextProps } from './types'
 
 function InputSearch({
@@ -20,6 +21,7 @@ function InputSearch({
     <TextInput
       {...rest}
       autoComplete='on'
+      className={styles.container}
       disabled={disabled}
       id={id}
       label={null}
