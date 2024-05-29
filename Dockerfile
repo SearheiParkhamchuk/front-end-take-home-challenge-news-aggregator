@@ -10,7 +10,7 @@ COPY ./package.json ./
 COPY ./package-lock.json ./
 COPY ./next.config.mjs ./
 
-RUN npm install
+RUN npm install --verbose
 
 COPY . .
 
@@ -28,7 +28,7 @@ COPY --from=build /usr/src/app/.next ./.next
 COPY --from=build /usr/src/app/public ./public
 COPY package.json package-lock.json next.config.mjs ./
 
-RUN npm install --only=production
+RUN npm install --verbose --only=production
 
 ARG PORT=3000
 ARG NODE_ENV=production
