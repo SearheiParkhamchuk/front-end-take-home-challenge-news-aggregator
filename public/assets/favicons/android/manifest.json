@@ -1,0 +1,11 @@
+{
+ "name": "Good News Everyone",
+ "icons": [
+  {
+   "src": "/favicon.png",
+   "sizes": "192×192",
+   "type": "image/png",
+   "density": "4.0"
+  }
+ ]
+}
