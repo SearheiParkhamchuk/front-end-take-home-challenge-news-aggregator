@@ -16,7 +16,7 @@ import { withSuspense } from '@/06-shared/lib/utils/HOK/withSuspense'
 import Alert from '@/06-shared/ui/Alert'
 import { GRID_VIEW } from '@/06-shared/ui/GridViewButton/model'
 import InfiniteScroll from '@/06-shared/ui/InfiniteScroll'
-import PageError from '@/06-shared/ui/PageError'
+import PageError from '@/06-shared/ui/LayoutNotFoundError'
 import ScrollToTop from '@/06-shared/ui/ScrollToEdge'
 import Stack from '@/06-shared/ui/Stack'
 
