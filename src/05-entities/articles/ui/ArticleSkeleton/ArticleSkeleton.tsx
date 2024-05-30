@@ -21,7 +21,7 @@ function ArticleSkeleton({ orientation }: { orientation?: ARTICLE_ORIENTATION })
           <Skeleton width='25%' />
         </>
       }
-      Image={<Skeleton height={250} />}
+      Image={<Skeleton height={200} />}
       orientation={orientation}
     />
   )

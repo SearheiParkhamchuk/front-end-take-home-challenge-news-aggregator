@@ -1,4 +1,3 @@
-import Divider from '@/06-shared/ui/Divider'
 import Stack from '@/06-shared/ui/Stack'
 
 import styles from './styles.module.scss'
@@ -7,34 +6,25 @@ import { ARTICLE_ORIENTATION } from '../../model/article-orientation'
 
 const classnames = {
   [ARTICLE_ORIENTATION.VERTICAL]: {
-    container: styles['container-vertical'],
-    image: styles['image-vertical'],
-    content: '',
-    footer: ''
+    container: styles['container-vertical']
   },
   [ARTICLE_ORIENTATION.HORIZONTAL]: {
-    container: styles['container-horizontal'],
-    image: styles['image-horizontal'],
-    content: styles['content-horizontal'],
-    footer: styles['footer-horizontal']
+    container: styles['container-horizontal']
   }
 }
 
 function ArticleLayout({ Image, Content, Footer, orientation = ARTICLE_ORIENTATION.VERTICAL, ...rest }: ArticleLayoutProps) {
   return (
     <article {...rest} className={`${styles.container} ${classnames[orientation].container}`}>
-      <div className={`${styles.image} ${classnames[orientation].image}`}>
+      <div className={styles.image}>
         {Image}
       </div>
-      <Stack className={`${styles.content} ${classnames[orientation].content}`}>
+      <Stack className={styles.content}>
         <Stack className={styles.text}>
           {Content}
         </Stack>
-        <Divider
-          color='primary'
-          orientation={orientation === ARTICLE_ORIENTATION.HORIZONTAL ? 'vertical' : 'horizontal'}
-        />
-        <Stack className={classnames[orientation].footer}>
+        <div className={styles.divider}></div>
+        <Stack className={styles.footer}>
           {Footer}
         </Stack>
       </Stack>

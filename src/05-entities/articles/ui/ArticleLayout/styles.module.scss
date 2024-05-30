@@ -1,3 +1,62 @@
+@mixin reset-horizontal {
+  .image {
+    flex-basis: auto;
+  }
+
+  .content {
+    flex-basis: auto;
+    flex-direction: initial;
+  }
+
+  .divider {
+    height: auto;
+    width: auto;
+    padding-right: initial;
+    border-left: initial;
+  }
+}
+
+@mixin vertical {
+  flex-direction: column;
+
+  .content {
+    flex-direction: column;
+  }
+
+  .divider {
+    width: 100%;
+    padding-top: var(--app-spacing-xs);
+    border-bottom: 1px solid var(--app-color-primary);
+  }
+}
+
+@mixin horizontal {
+  flex-direction: row;
+  flex-flow: row-reverse;
+
+  .image {
+    flex-basis: 30%;
+    min-width: 150px;
+  }
+
+  .content {
+    flex-basis: 70%;
+    flex-direction: row-reverse;
+  }
+
+  .divider {
+    height: 100%;
+    width: 0;
+    padding-right: var(--app-spacing-xs);
+    border-left: 1px solid var(--app-color-primary);
+  }
+
+  .footer {
+    flex-basis: 30%;
+    flex-shrink: 0;
+  }
+}
+
 .container {
   display: flex;
   border: 1px solid var(--app-color-primary);
@@ -6,62 +65,37 @@
   gap: var(--app-spacing-sm);
   height: 100%;
 
+  .image {
+    position: relative;
+    border-radius: 0.5rem;
+    height: 200px;
+  }
+
+  .content {
+    flex-grow: 1;
+  }
+
+  .text {
+    flex-grow: 1;
+  }
+
   &-vertical {
-    flex-direction: column;
+    @include vertical;
   }
 
   &-horizontal {
-    flex-direction: row;
-    flex-flow: row-reverse;
-  }
-}
-
-
-.image {
-  position: relative;
-  border-radius: 0.5rem;
-
-  &-vertical {
-    min-height: 250px;
-  }
-
-  &-horizontal {
-    flex-basis: 30%;
-    min-height: 200px;
-    max-height: 300px;
-  }
-}
-
-.content {
-  flex-grow: 1;
-
-  &-horizontal {
-    flex-basis: 70%;
-    flex-direction: row-reverse;
-  }
-}
-
-.text {
-  flex-grow: 1;
-}
-
-.footer {
-  &-horizontal {
-    flex-basis: 30%;
-    flex-shrink: 0;
+    @include horizontal;
   }
 }
 
 @media (max-width: 36em) {
-  .container {
-    &-horizontal {
-      flex-direction: column;
-    }
+
+  .container-horizontal {
+    @include reset-horizontal;
+    @include vertical;
   }
 
-  .content {
-    &-horizontal {
-      flex-direction: column;
-    }
+  .text {
+    flex-grow: 0;
   }
 }

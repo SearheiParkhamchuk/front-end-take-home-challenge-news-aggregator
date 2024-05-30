@@ -8,7 +8,7 @@ const CLASS_NAMES: Record<ComponentColors, string> = {
   'initial': styles.initial
 }
 
-function Divider({ label, orientation, labelPosition, className, color = 'initial', ...rest }: DividerProps) {
+function Divider({ label, orientation, labelPosition, className = '', color = 'initial', ...rest }: DividerProps) {
   return (
     <MantineDivider
       {...rest}

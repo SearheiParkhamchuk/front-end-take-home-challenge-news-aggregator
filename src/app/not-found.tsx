@@ -1,7 +1,7 @@
-import PageError from '@/06-shared/ui/PageError'
+import LayoutNotFoundError from '@/06-shared/ui/LayoutNotFoundError'
 
 function NotFoundPage() {
-  return <PageError title='Page Not Found' />
+  return <LayoutNotFoundError title='Page Not Found' />
 }
 
 export default NotFoundPage
