@@ -2,19 +2,23 @@ import { Notifications } from '@mantine/notifications'
 import { type ReactNode } from 'react'
 
 import CacheProvider from '@/01-app/cache/lib/providers/QueryClientProvider'
+import { IntlProvider } from '@/01-app/intl/lib/providers/IntlProvider'
 import ThemeProvider from '@/01-app/theme/lib/providers/ThemeProvider'
 import GlobalStyles from '@/01-app/theme/styles/GlobalStyles'
 import PageFooter from '@/03-widgets/page-footer/ui/PageFooter'
 import PageHeader from '@/03-widgets/page-header/ui/PageHeader'
+import { getLocale } from '@/06-shared/lib/intl/get-locale'
 import SingleColumnLayout from '@/06-shared/ui/Layouts/SingleColumnLayout'
 
-export default function RootLayout({
+export default async function RootLayout({
   children
 }: Readonly<{
   children: ReactNode
 }>) {
+  const locale = await getLocale()
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <head>
         <link href="/assets/favicons/web/favicon.png" rel="icon" sizes="96x96" />
         <link href="/assets/favicons/android/favicon.png" rel="icon" sizes="192x192" type="image/png" />
@@ -24,12 +28,14 @@ export default function RootLayout({
       <body>
         <CacheProvider>
           <ThemeProvider>
-            <Notifications />
-            <SingleColumnLayout
-              body={children}
-              footer={<PageFooter />}
-              header={<PageHeader />}
-            />
+            <IntlProvider>
+              <Notifications />
+              <SingleColumnLayout
+                body={children}
+                footer={<PageFooter />}
+                header={<PageHeader />}
+              />
+            </IntlProvider>
             <GlobalStyles />
           </ThemeProvider>
         </CacheProvider>

@@ -1,5 +1,6 @@
+'use client'
 import { Text as MantineText } from '@mantine/core'
-import { formatRelative } from 'date-fns'
+import { useFormatter } from 'next-intl'
 
 import { type DateProps } from './types'
 
@@ -15,21 +16,24 @@ function DateComponent({
   relative,
   ...rest
 }: DateProps) {
-  const isoDate = date.toISOString()
+  const format = useFormatter()
+
+  const formatted = format.dateTime(date, { dateStyle: 'full', timeStyle: 'short' })
+
   return (
     <MantineText
       c={color}
       className={className}
       component='time'
-      dateTime={isoDate}
+      dateTime={date.toISOString()}
       fz={fz}
       inherit={inherit}
       lineClamp={lineClamp}
       size={size}
-      title={isoDate}
+      title={formatted}
       {...rest}
     >
-      {children || relative ? formatRelative(isoDate, new Date().toISOString()) : isoDate}
+      {children || relative ? format.relativeTime(date) : formatted}
     </MantineText>
   )
 }
