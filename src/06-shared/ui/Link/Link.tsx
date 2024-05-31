@@ -16,12 +16,13 @@ function Link({
   rel,
   loading,
   component = 'link',
+  decoration = 'underline',
   onClick,
   ...rest
 }: LinkProps, ref: ForwardedRef<HTMLAnchorElement>) {
   const props = {
     ...rest,
-    'className': `${className} ${styles.link}`,
+    'className': `${className} ${styles.link} ${styles[decoration]}`,
     'disabled': loading,
     href,
     prefetch,
