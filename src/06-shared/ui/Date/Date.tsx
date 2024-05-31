@@ -15,20 +15,21 @@ function DateComponent({
   relative,
   ...rest
 }: DateProps) {
+  const isoDate = date.toISOString()
   return (
     <MantineText
       c={color}
       className={className}
       component='time'
-      dateTime={date.toISOString()}
+      dateTime={isoDate}
       fz={fz}
       inherit={inherit}
       lineClamp={lineClamp}
       size={size}
-      title={date.toLocaleString()}
+      title={isoDate}
       {...rest}
     >
-      {children || relative ? formatRelative(date, new Date()) : date.toDateString()}
+      {children || relative ? formatRelative(isoDate, new Date().toISOString()) : isoDate}
     </MantineText>
   )
 }
