@@ -1,6 +1,7 @@
 import { type CSSVariablesResolver, type MantineColorsTuple, type MantineTheme, colorsTuple, createTheme, virtualColor } from '@mantine/core'
 
 import { font } from './font'
+import { hexToRgb } from '../utils/color/hex-to-rgb'
 
 type CustomThemeColors = {
   'bg-primary': MantineColorsTuple
@@ -29,6 +30,7 @@ export const cssVariablesResolver: CSSVariablesResolver = (theme) => {
       '--app-breakpoint-sm': theme.breakpoints.sm,
       '--app-breakpoint-xs': theme.breakpoints.xs,
       '--app-color-primary': theme.colors.primary[0],
+      '--app-color-primary-rgb': hexToRgb(theme.colors.primary[0]).join(','),
       '--app-color-text-primary': theme.colors['text-primary'][0],
       '--app-color-text-secondary': theme.colors['text-secondary'][0],
       '--app-color-bg-primary': theme.colors['bg-primary'][0],
@@ -40,7 +42,8 @@ export const cssVariablesResolver: CSSVariablesResolver = (theme) => {
       '--mantine-color-text': theme.colors['white-smoke'][0]
     },
     light: {
-      '--mantine-color-text': theme.colors['dark-jungle-green'][0]
+      '--mantine-color-text': theme.colors['dark-jungle-green'][0],
+      '--mantine-color-body': theme.colors['white-smoke'][0]
     }
   }
 }

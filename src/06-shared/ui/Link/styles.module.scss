@@ -1,3 +1,11 @@
 .link {
   color: inherit;
+
+  &.underline {
+    text-decoration: underline;
+  }
+
+  &.none {
+    text-decoration: none;
+  }
 }
