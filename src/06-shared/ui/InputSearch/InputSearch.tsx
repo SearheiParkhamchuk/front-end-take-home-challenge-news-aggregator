@@ -31,7 +31,6 @@ function InputSearch({
       rightSection={<IconSearch />}
       type='search'
       value={value}
-      variant='filled'
       onBlur={onBlur}
       onChange={onChange}
       onFocus={onFocus}
