@@ -8,9 +8,9 @@ import { getArticlesQueryParams } from './get-articles-query-params'
 type ArticlesQueryParamsString = { [key in keyof ArticlesQueryParams]?: string }
 
 export function useArticlesSearchParams() {
-  const [searchParams, { set }] = useSearchParams<ArticlesQueryParamsString>()
+  const [searchParams, { set, remove }] = useSearchParams<ArticlesQueryParamsString>()
 
   const params = useMemo(() => getArticlesQueryParams(searchParams), [searchParams])
 
-  return [params, { set }] as const
+  return [params, { set, remove }] as const
 }
