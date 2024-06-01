@@ -18,6 +18,7 @@ function Image({ src, alt, className = '', withBackground, ...rest }: ImageProps
       {...rest}
       alt={alt}
       className={`${className} ${styles.image} ${withBackground ? styles['image-bg'] : ''}`}
+      loading='lazy'
       src={src}
     />
   )

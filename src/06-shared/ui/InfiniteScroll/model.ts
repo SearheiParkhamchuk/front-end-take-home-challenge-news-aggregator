@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react'
 
 import { useIntersectionObserver } from '@/06-shared/lib/utils/browser/useIntersectionObserver'
 
-const OBSERVER_OPTIONS = { rootMargin: '0% 0% 100% 0%' }
+const OBSERVER_OPTIONS = { rootMargin: '0% 0% 50% 0%' }
 
 export const pageNumberIndicator = (page: string) => ({ 'data-page-number': page })
 export const lastPageIndicator = () => ({ 'data-page-last': true })

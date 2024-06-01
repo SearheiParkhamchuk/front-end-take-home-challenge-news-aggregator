@@ -38,6 +38,7 @@ export function useFetchArticlesInfinite(params: ArticlesQueryParams) {
       if (!lastPage.data?.length) return undefined
       return (Number(lastPageParam) + 1).toString()
     },
+    placeholderData: (prev) => prev,
     getPreviousPageParam: (firstPage, __, firstPageParam) => {
       if (!firstPage.data?.length) return undefined
 
