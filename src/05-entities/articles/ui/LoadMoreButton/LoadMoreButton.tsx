@@ -10,6 +10,7 @@ function LoadMoreButton({ href, loading, loadMore, onClick, ...rest }: LoadMoreB
         {...rest}
         shallow
         component='button'
+        decoration='none'
         href={href}
         loading={loading}
         onClick={onClick}

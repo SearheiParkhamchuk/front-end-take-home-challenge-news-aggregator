@@ -4,25 +4,21 @@ module.exports = {
     'NodeJS': true
   },
   parserOptions: {
-    project: './tsconfig.json'
+    project: './tsconfig.json',
+    createDefaultProgram: false
   },
   plugins: [
     'react',
     '@typescript-eslint',
-    'unused-imports',
-    'typescript-sort-keys',
     'import'
   ],
   extends: [
-    'next',
-    'next/core-web-vitals',
     'standard-with-typescript',
     'plugin:@typescript-eslint/recommended',
-    'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
-    'plugin:import/typescript',
-    'plugin:import/recommended'
+    'prettier',
+    'next/core-web-vitals',
   ],
   rules: {
     '@typescript-eslint/await-thenable': 'off',
@@ -55,14 +51,12 @@ module.exports = {
     'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
     'react/jsx-sort-props': ['error', { callbacksLast: true, shorthandFirst: true, ignoreCase: true }],
     'react/jsx-wrap-multilines': ['error', { declaration: 'parens-new-line', assignment: 'parens-new-line', return: 'parens-new-line' }],
-    'typescript-sort-keys/interface': ['error', 'asc', { requiredFirst: true }],
     'max-len': [2, { code: 140, ignorePattern: '^import .*' }],
     'quote-props': ['warn', 'consistent'],
     'quotes': 'off',
     'object-curly-newline': ['error', { multiline: true, consistent: true }],
     'no-unused-vars': 'warn',
     'no-multiple-empty-lines': 'error',
-    'unused-imports/no-unused-imports': 'error',
     'max-statements-per-line': ['error', { max: 2 }],
     'sort-imports': [
       'error',
