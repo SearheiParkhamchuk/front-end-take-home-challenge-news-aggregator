@@ -32,7 +32,8 @@ function ArticlesClient() {
   const articlePages = inifinite.data.pages.map((d) => prepareArticles(d.data))
   const noArticlesFound = articlePages.flat().length === 0
 
-  if (noArticlesFound || !inifinite.data) return <PageError title='No articles found' />
+  if (noArticlesFound) return <PageError title='No articles found' />
+  const articlesLoading = inifinite.isFetching && (!inifinite.isFetchingNextPage && !inifinite.isFetchingNextPage)
 
   return (
     <Stack>
@@ -41,7 +42,7 @@ function ArticlesClient() {
       {inifinite.hasPreviousPage && <Stack align='center'><LoadPreviousPage /></Stack>}
       <InfiniteScroll reobserveOnChange={inifinite.data} onLastPage={inifinite.fetchNextPage} onPage={onPage}>
         {({ page }) => (
-          <ArticlesGridView loading={inifinite.isFetching} view={view}>
+          <ArticlesGridView loading={articlesLoading} view={view}>
             <Articles
               data={{ pages: articlePages, pageParams: inifinite.data.pageParams }}
               orientation={view === GRID_VIEW.GRID ? ARTICLE_ORIENTATION.VERTICAL : ARTICLE_ORIENTATION.HORIZONTAL}
