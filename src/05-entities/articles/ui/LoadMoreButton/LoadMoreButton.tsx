@@ -8,7 +8,6 @@ function LoadMoreButton({ href, loading, loadMore, onClick, ...rest }: LoadMoreB
     ? (
       <Link
         {...rest}
-        shallow
         component='button'
         decoration='none'
         href={href}

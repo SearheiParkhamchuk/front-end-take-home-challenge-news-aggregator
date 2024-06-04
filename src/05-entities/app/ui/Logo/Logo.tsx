@@ -6,7 +6,7 @@ import styles from './styles.module.scss'
 
 function Logo({ ...rest }: {}) {
   return (
-    <Link decoration='none' href={'/'}>
+    <Link reload decoration='none' href='/' >
       <Text {...rest} className={styles.logo}>
         Good News Everyone!
       </Text>
