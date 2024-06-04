@@ -20,6 +20,7 @@ const nextConfig = {
       }
     ]
   },
+  publicRuntimeConfig: {},
   poweredByHeader: false,
   output: 'standalone'
 }

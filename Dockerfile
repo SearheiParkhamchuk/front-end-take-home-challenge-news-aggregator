@@ -25,7 +25,8 @@ WORKDIR /usr/src/app
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
 RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
-COPY --from=builder /usr/src/app/next.config.mjs ./
+
+COPY --from=builder --chown=nextjs:nodejs /usr/src/app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /usr/src/app/.next/standalone ./        
 COPY --from=builder --chown=nextjs:nodejs /usr/src/app/.next/static ./.next/static
 
