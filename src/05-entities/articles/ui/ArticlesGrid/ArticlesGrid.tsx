@@ -1,4 +1,4 @@
-import { GRID_VIEW } from '@/06-shared/ui/GridViewButton/model'
+import { GRID_VIEW } from 'src/06-shared/ui/GridViewButton/model'
 
 import { classnamesView } from './classnames'
 import styles from './styles.module.scss'

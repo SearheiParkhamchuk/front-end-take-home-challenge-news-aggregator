@@ -1,4 +1,4 @@
-import { type NonNullable } from '@/06-shared/lib/types/NonNullable'
+import { type NonNullable } from 'src/06-shared/lib/types/NonNullable';
 
 /**
  * Check if value is neither null nor undefined
@@ -7,5 +7,5 @@ import { type NonNullable } from '@/06-shared/lib/types/NonNullable'
  * @returns
  */
 export const notNullish = <T>(value: T): value is NonNullable<T> => {
-  return !(value === null || value === undefined)
-}
+  return !(value === null || value === undefined);
+};

@@ -1,40 +1,38 @@
-###################
-# BUILD STAGE
-###################
-
-FROM node:18-alpine As build
-
+# Dependencies stage
+FROM node:18-alpine As deps
+RUN apk add --no-cache libc6-compat
 WORKDIR /usr/src/app
+ENV NEXT_TELEMETRY_DISABLED 1
 
-COPY ./package.json ./
-COPY ./package-lock.json ./
-COPY ./next.config.mjs ./
+COPY package.json ./
+COPY package-lock.json ./
 
-RUN npm install --verbose
+RUN npm install --verbose --omit-dev
 
+# Build stage
+FROM node:18-alpine As builder
+WORKDIR /usr/src/app
+ENV NEXT_TELEMETRY_DISABLED 1
+
+COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY . .
 
-RUN npm run build
+RUN NODE_ENV=production npm run build && npm prune --production
 
-###################
-# PRODUCTION STAGE
-###################
+# Runner stage
 FROM node:18-alpine As production
-
 WORKDIR /usr/src/app
-
-# Copy the bundled code from the build stage to the production image
-COPY --from=build /usr/src/app/.next ./.next
-COPY --from=build /usr/src/app/public ./public
-COPY package.json package-lock.json next.config.mjs ./
-
-RUN npm install --verbose --only=production
-
-ARG PORT=3000
-ARG NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
-ENV NODE_ENV=${NODE_ENV}
-EXPOSE ${PORT}
+RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
+
+COPY --from=builder --chown=nextjs:nodejs /usr/src/app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /usr/src/app/.next/standalone ./        
+COPY --from=builder --chown=nextjs:nodejs /usr/src/app/.next/static ./.next/static
+
+USER 1001
+EXPOSE 3000
+ENV PORT 3000
 
 # Start the server using the production build
-CMD ["npm", "run", "start"]
+CMD ["node", "server.js"]

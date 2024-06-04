@@ -1,6 +1,6 @@
 'use client'
-import Logo from '@/05-entities/app/ui/Logo'
-import ToggleThemeButton from '@/05-entities/app/ui/ToggleThemeButton/ToggleThemeButton'
+import Logo from 'src/05-entities/app/ui/Logo'
+import ToggleThemeButton from 'src/05-entities/app/ui/ToggleThemeButton/ToggleThemeButton'
 
 import styles from './styles.module.scss'
 

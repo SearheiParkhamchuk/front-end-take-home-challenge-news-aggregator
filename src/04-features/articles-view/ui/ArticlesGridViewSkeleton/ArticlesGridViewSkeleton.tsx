@@ -1,10 +1,10 @@
 'use client'
-import { useArticlesView } from '@/04-features/articles-view/model/useArticlesView'
-import { ARTICLE_ORIENTATION } from '@/05-entities/articles/model/article-orientation'
-import ArticleSkeleton from '@/05-entities/articles/ui/ArticleSkeleton'
-import ArticlesGrid from '@/05-entities/articles/ui/ArticlesGrid'
-import { withSuspense } from '@/06-shared/lib/utils/HOK/withSuspense'
-import { GRID_VIEW } from '@/06-shared/ui/GridViewButton/model'
+import { useArticlesView } from 'src/04-features/articles-view/model/useArticlesView'
+import { ARTICLE_ORIENTATION } from 'src/05-entities/articles/model/article-orientation'
+import ArticleSkeleton from 'src/05-entities/articles/ui/ArticleSkeleton'
+import ArticlesGrid from 'src/05-entities/articles/ui/ArticlesGrid'
+import { withSuspense } from 'src/06-shared/lib/utils/HOK/withSuspense'
+import { GRID_VIEW } from 'src/06-shared/ui/GridViewButton/model'
 
 function ArticlesSkeleton() {
   const [view] = useArticlesView()

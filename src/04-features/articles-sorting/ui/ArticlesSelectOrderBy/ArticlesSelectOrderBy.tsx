@@ -1,8 +1,8 @@
 'use client'
 import { type ChangeEvent } from 'react'
 
-import { withSuspense } from '@/06-shared/lib/utils/HOK/withSuspense'
-import SelectNative from '@/06-shared/ui/SelectNative'
+import { withSuspense } from 'src/06-shared/lib/utils/HOK/withSuspense'
+import SelectNative from 'src/06-shared/ui/SelectNative'
 
 import { type ARTICLES_ORDER_BY, items } from '../../model'
 import { useArticlesOrderBy } from '../../model/useArticlesOrderBy'

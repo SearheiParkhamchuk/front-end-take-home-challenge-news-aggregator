@@ -1,5 +1,5 @@
-import ArticlesGrid from '@/05-entities/articles/ui/ArticlesGrid'
-import Animation from '@/06-shared/ui/Animation'
+import ArticlesGrid from 'src/05-entities/articles/ui/ArticlesGrid'
+import Animation from 'src/06-shared/ui/Animation'
 
 import { type ArticlesGridViewProps } from './types'
 

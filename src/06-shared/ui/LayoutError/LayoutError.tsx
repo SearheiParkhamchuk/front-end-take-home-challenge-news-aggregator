@@ -1,6 +1,6 @@
-import Stack from '@/06-shared/ui/Stack'
-import Text from '@/06-shared/ui/Text'
-import Title from '@/06-shared/ui/Title'
+import Stack from 'src/06-shared/ui/Stack'
+import Text from 'src/06-shared/ui/Text'
+import Title from 'src/06-shared/ui/Title'
 
 import styles from './styles.module.scss'
 import { type LayoutErrorProps } from './types'

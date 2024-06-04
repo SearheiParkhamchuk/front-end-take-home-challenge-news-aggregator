@@ -1,6 +1,6 @@
-import ButtonSegmented from '@/06-shared/ui/ButtonSegmented'
+import ButtonSegmented from 'src/06-shared/ui/ButtonSegmented'
 
-import Tooltip from '@/06-shared/ui/Tooltip'
+import Tooltip from 'src/06-shared/ui/Tooltip'
 
 import { model } from './model'
 import { type GridViewButtonProps } from './types'

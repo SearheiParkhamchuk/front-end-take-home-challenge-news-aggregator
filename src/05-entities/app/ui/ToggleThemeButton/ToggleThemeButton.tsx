@@ -3,10 +3,10 @@ import { IconMoon, IconSun } from '@tabler/icons-react'
 
 import { useEffect, useState } from 'react'
 
-import { useColorScheme } from '@/06-shared/lib/theme/useColorScheme'
-import { useTheme } from '@/06-shared/lib/theme/useTheme'
-import Switch from '@/06-shared/ui/Switch'
-import Tooltip from '@/06-shared/ui/Tooltip'
+import { useColorScheme } from 'src/06-shared/lib/theme/useColorScheme'
+import { useTheme } from 'src/06-shared/lib/theme/useTheme'
+import Switch from 'src/06-shared/ui/Switch'
+import Tooltip from 'src/06-shared/ui/Tooltip'
 
 function ToggleThemeButton() {
   const { toggleColorScheme, colorScheme } = useColorScheme()

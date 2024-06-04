@@ -1,6 +1,6 @@
 'use client'
-import ArticleComponent from '@/05-entities/articles/ui/Article'
-import { withSuspense } from '@/06-shared/lib/utils/HOK/withSuspense'
+import ArticleComponent from 'src/05-entities/articles/ui/Article'
+import { withSuspense } from 'src/06-shared/lib/utils/HOK/withSuspense'
 
 import { type ArticleRenderOptions, type ArticlesProps } from './types'
 import { type Article } from '../../model/@types'

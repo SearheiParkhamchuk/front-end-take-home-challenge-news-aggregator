@@ -1,5 +1,5 @@
-import { type PolymorphicSearcParams } from '@/06-shared/lib/types/PolymorphicSearcParams'
+import { type PolymorphicSearcParams } from 'src/06-shared/lib/types/PolymorphicSearcParams';
 
 export type ArticlesServerProps = {
-  searchParams: PolymorphicSearcParams
-}
+  searchParams: PolymorphicSearcParams;
+};

@@ -3,12 +3,12 @@ import { type DefaultError, type InfiniteData, useInfiniteQuery } from '@tanstac
 
 import { useMemo } from 'react';
 
-import { queryKeyInfinite } from '@/04-features/articles/api/articles-infinite/query-cache-options-getter-infinite';
-import { articlesRequest } from '@/04-features/articles/api/request';
-import { type ArticlesQueryParams, type ArticlesResponse } from '@/04-features/articles/model/@types';
-import { SEARCH_PARAMS_KEYS } from '@/05-entities/app/model/search-params-keys';
+import { queryKeyInfinite } from 'src/04-features/articles/api/articles-infinite/query-cache-options-getter-infinite';
+import { articlesRequest } from 'src/04-features/articles/api/request';
+import { type ArticlesQueryParams, type ArticlesResponse } from 'src/04-features/articles/model/@types';
+import { SEARCH_PARAMS_KEYS } from 'src/05-entities/app/model/search-params-keys';
 
-import { getFetcherInstanceClient } from '@/06-shared/lib/third-party/fetcher/get-fetcher-instance-client';
+import { getFetcherInstanceClient } from 'src/06-shared/lib/third-party/fetcher/get-fetcher-instance-client';
 
 import { ARTICLES_DEFAULT_PAGE } from '../../model/default-page';
 

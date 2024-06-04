@@ -1,10 +1,10 @@
 'use server'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 
-import { fetchArticlesInfinite } from '@/04-features/articles/api/articles-infinite/fetch-articles-infinite.server'
-import { getArticlesQueryParams } from '@/04-features/articles/model/get-articles-query-params'
-import ArticlesGridViewSkeleton from '@/04-features/articles-view/ui/ArticlesGridViewSkeleton'
-import { withSuspense } from '@/06-shared/lib/utils/HOK/withSuspense'
+import { fetchArticlesInfinite } from 'src/04-features/articles/api/articles-infinite/fetch-articles-infinite.server'
+import { getArticlesQueryParams } from 'src/04-features/articles/model/get-articles-query-params'
+import ArticlesGridViewSkeleton from 'src/04-features/articles-view/ui/ArticlesGridViewSkeleton'
+import { withSuspense } from 'src/06-shared/lib/utils/HOK/withSuspense'
 
 import { type ArticlesServerProps } from './types'
 import ArticlesClient from '../ArticlesClient'

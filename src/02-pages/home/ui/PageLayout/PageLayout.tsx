@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react'
 
-import Stack from '@/06-shared/ui/Stack'
+import Stack from 'src/06-shared/ui/Stack'
 
 import styles from './styles.module.scss'
 

@@ -1,7 +1,7 @@
 'use client'
 import { Alert as MAlert, Transition } from '@mantine/core'
 
-import { useToggle } from '@/06-shared/lib/utils/hooks/useToggle'
+import { useToggle } from 'src/06-shared/lib/utils/hooks/useToggle'
 
 import { ALERT_VARIANTS } from './data'
 import { type AlertProps } from './types'

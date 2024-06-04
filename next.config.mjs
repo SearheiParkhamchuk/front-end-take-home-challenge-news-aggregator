@@ -20,7 +20,9 @@ const nextConfig = {
       }
     ]
   },
-  poweredByHeader: false
+  publicRuntimeConfig: {},
+  poweredByHeader: false,
+  output: 'standalone'
 }
 
 export default withNextIntl(nextConfig)

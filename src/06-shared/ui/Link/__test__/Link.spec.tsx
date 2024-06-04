@@ -5,9 +5,9 @@ import { cleanup, fireEvent } from '@testing-library/react'
 import mockRouter from 'next-router-mock'
 import { createDynamicRouteParser } from 'next-router-mock/dynamic-routes'
 
-import { withProviders } from '@/test/HOC/withProviders'
-import { composeHOCs } from '@/test/utils/composeHOCs'
-import { renderComponent } from '@/test/utils/renderComponent'
+import { withProviders } from 'src/test/HOC/withProviders'
+import { composeHOCs } from 'src/test/utils/composeHOCs'
+import { renderComponent } from 'src/test/utils/renderComponent'
 
 import Link from '../Link'
 
