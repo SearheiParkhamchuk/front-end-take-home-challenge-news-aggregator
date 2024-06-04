@@ -8,15 +8,13 @@ import { type LinkProps } from './types'
 function Link({
   children,
   href,
-  shallow,
-  prefetch,
-  replace,
   className,
   target,
   rel,
   loading,
   component = 'link',
   decoration = 'underline',
+  reload,
   onClick,
   ...rest
 }: LinkProps, ref: ForwardedRef<HTMLAnchorElement>) {
@@ -25,17 +23,14 @@ function Link({
     'className': `${className} ${styles.link} ${styles[decoration]}`,
     'disabled': loading,
     href,
-    prefetch,
     ref,
     rel,
-    replace,
-    shallow,
     target,
     children,
     onClick
   }
 
-  if (component === 'link') return <NextLink {...props} />
+  if (component === 'link') return reload ? <a {...props} /> : <NextLink {...props} />
   return <Button component={NextLink} loading={loading} {...props} />
 }
 

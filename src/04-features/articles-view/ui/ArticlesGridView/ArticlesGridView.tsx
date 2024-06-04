@@ -5,9 +5,9 @@ import { type ArticlesGridViewProps } from './types'
 
 function ArticlesGridView({ children, view, loading }: ArticlesGridViewProps) {
   return (
-    <Animation variant={loading ? 'blur' : 'none'}>
-      {({ className }) => (
-        <ArticlesGrid className={className} view={view}>
+    <Animation delay='1s' variant={loading ? 'pulse' : 'none'}>
+      {({ className, style }) => (
+        <ArticlesGrid className={className} style={style} view={view}>
           {children}
         </ArticlesGrid>
       )}

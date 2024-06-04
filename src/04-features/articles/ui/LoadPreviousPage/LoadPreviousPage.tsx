@@ -24,7 +24,6 @@ function LoadPreviousPage({ ...rest }) {
   return (
     <Link
       {...rest}
-      shallow
       component='button'
       href={getFullPath({ [SEARCH_PARAMS_KEYS.A_PAGE]: inifinite.previousPage.toString() })}
       loading={inifinite.isFetchingPreviousPage}

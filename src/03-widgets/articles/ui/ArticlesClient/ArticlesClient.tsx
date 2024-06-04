@@ -33,7 +33,7 @@ function ArticlesClient() {
   const noArticlesFound = articlePages.flat().length === 0
 
   if (noArticlesFound) return <PageError title='No articles found' />
-  const articlesLoading = inifinite.isFetching && (!inifinite.isFetchingNextPage && !inifinite.isFetchingNextPage)
+  const articlesLoading = inifinite.isFetching && !(inifinite.isFetchingNextPage || inifinite.isFetchingNextPage)
 
   return (
     <Stack>
