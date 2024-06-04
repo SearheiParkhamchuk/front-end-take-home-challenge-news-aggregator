@@ -1,4 +1,4 @@
-import Logo from '@/05-entities/app/ui/Logo'
+import Logo from 'src/05-entities/app/ui/Logo'
 
 import styles from './styles.module.scss'
 

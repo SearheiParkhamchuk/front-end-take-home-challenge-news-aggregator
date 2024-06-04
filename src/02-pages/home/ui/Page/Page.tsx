@@ -1,5 +1,5 @@
-import ArticlesServer from '@/03-widgets/articles/ui/ArticlesServer'
-import ArticlesTopPanel from '@/03-widgets/articles/ui/ArticlesTopPanel'
+import ArticlesServer from 'src/03-widgets/articles/ui/ArticlesServer'
+import ArticlesTopPanel from 'src/03-widgets/articles/ui/ArticlesTopPanel'
 
 import { type PageProps } from './types'
 import PageLayout from '../PageLayout'

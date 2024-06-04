@@ -1,6 +1,6 @@
-import Image from '@/06-shared/ui/Image'
+import Image from 'src/06-shared/ui/Image'
 
-import LayoutError from '@/06-shared/ui/LayoutError'
+import LayoutError from 'src/06-shared/ui/LayoutError'
 
 import { type PageErrorProps } from './types'
 

@@ -2,8 +2,8 @@ import { Affix, Transition } from '@mantine/core'
 import { useWindowScroll } from '@mantine/hooks'
 import { IconArrowUp } from '@tabler/icons-react'
 
-import { useScrollDirection } from '@/06-shared/lib/utils/hooks/useScrollDirection'
-import Button from '@/06-shared/ui/Button'
+import { useScrollDirection } from 'src/06-shared/lib/utils/hooks/useScrollDirection'
+import Button from 'src/06-shared/ui/Button'
 
 import styles from './styles.module.scss'
 

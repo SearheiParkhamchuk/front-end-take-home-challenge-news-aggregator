@@ -1,7 +1,7 @@
-import ArticlesSearch from '@/04-features/articles-search/ui/ArticlesSearch'
-import ArticlesSelectOrderBy from '@/04-features/articles-sorting/ui/ArticlesSelectOrderBy'
-import ArticlesGridViewButton from '@/04-features/articles-view/ui/ArticlesGridViewButton'
-import Group from '@/06-shared/ui/Group'
+import ArticlesSearch from 'src/04-features/articles-search/ui/ArticlesSearch'
+import ArticlesSelectOrderBy from 'src/04-features/articles-sorting/ui/ArticlesSelectOrderBy'
+import ArticlesGridViewButton from 'src/04-features/articles-view/ui/ArticlesGridViewButton'
+import Group from 'src/06-shared/ui/Group'
 
 import styles from './styles.module.scss'
 

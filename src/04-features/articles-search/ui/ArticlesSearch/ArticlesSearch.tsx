@@ -1,8 +1,8 @@
 'use client'
 import { type ChangeEvent } from 'react'
 
-import { withSuspense } from '@/06-shared/lib/utils/HOK/withSuspense'
-import InputSearch from '@/06-shared/ui/InputSearch'
+import { withSuspense } from 'src/06-shared/lib/utils/HOK/withSuspense'
+import InputSearch from 'src/06-shared/ui/InputSearch'
 
 import { useArticlesSearch } from '../../model/useArticlesSearch'
 

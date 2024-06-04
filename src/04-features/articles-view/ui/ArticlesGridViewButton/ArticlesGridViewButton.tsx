@@ -1,6 +1,6 @@
 'use client'
-import { withSuspense } from '@/06-shared/lib/utils/HOK/withSuspense'
-import GridViewButton from '@/06-shared/ui/GridViewButton'
+import { withSuspense } from 'src/06-shared/lib/utils/HOK/withSuspense'
+import GridViewButton from 'src/06-shared/ui/GridViewButton'
 
 import { useArticlesView } from '../../model/useArticlesView'
 

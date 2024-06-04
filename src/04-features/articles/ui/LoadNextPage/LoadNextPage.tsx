@@ -1,10 +1,10 @@
 import { type MouseEvent } from 'react'
 
-import { SEARCH_PARAMS_KEYS } from '@/05-entities/app/model/search-params-keys'
-import LoadMoreButton from '@/05-entities/articles/ui/LoadMoreButton'
-import { useSearchParams } from '@/06-shared/lib/third-party/router/useSearchParams'
+import { SEARCH_PARAMS_KEYS } from 'src/05-entities/app/model/search-params-keys'
+import LoadMoreButton from 'src/05-entities/articles/ui/LoadMoreButton'
+import { useSearchParams } from 'src/06-shared/lib/third-party/router/useSearchParams'
 
-import { withSuspense } from '@/06-shared/lib/utils/HOK/withSuspense'
+import { withSuspense } from 'src/06-shared/lib/utils/HOK/withSuspense'
 
 import { useFetchArticlesInfinite } from '../../api/articles-infinite/fetch-articles-infinite.client'
 import { useArticlesSearchParams } from '../../model/useArticlesSearchParams'

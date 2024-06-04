@@ -1,10 +1,10 @@
 'use server';
 import { type InfiniteData } from '@tanstack/react-query';
 
-import { type ArticlesQueryParams, type ArticlesResponse } from '@/04-features/articles/model/@types';
-import { type CacheClient } from '@/06-shared/lib/third-party/cache/@types';
+import { type ArticlesQueryParams, type ArticlesResponse } from 'src/04-features/articles/model/@types';
+import { type CacheClient } from 'src/06-shared/lib/third-party/cache/@types';
 
-import { getFetcherInstanceServer } from '@/06-shared/lib/third-party/fetcher/get-fetcher-instance-server';
+import { getFetcherInstanceServer } from 'src/06-shared/lib/third-party/fetcher/get-fetcher-instance-server';
 
 import { queryOptionsGetterInfinite } from './query-cache-options-getter-infinite';
 import { articlesRequest } from '../request';

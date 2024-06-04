@@ -1,5 +1,5 @@
-import { type ArticlesQueryParams, type ArticlesResponse } from '@/04-features/articles/model/@types';
-import { type FetcherInstance } from '@/06-shared/lib/third-party/fetcher/@types';
+import { type ArticlesQueryParams, type ArticlesResponse } from 'src/04-features/articles/model/@types';
+import { type FetcherInstance } from 'src/06-shared/lib/third-party/fetcher/@types';
 
 export const articlesRequest = (fetcher: FetcherInstance) => async (params: ArticlesQueryParams, options?: { signal: AbortSignal }) => {
   const response = await fetcher.request<ArticlesResponse>({

@@ -1,5 +1,5 @@
-import Link from '@/06-shared/ui/Link'
-import Text from '@/06-shared/ui/Text'
+import Link from 'src/06-shared/ui/Link'
+import Text from 'src/06-shared/ui/Text'
 
 import { type LoadMoreButtonProps } from './types'
 

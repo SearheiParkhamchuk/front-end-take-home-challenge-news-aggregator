@@ -3,10 +3,10 @@
  */
 import { cleanup, within } from '@testing-library/react'
 
-import { withProviders } from '@/test/HOC/withProviders'
+import { withProviders } from 'src/test/HOC/withProviders'
 
-import { composeHOCs } from '@/test/utils/composeHOCs'
-import { renderComponent } from '@/test/utils/renderComponent'
+import { composeHOCs } from 'src/test/utils/composeHOCs'
+import { renderComponent } from 'src/test/utils/renderComponent'
 
 import Button from '../Button'
 
