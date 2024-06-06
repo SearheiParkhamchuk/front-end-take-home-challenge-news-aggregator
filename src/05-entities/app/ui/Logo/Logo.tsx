@@ -8,7 +8,7 @@ function Logo({ ...rest }: {}) {
   return (
     <Link reload decoration='none' href='/' >
       <Text {...rest} className={styles.logo}>
-        Good News Everyone!
+        {process.env.NEXT_PUBLIC_APP_NAME}
       </Text>
     </Link>
   )
