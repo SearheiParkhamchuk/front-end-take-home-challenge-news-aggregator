@@ -26,7 +26,7 @@ export type ArticleServer = {
   media: {
     images: ArticleMedia[];
   };
-  published_at: Date;
+  published_at: string;
   source_name: string;
   source_url: string;
   title: string;
@@ -45,8 +45,9 @@ export type ArticlesQueryParams = {
   [SEARCH_PARAMS_KEYS.A_ORDER_BY]?: ARTICLES_ORDER_BY;
 };
 
-export type ArticlesLocalQueryParams = {
-  page?: number;
-  pageSize?: number;
+export type ArticlesClientQueryParams = {
+  page: string;
+  size?: string;
   query?: string;
+  order_by?: ARTICLES_ORDER_BY;
 };

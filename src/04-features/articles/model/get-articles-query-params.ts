@@ -5,21 +5,17 @@ import { pickEnumSearchParameter } from 'src/06-shared/lib/third-party/router/pi
 import { pickFirstSearchParameter } from 'src/06-shared/lib/third-party/router/pick-first-search-parameter';
 import { type PolymorphicSearcParams } from 'src/06-shared/lib/types/PolymorphicSearcParams';
 
+import { type ArticlesClientQueryParams } from './@types';
 import { ARTICLES_DEFAULT_PAGE } from './default-page';
 
-export function getArticlesQueryParams(searchParams: PolymorphicSearcParams) {
+export function getArticlesQueryParams(searchParams: PolymorphicSearcParams): ArticlesClientQueryParams {
   const pageParameter = pickFirstSearchParameter(searchParams, SEARCH_PARAMS_KEYS.A_PAGE);
   const queryParameter = pickFirstSearchParameter(searchParams, SEARCH_PARAMS_KEYS.A_QUERY);
   const orderByParameter = pickEnumSearchParameter(searchParams, ARTICLES_ORDER_BY, SEARCH_PARAMS_KEYS.A_ORDER_BY);
 
   const page = isNaN(Number(pageParameter)) || !pageParameter ? ARTICLES_DEFAULT_PAGE : pageParameter;
   const query = queryParameter?.trim() ?? '';
-  const pageSize = '10';
+  const size = '10';
 
-  return {
-    [SEARCH_PARAMS_KEYS.A_QUERY]: query,
-    [SEARCH_PARAMS_KEYS.A_PAGE]: page,
-    [SEARCH_PARAMS_KEYS.A_PAGE_SIZE]: pageSize,
-    [SEARCH_PARAMS_KEYS.A_ORDER_BY]: orderByParameter,
-  };
+  return { page, size, query, order_by: orderByParameter };
 }

@@ -1,1 +1,3 @@
-export type PolymorphicSearcParams = Record<string, string | string[] | undefined> | URLSearchParams
+import { type SearchParams } from './SearchParams';
+
+export type PolymorphicSearcParams = SearchParams | URLSearchParams;
