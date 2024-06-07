@@ -5,7 +5,7 @@ import { type ForwardedRef, forwardRef, memo } from 'react'
 import { type SwitchProps } from './types'
 
 function Switch(
-  { checked, size, onChange, onLabel, offLabel, disabled, className, ...rest }: SwitchProps,
+  { checked, size, onChange, onLabel, offLabel, disabled, className = '', ...rest }: SwitchProps,
   ref: ForwardedRef<HTMLInputElement>
 ) {
   return (

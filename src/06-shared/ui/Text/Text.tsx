@@ -4,7 +4,7 @@ import { type TextProps } from './types'
 
 function Text({
   children,
-  className,
+  className = '',
   lineClamp,
   size,
   inherit,

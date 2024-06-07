@@ -5,7 +5,7 @@ import Tooltip from 'src/06-shared/ui/Tooltip'
 import { model } from './model'
 import { type GridViewButtonProps } from './types'
 
-function GridViewButton({ disabled, value, className, onChange }: GridViewButtonProps) {
+function GridViewButton({ disabled, value, className = '', onChange }: GridViewButtonProps) {
   return (
     <Tooltip label='Change view'>
       <ButtonSegmented

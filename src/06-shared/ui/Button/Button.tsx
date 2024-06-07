@@ -7,7 +7,7 @@ import { type ButtonProps } from './types'
 function Button({
   'aria-label': ariaLabel,
   children,
-  className,
+  className = '',
   disabled,
   fullWidth,
   id,
