@@ -1,4 +1,5 @@
 import { Notifications } from '@mantine/notifications'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { type ReactNode } from 'react'
 
 import CacheProvider from 'src/01-app/cache/lib/providers/QueryClientProvider'
@@ -39,6 +40,7 @@ export default async function RootLayout({
             <GlobalStyles />
           </ThemeProvider>
         </CacheProvider>
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_GAID} />
       </body>
     </html>
   )
