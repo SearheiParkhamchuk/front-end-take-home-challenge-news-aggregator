@@ -8,7 +8,7 @@ import { type LinkProps } from './types'
 function Link({
   children,
   href,
-  className,
+  className = '',
   target,
   rel,
   loading,

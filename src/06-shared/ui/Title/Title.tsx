@@ -11,7 +11,7 @@ function Title({
   lineClamp,
   color = 'text-primary',
   textAlign,
-  className,
+  className = '',
   responsive,
   ...rest
 }: TitleProps) {

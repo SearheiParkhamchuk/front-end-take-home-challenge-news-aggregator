@@ -5,7 +5,7 @@ import { type ForwardedRef, forwardRef } from 'react'
 import { type ButtonSegmentedProps } from './types'
 
 function ButtonSegmented(
-  { data, name, value, disabled, className, onChange, ...rest }: ButtonSegmentedProps,
+  { data, name, value, disabled, className = '', onChange, ...rest }: ButtonSegmentedProps,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (

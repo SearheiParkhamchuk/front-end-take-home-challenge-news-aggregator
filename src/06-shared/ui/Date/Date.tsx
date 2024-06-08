@@ -7,7 +7,7 @@ import { type DateProps } from './types'
 function DateComponent({
   children,
   date,
-  className,
+  className = '',
   lineClamp,
   size,
   inherit,
