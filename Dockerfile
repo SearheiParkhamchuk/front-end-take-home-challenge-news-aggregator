@@ -13,6 +13,7 @@ RUN npm install --verbose --omit-dev
 FROM node:18-alpine As builder
 WORKDIR /usr/src/app
 ENV NEXT_TELEMETRY_DISABLED 1
+ENV BUILD_STANDALONE 'true'
 
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY . .

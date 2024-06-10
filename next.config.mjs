@@ -29,7 +29,7 @@ const nextConfig = {
     ]
   },
   poweredByHeader: false,
-  output: process.env.BUILD_STANDALONE === 'true' ? 'standalone' : 'export'
+  output: process.env.BUILD_STANDALONE === 'true' ? 'standalone' : undefined
 }
 
 export default withBundleAnalyzer(withNextIntl(nextConfig))
