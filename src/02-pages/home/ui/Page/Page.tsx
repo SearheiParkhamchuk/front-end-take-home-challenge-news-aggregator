@@ -6,15 +6,16 @@ import ArticlesTopPanel from 'src/03-widgets/articles/ui/ArticlesTopPanel'
 import { fetchArticlesInfinite } from 'src/04-features/articles/api/articles-infinite/fetch-articles-infinite.server'
 import { getArticlesQueryParams } from 'src/04-features/articles/model/get-articles-query-params'
 
+import MainPageLayout from 'src/05-entities/app/ui/MainPageLayout'
+
 import { type PageProps } from './types'
-import PageLayout from '../PageLayout'
 
 async function HomePage({ searchParams }: PageProps) {
   const { cache } = await fetchArticlesInfinite(getArticlesQueryParams(searchParams))
 
   return (
     <HydrationBoundary state={dehydrate(cache)}>
-      <PageLayout
+      <MainPageLayout
         Content={<ArticlesClient />}
         TopPanel={<ArticlesTopPanel />}
       />
