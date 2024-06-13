@@ -1,1 +1,2 @@
-export { default } from './InfiniteScroll'
+export { default } from './InfiniteScroll';
+export { pageNumberIndicator } from './model';

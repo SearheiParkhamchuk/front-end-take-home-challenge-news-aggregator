@@ -1,20 +1,20 @@
 import { useEffect } from 'react'
 
-import { lastPageIndicator, pageNumberIndicator, useInfiniteScroll } from './model'
+import { lastPageIndicator, useInfiniteScroll } from './model'
 import styles from './styles.module.scss'
 import { type InfiniteScrollProps } from './types'
 
-function InfiniteScroll({ reobserveOnChange, children, onLastPage, onPage }: InfiniteScrollProps) {
+function InfiniteScroll({ children, onLastPage, onPage }: InfiniteScrollProps) {
   const { observeElements } = useInfiniteScroll({
     onPageLastIntersection: onLastPage,
     onPageNumberIntersection: onPage
   })
 
-  useEffect(observeElements, [observeElements, reobserveOnChange])
+  useEffect(observeElements, [observeElements, children])
 
   return (
     <>
-      {children({ page: pageNumberIndicator })}
+      {children}
       <div {...lastPageIndicator()} className={styles['last-page-indicator']} />
     </>
   )
