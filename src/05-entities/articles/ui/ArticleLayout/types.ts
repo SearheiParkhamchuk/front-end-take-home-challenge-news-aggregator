@@ -1,10 +1,10 @@
-import { type ReactElement } from 'react'
+import { type ReactElement } from 'react';
 
-import { type ARTICLE_ORIENTATION } from '../../model/article-orientation'
+import { type ARTICLE_ORIENTATION } from '../../constants/article-orientation';
 
 export type ArticleLayoutProps = {
-  Content: ReactElement
-  Footer: ReactElement
-  Image: ReactElement
-  orientation?: ARTICLE_ORIENTATION
-}
+  Content: ReactElement;
+  Footer: ReactElement;
+  Image: ReactElement;
+  orientation?: ARTICLE_ORIENTATION;
+};
