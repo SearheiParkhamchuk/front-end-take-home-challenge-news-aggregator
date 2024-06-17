@@ -1,22 +1,24 @@
-import { Tabs } from '@mantine/core'
+import { Indicator } from '@mantine/core'
 
+import Tabs from 'src/06-shared/ui/Tabs'
+import Text from 'src/06-shared/ui/Text'
+
+import styles from './styles.module.scss'
 import { type Data, type NewsCategoriesTabsProps } from './types'
 
-function NewsCategoriesTabs<D extends Data>({ data, activeTab, onTabChange, children }: NewsCategoriesTabsProps<D>) {
+function NewsCategoriesTabs<D extends Data>({ data, activeTab, onTabChange, renderPanel }: NewsCategoriesTabsProps<D>) {
   return (
-    <Tabs value={activeTab} onChange={onTabChange}>
-      <Tabs.List grow>
-        {data.map(element => <Tabs.Tab key={element.type} value={element.type}>{element.type}</Tabs.Tab>)}
-      </Tabs.List>
-      {data.map(element => (
-        <Tabs.Panel
-          key={element.type}
-          value={element.type}
-        >
-          {children({ tabData: element })}
-        </Tabs.Panel>)
+    <Tabs
+      data={data}
+      renderPanel={renderPanel}
+      renderTab={({ element }) => (
+        <Indicator disabled={!element.selected} label={element.selected} offset={-3} size={13}>
+          <Text className={styles.label}>{element.value}</Text>
+        </Indicator>
       )}
-    </Tabs>
+      value={activeTab}
+      onChange={onTabChange}
+    />
   )
 }
 

@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { getFetcherInstanceClient } from 'src/06-shared/lib/third-party/fetcher/get-fetcher-instance-client';
 
@@ -9,5 +9,5 @@ const requestClient = groupedNewsCategoriesRequest(getFetcherInstanceClient());
 
 export function useGetGrouped() {
   const queryOptions = queryOptionsGetter(requestClient);
-  return useQuery(queryOptions());
+  return useSuspenseQuery(queryOptions());
 }

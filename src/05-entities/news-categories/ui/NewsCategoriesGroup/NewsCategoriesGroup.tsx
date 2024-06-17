@@ -6,8 +6,8 @@ import { type Data, type NewsCategoriesGroupProps } from './types'
 
 function NewsCategoriesGroup<E extends Data>({ value, data, onChange }: NewsCategoriesGroupProps<E>) {
   return (
-    <ChipGroup value={value} onChange={onChange}>
-      <Group padding='sm'>
+    <Group padding='sm'>
+      <ChipGroup value={value} onChange={onChange}>
         {data.map(category => (
           <Chip
             key={category.uuid}
@@ -18,8 +18,8 @@ function NewsCategoriesGroup<E extends Data>({ value, data, onChange }: NewsCate
             {category.name}
           </Chip>
         ))}
-      </Group>
-    </ChipGroup>
+      </ChipGroup>
+    </Group>
   )
 }
 
