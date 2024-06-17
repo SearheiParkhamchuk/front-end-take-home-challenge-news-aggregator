@@ -1,13 +1,8 @@
-import { AxiosError, type AxiosInstance } from 'axios'
+import { type AxiosInstance } from 'axios';
 
-type OnRejectedInterceptor = (error: unknown) => void
-
-export type FetcherInstance = AxiosInstance
-
-export { AxiosError as FetcherError }
+export type FetcherInstance = AxiosInstance;
 
 export type FetcherConfig = {
-  baseURL?: string
-  interceptors?: { onRejected?: OnRejectedInterceptor }
-  url?: string
-}
+  baseURL?: string;
+  url?: string;
+};
