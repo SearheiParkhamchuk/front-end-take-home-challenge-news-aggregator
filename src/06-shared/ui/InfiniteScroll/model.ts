@@ -10,11 +10,13 @@ export const lastPageIndicator = () => ({ 'data-page-last': true });
 export function useInfiniteScroll({
   onPageLastIntersection,
   onPageNumberIntersection,
+  disabled,
 }: {
   onPageLastIntersection: () => void;
   onPageNumberIntersection: (page: string) => void;
+  disabled?: boolean;
 }) {
-  const { entries, observe } = useIntersectionObserver(OBSERVER_OPTIONS);
+  const { entries, observe, pause, resume } = useIntersectionObserver(OBSERVER_OPTIONS);
 
   const observeElements = useCallback(() => {
     const pageNumberAnchorElements = document.querySelectorAll('[data-page-number]');
@@ -34,6 +36,11 @@ export function useInfiniteScroll({
       if (pageLast) onPageLastIntersection();
     });
   }, [entries, onPageLastIntersection, onPageNumberIntersection]);
+
+  useEffect(() => {
+    if (disabled) pause();
+    else resume();
+  }, [disabled, pause, resume]);
 
   return { observeElements };
 }
