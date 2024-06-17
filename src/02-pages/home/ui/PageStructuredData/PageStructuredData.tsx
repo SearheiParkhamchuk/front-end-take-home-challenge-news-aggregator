@@ -1,12 +1,10 @@
 import { type Article, type WebPage, type WithContext } from 'schema-dts'
 
-import { articlesRequest } from 'src/04-features/articles/api/request';
-import { type ArticleServer, type ArticlesClientQueryParams } from 'src/04-features/articles/model/@types';
-import { SEARCH_PARAMS_KEYS } from 'src/05-entities/app/model/search-params-keys';
+import { ARTICLES_SEARCH_PARAMS_KEYS, type ArticleServer, type ArticlesRequestParams, articlesSharedApi } from 'src/05-entities/articles';
 import { getFetcherInstanceServer } from 'src/06-shared/lib/third-party/fetcher/get-fetcher-instance-server';
 
-type StructuredDataProps = { searchParams: ArticlesClientQueryParams };
-const articlesRequestClient = articlesRequest(getFetcherInstanceServer());
+type StructuredDataProps = { searchParams: ArticlesRequestParams };
+const articlesRequestClient = articlesSharedApi.articlesRequest(getFetcherInstanceServer());
 const articleToItemListElement = (article: ArticleServer): Article => ({
   '@type': 'NewsArticle',
   'headline': article.title,
@@ -25,7 +23,7 @@ async function HomePageStructuredData({ searchParams }: StructuredDataProps) {
   const jsonLd: WithContext<WebPage> = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    'url': `${process.env.NEXT_SERVER_APP_ORIGIN}/?${SEARCH_PARAMS_KEYS.A_PAGE}=${searchParams.page}`,
+    'url': `${process.env.NEXT_SERVER_APP_ORIGIN}/?${ARTICLES_SEARCH_PARAMS_KEYS.A_PAGE}=${searchParams.page}`,
     'name': `${process.env.NEXT_PUBLIC_APP_NAME} - News Aggregator`,
     'description': 'A news aggregator site that provides an infinite stream of articles from various sources.',
     'mainEntity': {

@@ -1,24 +1,27 @@
+'use server'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 
-import ArticlesClient from 'src/03-widgets/articles/ui/ArticlesClient'
+import ArticlesFeed from 'src/03-widgets/articles/ui/ArticlesFeed'
 import ArticlesTopPanel from 'src/03-widgets/articles/ui/ArticlesTopPanel'
 
-import { fetchArticlesInfinite } from 'src/04-features/articles/api/articles-infinite/fetch-articles-infinite.server'
 import { getArticlesQueryParams } from 'src/04-features/articles/model/get-articles-query-params'
 
-import MainPageLayout from 'src/05-entities/app/ui/MainPageLayout'
+import { articlesServerApi } from 'src/05-entities/articles/index.server'
 
+import Stack from 'src/06-shared/ui/Stack'
+
+import styles from './styles.module.scss'
 import { type PageProps } from './types'
 
 async function HomePage({ searchParams }: PageProps) {
-  const { cache } = await fetchArticlesInfinite(getArticlesQueryParams(searchParams))
+  const { cache } = await articlesServerApi.getArticlesInfinite(getArticlesQueryParams(searchParams))
 
   return (
     <HydrationBoundary state={dehydrate(cache)}>
-      <MainPageLayout
-        Content={<ArticlesClient />}
-        TopPanel={<ArticlesTopPanel />}
-      />
+      <Stack className={styles.container}>
+        <ArticlesTopPanel />
+        <ArticlesFeed />
+      </Stack>
     </HydrationBoundary>
   )
 }
