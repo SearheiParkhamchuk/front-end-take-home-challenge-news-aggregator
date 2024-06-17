@@ -1,8 +1,7 @@
 import { type ReactElement } from 'react';
 
-import { type ARTICLE_ORIENTATION } from 'src/05-entities/articles/model/article-orientation';
-
-import { type Article } from '../../model/@types';
+import { type ArticlesRequestParams } from 'src/05-entities/articles';
+import { type GRID_VIEW } from 'src/06-shared/ui/GridViewButton/model';
 
 export type ArticleRenderOptions = {
   articleIndex: number;
@@ -11,10 +10,7 @@ export type ArticleRenderOptions = {
 };
 
 export type ArticlesProps = {
-  data: {
-    pageParams: string[];
-    pages: Article[][];
-  };
-  orientation: ARTICLE_ORIENTATION;
+  view: GRID_VIEW;
+  params: ArticlesRequestParams;
   renderItem?: (article: ReactElement, options: ArticleRenderOptions) => ReactElement;
 };

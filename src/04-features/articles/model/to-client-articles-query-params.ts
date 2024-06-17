@@ -1,12 +1,12 @@
-import { SEARCH_PARAMS_KEYS } from 'src/05-entities/app/model/search-params-keys';
+import { ARTICLES_SEARCH_PARAMS_KEYS, type ArticlesRequestParams } from 'src/05-entities/articles';
 
-import { type ArticlesClientQueryParams, type ArticlesQueryParams } from './@types';
+import { type ArticlesQueryParams } from './@types';
 
-export function toClientArticlesQueryParams(params: ArticlesQueryParams): ArticlesClientQueryParams {
+export function toClientArticlesQueryParams(params: ArticlesQueryParams): ArticlesRequestParams {
   return {
-    page: params[SEARCH_PARAMS_KEYS.A_PAGE],
-    size: params[SEARCH_PARAMS_KEYS.A_PAGE_SIZE],
-    query: params[SEARCH_PARAMS_KEYS.A_QUERY],
-    order_by: params[SEARCH_PARAMS_KEYS.A_ORDER_BY],
+    page: params[ARTICLES_SEARCH_PARAMS_KEYS.A_PAGE],
+    size: params[ARTICLES_SEARCH_PARAMS_KEYS.A_PAGE_SIZE],
+    query: params[ARTICLES_SEARCH_PARAMS_KEYS.A_QUERY],
+    order_by: params[ARTICLES_SEARCH_PARAMS_KEYS.A_ORDER_BY],
   };
 }
