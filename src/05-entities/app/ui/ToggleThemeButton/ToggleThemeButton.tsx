@@ -21,7 +21,7 @@ function ToggleThemeButton() {
         <Switch
           checked={clientSideColorScheme === 'dark'}
           offLabel={<IconMoon color={theme.colors.blue[6]} />}
-          size='lg'
+          size='md'
           onChange={toggleColorScheme}
           onLabel={<IconSun color={theme.colors.yellow[2]} />}
         />
