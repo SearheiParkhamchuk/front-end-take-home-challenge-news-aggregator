@@ -1,3 +1,3 @@
-import { type SkeletonProps as MSkeletonProps } from '@mantine/core'
+import { type SkeletonProps as MSkeletonProps } from '@mantine/core';
 
-export type SkeletonProps = Pick<MSkeletonProps, 'children' | 'width' | 'height' | 'circle'>
+export type SkeletonProps = Pick<MSkeletonProps, 'children' | 'width' | 'height' | 'circle' | 'radius'>;

@@ -2,7 +2,7 @@ import Stack from 'src/06-shared/ui/Stack'
 
 import styles from './styles.module.scss'
 import { type ArticleLayoutProps } from './types'
-import { ARTICLE_ORIENTATION } from '../../model/article-orientation'
+import { ARTICLE_ORIENTATION } from '../../constants/article-orientation'
 
 const classnames = {
   [ARTICLE_ORIENTATION.VERTICAL]: {

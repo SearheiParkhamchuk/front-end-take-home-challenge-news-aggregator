@@ -9,5 +9,8 @@ declare namespace NodeJS {
 
     NEXT_SERVER_APP_VERIFICATION_GOOGLE: string;
     NEXT_SERVER_APP_VERIFICATION_ME: string;
+
+    BUILD_ANALYZE: string;
+    BUILD_STANDALONE: string;
   }
 }

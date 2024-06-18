@@ -52,7 +52,7 @@ module.exports = {
     'react/jsx-sort-props': ['error', { callbacksLast: true, shorthandFirst: true, ignoreCase: true }],
     'react/jsx-wrap-multilines': ['error', { declaration: 'parens-new-line', assignment: 'parens-new-line', return: 'parens-new-line' }],
     'max-len': [2, { code: 140, ignorePattern: '^import .*' }],
-    'quote-props': ['warn', 'consistent'],
+    'quote-props': 'off',
     'quotes': 'off',
     'object-curly-newline': ['error', { multiline: true, consistent: true }],
     'no-unused-vars': 'warn',

@@ -1,20 +1,20 @@
-import { type ApiError } from '../ApiError'
-import { type BaseErrorHandler } from '../handlers/BaseErrorHandler.abstract'
-import { type ApiResponse } from '../types/ApiResponse'
+import { type HttpError } from '../HttpError';
+import { type BaseErrorHandler } from '../handlers/BaseErrorHandler.abstract';
+import { type ApiResponse } from '../types/ApiResponse';
 
-type AnyFunction<TArgs extends unknown[], TReturn> = (...args: TArgs) => Promise<TReturn>
+type AnyFunction<TArgs extends unknown[], TReturn> = (...args: TArgs) => Promise<TReturn>;
 
 export function withError<TArgs extends unknown[], TReturn extends ApiResponse<unknown>>(
   func: AnyFunction<TArgs, TReturn>,
-  handler: BaseErrorHandler<ApiError>
+  handler: BaseErrorHandler<HttpError>,
 ) {
-  return async function(...args: TArgs): Promise<TReturn> {
+  return async function (...args: TArgs): Promise<TReturn> {
     try {
-      return await func(...args)
+      return await func(...args);
     } catch (e: unknown) {
-      const error = handler.handle(e).serialize()
+      const error = handler.handle(e).serialize();
       // @ts-ignore
-      return { error, data: null }
+      return { error, data: null };
     }
-  }
+  };
 }
