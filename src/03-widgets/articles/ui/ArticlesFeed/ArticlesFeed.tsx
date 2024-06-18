@@ -2,7 +2,7 @@
 import { useCallback } from 'react'
 
 import { getArticlesQueryParams } from 'src/04-features/articles'
-import { Articles, LoadNextPage, LoadPreviousPage } from 'src/04-features/articles/index.ui'
+import { Articles } from 'src/04-features/articles/index.ui'
 import { useArticlesView } from 'src/04-features/articles-change-view/index.client'
 import { ARTICLES_SEARCH_PARAMS_KEYS } from 'src/05-entities/articles'
 import { articlesClientApi } from 'src/05-entities/articles/index.client'
@@ -13,6 +13,8 @@ import { useSearchParams } from 'src/06-shared/lib/third-party/router/useSearchP
 import { withSuspense } from 'src/06-shared/lib/utils/HOK/withSuspense'
 import Alert from 'src/06-shared/ui/Alert'
 
+import ButtonLoadNextPage from 'src/06-shared/ui/ButtonLoadNextPage'
+import ButtonLoadPreviousPage from 'src/06-shared/ui/ButtonLoadPreviousPage'
 import { pageNumberIndicator } from 'src/06-shared/ui/InfiniteScroll'
 import PageError from 'src/06-shared/ui/LayoutNotFoundError'
 
@@ -23,9 +25,9 @@ function ArticlesFeed() {
   const [view] = useArticlesView()
   const articlesParams = getArticlesQueryParams(searchParams)
 
-  const inifinite = articlesClientApi.useGetArticlesInfinite(articlesParams)
-  const { fetchNextPage } = inifinite
-  const noArticlesFound = inifinite.data.pages.flat().length === 0
+  const infinite = articlesClientApi.useGetArticlesInfinite(articlesParams)
+  const { fetchNextPage } = infinite
+  const noArticlesFound = infinite.data.pages.flat().length === 0
 
   const onPage = useCallback((page: string) => {
     set({ [ARTICLES_SEARCH_PARAMS_KEYS.A_PAGE]: page })
@@ -39,19 +41,23 @@ function ArticlesFeed() {
 
   return (
     <>
-      {inifinite.error && <Alert variant='error'>{inifinite.error.message}</Alert>}
+      {infinite.error && <Alert variant='error'>{infinite.error.message}</Alert>}
       <InfiniteFeed
         LoadNext={
-          <LoadNextPage
-            href={getFullPath({ [ARTICLES_SEARCH_PARAMS_KEYS.A_PAGE]: inifinite.nextPage.toString() })}
-            params={articlesParams}
+          <ButtonLoadNextPage
+            hasNext={infinite.hasNextPage}
+            href={getFullPath({ [ARTICLES_SEARCH_PARAMS_KEYS.A_PAGE]: infinite.nextPage.toString() })}
+            loading={infinite.isFetchingNextPage}
+            onLoad={infinite.fetchNextPage}
           />
         }
         LoadPrevious={
-          inifinite.hasPreviousPage ? <LoadPreviousPage
-            href={getFullPath({ [ARTICLES_SEARCH_PARAMS_KEYS.A_PAGE]: inifinite.previousPage.toString() })}
-            params={articlesParams}
-          /> : null
+          <ButtonLoadPreviousPage
+            hasPrevious={infinite.hasPreviousPage}
+            href={getFullPath({ [ARTICLES_SEARCH_PARAMS_KEYS.A_PAGE]: infinite.previousPage.toString() })}
+            loading={infinite.isFetchingPreviousPage}
+            onLoad={infinite.fetchPreviousPage}
+          />
         }
         onLastPage={onLastPage}
         onPage={onPage}
