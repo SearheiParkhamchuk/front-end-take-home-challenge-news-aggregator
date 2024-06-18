@@ -15,6 +15,8 @@ function Link({
   component = 'link',
   decoration = 'underline',
   reload,
+  title,
+  style,
   onClick,
   ...rest
 }: LinkProps, ref: ForwardedRef<HTMLAnchorElement>) {
@@ -27,6 +29,8 @@ function Link({
     rel,
     target,
     children,
+    title,
+    style,
     onClick
   }
 

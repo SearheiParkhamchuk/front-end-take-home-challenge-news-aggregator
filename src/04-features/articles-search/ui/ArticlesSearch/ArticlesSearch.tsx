@@ -13,7 +13,7 @@ function ArticlesSearch() {
     setSearchQuery(event.target.value)
   }
 
-  return <InputSearch value={query} onChange={handleChange} />
+  return <InputSearch size='xs' value={query} onChange={handleChange} />
 }
 
 export default withSuspense(ArticlesSearch)

@@ -12,6 +12,7 @@ function GridViewButton({ disabled, value, className = '', onChange }: GridViewB
         className={className}
         data={model}
         disabled={disabled}
+        size='xs'
         value={value}
         // @ts-ignore
         onChange={onChange}

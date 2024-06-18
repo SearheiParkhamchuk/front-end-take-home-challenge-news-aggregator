@@ -15,6 +15,7 @@ function InputSearch({
   onFocus,
   placeholder = 'Search',
   value,
+  size,
   ...rest
 }: InputTextProps, ref: ForwardedRef<HTMLInputElement>) {
   return (
@@ -29,6 +30,7 @@ function InputSearch({
       placeholder={placeholder}
       ref={ref}
       rightSection={<IconSearch />}
+      size={size}
       type='search'
       value={value}
       onBlur={onBlur}

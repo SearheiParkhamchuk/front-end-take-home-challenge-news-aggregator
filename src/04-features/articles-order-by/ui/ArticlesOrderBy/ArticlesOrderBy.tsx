@@ -15,7 +15,7 @@ function ArticlesOrderBy() {
     setOrderBy(event.target.value as ARTICLES_ORDER_BY)
   }
 
-  return <SelectNative data={items} value={orderBy} onChange={handleOrderByChange} />
+  return <SelectNative data={items} size='xs' value={orderBy} onChange={handleOrderByChange} />
 }
 
 export default withSuspense(ArticlesOrderBy)
