@@ -1,5 +1,5 @@
 import InfiniteScroll from 'src/06-shared/ui/InfiniteScroll'
-import ScrollToTop from 'src/06-shared/ui/ScrollToEdge'
+import ScrollToEdge from 'src/06-shared/ui/ScrollToEdge'
 import Stack from 'src/06-shared/ui/Stack'
 
 import { type InfiniteFeedProps } from './types'
@@ -16,7 +16,7 @@ function InfiniteFeed({ LoadNext, LoadPrevious, children, onLastPage, onPage }: 
       <Stack align='center'>
         {LoadNext}
       </Stack>
-      <ScrollToTop />
+      <ScrollToEdge offsetY={150} />
     </Stack>
   )
 }
