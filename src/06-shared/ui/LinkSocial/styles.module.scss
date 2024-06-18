@@ -1,0 +1,11 @@
+.social {
+  transition: color 0.3s ease;
+
+  &.linked-in {
+
+    &:not(.monochrome),
+    &:hover {
+      color: #0e76a8;
+    }
+  }
+}
