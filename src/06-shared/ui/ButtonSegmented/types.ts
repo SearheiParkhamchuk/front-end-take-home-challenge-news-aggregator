@@ -1,3 +1,3 @@
-import { type SegmentedControlProps } from '@mantine/core'
+import { type SegmentedControlProps } from '@mantine/core';
 
-export type ButtonSegmentedProps = Pick<SegmentedControlProps, 'data' | 'name' | 'onChange' | 'disabled' | 'value' | 'className'>
+export type ButtonSegmentedProps = Pick<SegmentedControlProps, 'data' | 'name' | 'onChange' | 'disabled' | 'value' | 'className' | 'size'>;

@@ -1,3 +1,3 @@
-import { useArticlesView } from './model/useArticlesView';
+import { useArticlesView } from '../../05-entities/articles/model/useArticlesView';
 
 export { useArticlesView };

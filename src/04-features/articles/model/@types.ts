@@ -1,8 +1,0 @@
-import { type ARTICLES_ORDER_BY, type ARTICLES_SEARCH_PARAMS_KEYS } from 'src/05-entities/articles';
-
-export type ArticlesQueryParams = {
-  [ARTICLES_SEARCH_PARAMS_KEYS.A_PAGE]: string;
-  [ARTICLES_SEARCH_PARAMS_KEYS.A_PAGE_SIZE]?: string;
-  [ARTICLES_SEARCH_PARAMS_KEYS.A_QUERY]?: string;
-  [ARTICLES_SEARCH_PARAMS_KEYS.A_ORDER_BY]?: ARTICLES_ORDER_BY;
-};
